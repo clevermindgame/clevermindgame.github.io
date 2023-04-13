@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://clevermindgame.github.io/sitemap.xml

@@ -1,0 +1,27 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "CleverMindGame",
+    "description": "",
+    "home_page_url": "https://clevermindgame.github.io",
+    "feed_url": "https://clevermindgame.github.io/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "MS &amp; 2P"
+    },
+    "items": [
+        {
+            "id": "https://clevermindgame.github.io/sito-in-costruzione.html",
+            "url": "https://clevermindgame.github.io/sito-in-costruzione.html",
+            "title": "Sito in costruzione",
+            "summary": "A presto!",
+            "content_html": "<p>A presto!</p>",
+            "author": {
+                "name": "MS &amp; 2P"
+            },
+            "tags": [
+            ],
+            "date_published": "2023-04-13T16:28:27+02:00",
+            "date_modified": "2023-04-13T16:28:27+02:00"
+        }
+    ]
+}

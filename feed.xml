@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>CleverMindGame</title>
+    <link href="https://clevermindgame.github.io/feed.xml" rel="self" />
+    <link href="https://clevermindgame.github.io" />
+    <updated>2023-04-13T16:28:27+02:00</updated>
+    <author>
+        <name>MS &amp; 2P</name>
+    </author>
+    <id>https://clevermindgame.github.io</id>
+
+    <entry>
+        <title>Sito in costruzione</title>
+        <author>
+            <name>MS &amp; 2P</name>
+        </author>
+        <link href="https://clevermindgame.github.io/sito-in-costruzione.html"/>
+        <id>https://clevermindgame.github.io/sito-in-costruzione.html</id>
+
+        <updated>2023-04-13T16:28:27+02:00</updated>
+            <summary>
+                <![CDATA[
+                    A presto!
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>A presto!</p>
+            ]]>
+        </content>
+    </entry>
+</feed>
