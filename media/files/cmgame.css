@@ -1,0 +1,30 @@
+table, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+   padding: 0px;
+}
+
+pezzi {
+   width: 50px;
+   height: 50px;
+   cursor: pointer;
+}
+
+dialog {background-color: rgba(1, 167, 193, 0.5);}
+ 
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.intest1 {
+  height: 120px;
+}
+
+.intest2 {
+  top: -120px;
+  height: 120px;
+  left: -20px;
+  position: relative;
+}
