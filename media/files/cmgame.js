@@ -11,7 +11,6 @@
   cells.forEach(cell => {
     cell.addEventListener('click', () => {
       cellId = cell;
-      console.log(`Clicked on element with ID ${cellId}`);
       dialog.showModal();
     });
   });
