@@ -17,8 +17,15 @@
   background-color: #01A7C1;
 }
 
-table, td {
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+td {
    border: 1px solid black;
+   text-align: center;
+   vertical-align: middle;
    border-collapse: collapse;
    padding: 0px;
 }
@@ -34,7 +41,6 @@ dialog {background-color: rgba(1, 167, 193, 0.5);}
 .container {
   display: flex;
   flex-direction: column;
-  position: absolute;
 }
 
 .intest1 {
