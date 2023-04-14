@@ -36,7 +36,7 @@ pezzi {
    cursor: pointer;
 }
 
-dialog {background-color: rgba(1, 167, 193, 0.5);}
+dialog {background-color: rgba(1, 167, 193, 0.85);}
  
 .container {
   display: flex;
