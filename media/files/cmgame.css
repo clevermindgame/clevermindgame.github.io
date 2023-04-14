@@ -1,3 +1,22 @@
+.logo-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.logo-image {
+  flex-basis: 120px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  flex-basis: calc(100% - 120px);
+  flex-grow: 1;
+  flex-shrink: 1;
+  background-color: #01A7C1;
+}
+
 table, td {
    border: 1px solid black;
    border-collapse: collapse;
