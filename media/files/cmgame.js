@@ -60,3 +60,6 @@
       cellId.innerHTML = '<img src="qn.png">';
       dialog.close();
     });
+    image9.addEventListener('click', () => {
+      dialog.close();
+    });
