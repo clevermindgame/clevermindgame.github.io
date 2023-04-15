@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Layout</title>
+    <style>
+
+.logo-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.logo-image {
+  flex-basis: 80px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  flex-basis: calc(100% - 80px);
+  flex-grow: 1;
+  flex-shrink: 1;
+  background-color: #01A7C1;
+}
+
+
+.spaziatura20{
+    margin-bottom:20px;
+    background-color:#475;
+    }
+
+.box {
+ height: 600px;
+ width: 450px;
+ background-color: blue;
+ }
+    </style>
+  </head>
+
+  <body>
+
+<div class="logo-container">
+ <div class="logo-image">
+    <img src="logo.png" alt="Image" width="80" height="80">
+ </div>
+ <div class="logo-text">
+    <h3 align="center">CleverMind<br />Game</h3>
+  </div>
+</div>
+<div class="spaziatura20"></div>
+
+<div class="box"></div>
+  </body>
+</html>
