@@ -44,7 +44,8 @@ dialog {background-color: rgba(1, 167, 193, 0.85);}
 }
 
 .bottombar{
-    margin-bottom:260px;
+    margin-bottom:300px;
+    margin-right:450px;
     background-color:#475;
     }
 
