@@ -5,13 +5,13 @@
 }
 
 .logo-image {
-  flex-basis: 120px;
+  flex-basis: 80px;
   flex-grow: 0;
   flex-shrink: 0;
 }
 
 .logo-text {
-  flex-basis: calc(100% - 120px);
+  flex-basis: calc(100% - 80px);
   flex-grow: 1;
   flex-shrink: 1;
   background-color: #01A7C1;
@@ -43,13 +43,10 @@ dialog {background-color: rgba(1, 167, 193, 0.85);}
   flex-direction: column;
 }
 
-.intest1 {
-  height: 120px;
-}
-
-.intest2 {
-  top: -120px;
-  height: 120px;
-  left: -20px;
-  position: relative;
-}
+.bottombar{
+    display:block;
+    width:450px
+    height:200pxpx;
+    background-color:#475;
+    overflow:scroll;
+    }
