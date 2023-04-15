@@ -43,10 +43,13 @@ dialog {background-color: rgba(1, 167, 193, 0.85);}
   flex-direction: column;
 }
 
-.bottombar{
+.bottom1{
     margin-bottom:300px;
+    }
+
+.bottom2{
     margin-right:450px;
-    background-color:#475;
+    text-align: right;
     }
 
 .spaziatura20{
