@@ -46,7 +46,6 @@ dialog {background-color: rgba(1, 167, 193, 0.85);}
 .bottombar{
     display:block;
     width:450px
-    height:200pxpx;
+    height:200px;
     background-color:#475;
-    overflow:scroll;
     }
