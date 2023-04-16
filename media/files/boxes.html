@@ -171,24 +171,17 @@ storico 12<br />
 </div>
 
   <script>
-    var ruotato = false;
-    scacchiera();
-    window.addEventListener("orientationchange", function() {
-       scacchiera();
-});
-
+    screen.orientation.lock("portrait");
     if (window.innerHeight > 600) {
         var tabella = document.getElementsByTagName("table");
         tabella[0].style.width = "85%"
         }
     // set the height of each cell equal to its width
-    function scacchiera() {
+
        var cells = document.getElementsByTagName("td");
        for (var i = 0; i < cells.length; i++) {
              cells[i].style.height = cells[i].offsetWidth + "px";
        };
-    };
-
 
     // set storico area height
 //    var windowHeight = window.innerHeight;
