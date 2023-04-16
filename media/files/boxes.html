@@ -51,6 +51,7 @@
 .storico {
  height: 100px;
  background-color: #cccccc;
+ overflow-y: auto;
  }
     </style>
   </head>
@@ -152,7 +153,20 @@
 <div class="spaziatura5"></div>
 <div class="bottoni">bottoni</div>
 <div class="spaziatura5"></div>
-<div class="storico">storico</div>
+<div id="storico" class="storico">
+storico 1<br />
+storico 2<br />
+storico 3<br />
+storico 4<br />
+storico 5<br />
+storico 6<br />
+storico 7<br />
+storico 8<br />
+storico 9<br />
+storico 10<br />
+storico 11<br />
+storico 12<br />
+</div>
 
   <script>
     // set the height of each cell equal to its width
@@ -160,6 +174,11 @@
     for (var i = 0; i < cells.length; i++) {
       cells[i].style.height = cells[i].offsetWidth + "px";
     };
+    // set storico area height
+    var windowHeight = window.innerHeight;
+    var verticalPosition = window.pageYOffset;
+    var storicoDiv = document.getElementById("storico");
+    storicoDiv.style.height = windowHeight-verticalPosition;
   </script>
 
   </body>
