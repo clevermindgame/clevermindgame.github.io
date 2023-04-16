@@ -171,15 +171,22 @@ storico 12<br />
 </div>
 
   <script>
+    ruotato = false
+    window.addEventListener("orientationchange", function() {
+    ruotato = true;
+});
+
     if (window.innerHeight > 600) {
         var tabella = document.getElementsByTagName("table");
         tabella[0].style.width = "85%"
         }
     // set the height of each cell equal to its width
-    var cells = document.getElementsByTagName("td");
-    for (var i = 0; i < cells.length; i++) {
-      cells[i].style.height = cells[i].offsetWidth + "px";
-    };
+    if (!ruotato) {
+       var cells = document.getElementsByTagName("td");
+       for (var i = 0; i < cells.length; i++) {
+             cells[i].style.height = cells[i].offsetWidth + "px";
+       };
+     };
 
     // set storico area height
 //    var windowHeight = window.innerHeight;
@@ -188,7 +195,7 @@ storico 12<br />
     const storicoDiv = document.getElementById("storico");
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const divTop = storicoDiv.offsetTop;
-    const remainingHeight = window.innerHeight - (divTop - scrollTop);
+    const remainingHeight = window.innerHeight - (divTop - scrollTop)-10;
     storicoDiv.style.height = `${remainingHeight}px`;
 
   </script>
