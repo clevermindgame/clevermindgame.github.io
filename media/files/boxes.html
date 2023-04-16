@@ -171,6 +171,10 @@ storico 12<br />
 </div>
 
   <script>
+    if (window.innerHeight > 600) {
+        var tabella = document.getElementsByTagName("table");
+        tabella[0].style.width = "85%"
+        }
     // set the height of each cell equal to its width
     var cells = document.getElementsByTagName("td");
     for (var i = 0; i < cells.length; i++) {
