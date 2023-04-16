@@ -179,6 +179,8 @@ storico 12<br />
     var verticalPosition = window.pageYOffset;
     var storicoDiv = document.getElementById("storico");
     storicoDiv.style.height = windowHeight-verticalPosition;
+    storicoDiv.insertAdjacentHTML("beforebegin", windowHeight + ","+verticalPosition);
+
   </script>
 
   </body>
