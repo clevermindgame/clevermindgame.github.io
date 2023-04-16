@@ -171,9 +171,10 @@ storico 12<br />
 </div>
 
   <script>
-    ruotato = false
+    var ruotato = false
     window.addEventListener("orientationchange", function() {
     ruotato = true;
+    alert("Ruotato!");
 });
 
     if (window.innerHeight > 600) {
