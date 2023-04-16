@@ -153,6 +153,8 @@
 <div class="spaziatura5"></div>
 <div class="bottoni">bottoni</div>
 <div class="spaziatura5"></div>
+
+
 <div id="storico" class="storico">
 storico 1<br />
 storico 2<br />
@@ -174,12 +176,16 @@ storico 12<br />
     for (var i = 0; i < cells.length; i++) {
       cells[i].style.height = cells[i].offsetWidth + "px";
     };
+
     // set storico area height
-    var windowHeight = window.innerHeight;
-    var verticalPosition = window.pageYOffset;
-    var storicoDiv = document.getElementById("storico");
-    storicoDiv.style.height = windowHeight-verticalPosition;
-    storicoDiv.insertAdjacentHTML("beforebegin", windowHeight + ","+verticalPosition);
+//    var windowHeight = window.innerHeight;
+//    storicoDiv.insertAdjacentHTML("beforebegin", windowHeight + ","+verticalPosition);
+
+    const storicoDiv = document.getElementById("storico");
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const divTop = storicoDiv.offsetTop;
+    const remainingHeight = window.innerHeight - (divTop - scrollTop);
+    storicoDiv.style.height = `${remainingHeight}px`;
 
   </script>
 
