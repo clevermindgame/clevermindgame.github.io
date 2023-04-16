@@ -31,11 +31,17 @@
     background-color:#ffffff;
     }
 
-.scacchiera {
- height: 250px;
- width: 250px;
- background-color: #cccccc;
- }
+    table {
+      width: 70%;
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    td {
+      position: relative;
+      border: 1px solid black;
+      background-color: white;
+    }
 
 .bottoni {
  height: 50px;
@@ -43,7 +49,7 @@
  }
 
 .storico {
- height: 200px;
+ height: 100px;
  background-color: #cccccc;
  }
     </style>
@@ -61,12 +67,100 @@
 </div>
 
 <div class="spaziatura5"></div>
-<div class="scacchiera">scacchiera</div>
+  <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
 <div class="spaziatura5"></div>
 <div class="bottoni">bottoni</div>
 <div class="spaziatura5"></div>
 <div class="storico">storico</div>
 
+  <script>
+    // set the height of each cell equal to its width
+    var cells = document.getElementsByTagName("td");
+    for (var i = 0; i < cells.length; i++) {
+      cells[i].style.height = cells[i].offsetWidth + "px";
+    };
+  </script>
 
   </body>
 </html>
