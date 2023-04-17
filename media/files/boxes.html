@@ -40,6 +40,7 @@
     td {
       position: relative;
       border: 1px solid black;
+      padding: 0px;
       background-color: white;
     }
 
@@ -184,21 +185,22 @@ storico 20<br />
         tabella[0].style.width = "85%"
         }
     // set the height of each cell equal to its width
-
        var cells = document.getElementsByTagName("td");
        for (var i = 0; i < cells.length; i++) {
-             cells[i].style.height = cells[i].offsetWidth + "px";
+          cells[i].style.height = (cells[i].offsetWidth - 2) + "px";
        };
 
     // set storico area height
-//    var windowHeight = window.innerHeight;
-//    storicoDiv.insertAdjacentHTML("beforebegin", windowHeight + ","+verticalPosition);
-
     const storicoDiv = document.getElementById("storico");
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const divTop = storicoDiv.offsetTop;
     const remainingHeight = window.innerHeight - (divTop - scrollTop)-5;
     storicoDiv.style.height = `${remainingHeight}px`;
+
+    primo = "Risoluzione schermo: "+ window.innerWidth + "," + window.innerHeight + "<br />"
+    storicoDiv.insertAdjacentHTML("afterbegin",primo)
+    storicoDiv.insertAdjacentHTML("beforeend","--- fine ---")
+
 
   </script>
 
