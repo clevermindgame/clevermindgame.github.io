@@ -69,7 +69,7 @@
 </div>
 
 <div class="spaziatura5"></div>
-  <table>
+  <table id="scacchiera">
     <tr>
       <td></td>
       <td></td>
@@ -180,12 +180,13 @@ storico 20<br />
 </div>
 
   <script>
+    tabella = document.getElementById("scacchiera")
     if (window.innerHeight > 600) {
-        var tabella = document.getElementsByTagName("table");
-        tabella[0].style.width = "85%"
+        tabella.style.width = "85%"
         }
     // set the height of each cell equal to its width
        var cells = document.getElementsByTagName("td");
+       var lcella = cells[0].offsetWidth -2
        for (var i = 0; i < cells.length; i++) {
           cells[i].style.height = (cells[i].offsetWidth - 2) + "px";
        };
@@ -197,7 +198,7 @@ storico 20<br />
     const remainingHeight = window.innerHeight - (divTop - scrollTop)-5;
     storicoDiv.style.height = `${remainingHeight}px`;
 
-    primo = "Risoluzione schermo: "+ window.innerWidth + "," + window.innerHeight + "<br />"
+    primo = "Risoluzione schermo: "+ window.innerWidth + ", " + window.innerHeight + ", " + lcella + "<br />"
     storicoDiv.insertAdjacentHTML("afterbegin",primo)
     storicoDiv.insertAdjacentHTML("beforeend","--- fine ---")
 
