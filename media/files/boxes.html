@@ -27,12 +27,12 @@
 
 
 .spaziatura5{
-    margin-bottom:5px;
+    margin-bottom:3px;
     background-color:#ffffff;
     }
 
     table {
-      width: 70%;
+      width: 75%;
       border-collapse: collapse;
       margin-left: auto;
       margin-right: auto;
@@ -45,7 +45,7 @@
     }
 
 .bottoni {
- height: 50px;
+ height: 40px;
  background-color: #cccccc;
  }
 
@@ -188,14 +188,14 @@ storico 20<br />
        var cells = document.getElementsByTagName("td");
        var lcella = cells[0].offsetWidth -2
        for (var i = 0; i < cells.length; i++) {
-          cells[i].style.height = (cells[i].offsetWidth - 2) + "px";
+          cells[i].style.height = lcella + "px";
        };
 
     // set storico area height
     const storicoDiv = document.getElementById("storico");
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const divTop = storicoDiv.offsetTop;
-    const remainingHeight = window.innerHeight - (divTop - scrollTop)-5;
+    const remainingHeight = window.innerHeight - (divTop - scrollTop)-2;
     storicoDiv.style.height = `${remainingHeight}px`;
 
     primo = "Risoluzione schermo: "+ window.innerWidth + ", " + window.innerHeight + ", " + lcella + "<br />"
