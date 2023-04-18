@@ -1,214 +1,129 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Layout</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light only">
-
-    <style>
-
-.logo-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.logo-image {
-  flex-basis: 60px;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-.logo-text {
-  flex-basis: calc(100% - 60px);
-  flex-grow: 1;
-  flex-shrink: 1;
-  background-color: #01A7C1;
-}
-
-
-.spaziatura3{
-    margin-bottom:3px;
-    background-color:#ffffff;
-    }
-
-    table {
-      width: 75%;
-      border-collapse: collapse;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    td {
-      position: relative;
-      padding: 0px;
-      border: 1px solid black;
-      background-color: white;
-    }
-
-.bottoni {
- height: 40px;
- background-color: #cccccc;
- }
-
-.storico {
- height: 100px;
- background-color: #cccccc;
- overflow-y: auto;
- }
-
-    </style>
-  </head>
-
-  <body>
-
-<div class="logo-container">
- <div class="logo-image">
-    <img src="logo.png" alt="Image" width="60" height="60">
- </div>
- <div class="logo-text">
-    <h3 align="center">CleverMind</h3>
-  </div>
-</div>
-
-<div class="spaziatura3"></div>
-  <table id="scacchiera">
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </table>
-<div class="spaziatura3"></div>
-<div class="bottoni">bottoni</div>
-<div class="spaziatura3"></div>
-
-
-<div id="storico" class="storico">
-storico 1<br />
-storico 2<br />
-storico 3<br />
-storico 4<br />
-storico 5<br />
-storico 6<br />
-storico 7<br />
-storico 8<br />
-storico 9<br />
-storico 10<br />
-storico 11<br />
-storico 12<br />
-storico 13<br />
-storico 14<br />
-storico 15<br />
-storico 16<br />
-storico 17<br />
-storico 18<br />
-storico 19<br />
-storico 20<br />
-</div>
-
-  <script>
-    tabella = document.getElementById("scacchiera")
-    if (window.innerHeight > 600) {
-        tabella.style.width = "85%"
-        }
-    if (window.innerHeight > 690) {
-        tabella.style.width = "90%"
-        }
-    // set the height of each cell equal to its width
-       var cells = document.getElementsByTagName("td");
-       var lcella = cells[0].offsetWidth -2
-       for (var i = 0; i < cells.length; i++) {
-          cells[i].style.height = lcella + "px";
-       };
-
-    // set storico area height
-    const storicoDiv = document.getElementById("storico");
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const divTop = storicoDiv.offsetTop;
-    const remainingHeight = window.innerHeight - (divTop - scrollTop)-2;
-    storicoDiv.style.height = `${remainingHeight}px`;
-
-    primo = "Risoluzione schermo: "+ window.innerWidth + ", " + window.innerHeight + ", " + lcella + "<br />"
-    storicoDiv.insertAdjacentHTML("afterbegin",primo)
-    storicoDiv.insertAdjacentHTML("beforeend","--- fine ---")
-
-
-  </script>
-
-  </body>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="color-scheme" content="light only">
+        <title>Layout</title>
+        <link rel="stylesheet" href="lstyles.css" />
+    </head>
+    <body>
+        <div class="logo-container">
+            <div class="logo-image">
+                <img src="logo.png" alt="Image" width="60" height="60">
+            </div>
+            <div class="logo-text">
+                <h3 align="center">CleverMind</h3>
+            </div>
+        </div>
+        <div class="spaziatura3"></div>
+        <table id="scacchiera">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="spaziatura3"></div>
+        <div class="bottoni">bottoni</div>
+        <div class="spaziatura3"></div>
+        <div id="storico" class="storico">
+            storico 1<br />
+            storico 2<br />
+            storico 3<br />
+            storico 4<br />
+            storico 5<br />
+            storico 6<br />
+            storico 7<br />
+            storico 8<br />
+            storico 9<br />
+            storico 10<br />
+            storico 11<br />
+            storico 12<br />
+            storico 13<br />
+            storico 14<br />
+            storico 15<br />
+            storico 16<br />
+            storico 17<br />
+            storico 18<br />
+            storico 19<br />
+            storico 20<br />
+        </div>
+        <script src="lscript.js"></script>
+    </body>
 </html>
