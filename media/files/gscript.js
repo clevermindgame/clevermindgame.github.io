@@ -3,9 +3,8 @@ hWindow = window.innerHeight;
 wWindow = window.innerWidth;
 // Adatta la scacchiera alla dimensione dello schermo
 scacchiera = document.getElementById("scacchiera");
-wScacchiera = Math.min(0.98*wWindow, 0.5*hWindow);
+wScacchiera = Math.min(0.98*wWindow, 0.8*hWindow);
 scacchiera.style.width = wScacchiera;
-
 //
 // Crea la scacchiera
 n = 8
@@ -21,6 +20,7 @@ storicoDiv.style.height = `${remainingHeight}px`;
 storicoDiv.insertAdjacentHTML("beforeend","<br />--- fine ---");
 stampaUA();
 logga();
+//
 //  =======>
 aggiungiEventi();
 //
