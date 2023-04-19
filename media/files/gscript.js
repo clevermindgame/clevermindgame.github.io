@@ -1,11 +1,11 @@
+// dimensioni dello schermo
+hWindow = window.innerHeight;
+wWindow = window.innerWidth;
 // Adatta la scacchiera alla dimensione dello schermo
 scacchiera = document.getElementById("scacchiera");
-if (window.innerHeight > 600) {
-    scacchiera.style.width = "85%";
-}
-if (window.innerHeight > 690) {
-    scacchiera.style.width = "90%";
-}
+wScacchiera = Math.min(0.98*wWindow, 0.5*hWindow);
+scacchiera.style.width = wScacchiera;
+
 //
 // Crea la scacchiera
 n = 8
@@ -15,7 +15,7 @@ creaScacchiera(n);
 const storicoDiv = document.getElementById("storico");
 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 const divTop = storicoDiv.offsetTop;
-const remainingHeight = window.innerHeight - (divTop - scrollTop)-2;
+const remainingHeight = hWindow - (divTop - scrollTop)-2;
 storicoDiv.style.height = `${remainingHeight}px`;
 //
 storicoDiv.insertAdjacentHTML("beforeend","--- fine ---");
