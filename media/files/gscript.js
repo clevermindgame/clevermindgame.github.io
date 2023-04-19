@@ -3,7 +3,7 @@ hWindow = window.innerHeight;
 wWindow = window.innerWidth;
 // Adatta la scacchiera alla dimensione dello schermo
 scacchiera = document.getElementById("scacchiera");
-wScacchiera = Math.min(0.98*wWindow, 0.8*hWindow);
+wScacchiera = 0.6*hWindow;
 scacchiera.style.width = wScacchiera;
 //
 // Crea la scacchiera
