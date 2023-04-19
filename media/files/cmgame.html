@@ -1,50 +1,35 @@
-<!doctype html>
-<html lang="it-IT">
-
-<head>
-	<title>CMGame</title>
-	<link rel="stylesheet" type="text/css" href="cmgame.css">
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-<div class="logo-container">
-  <div class="logo-image">
-    <img src="logo.png" alt="Image" width="80" height="80">
-  </div>
-  <div class="logo-text">
-    <h3 align="center">CleverMind<br />Game</h3>
-  </div>
-</div>
-<div class="spaziatura20"></div>
-
-
-  <table id="board">
-    <tr>
-      <td id="cell11"><img src="white.png"></td>
-      <td id="cell21"><img src="white.png"></td>
-      <td id="cell31"><img src="white.png"></td>
-      <td id="cell41"><img src="white.png"></td>
-    </tr>
-    <tr>
-      <td id="cell12"><img src="white.png"></td>
-      <td id="cell22"><img src="white.png"></td>
-      <td id="cell32"><img src="white.png"></td>
-      <td id="cell42"><img src="white.png"></td>
-    </tr>
-    <tr>
-      <td id="cell13"><img src="white.png"></td>
-      <td id="cell23"><img src="white.png"></td>
-      <td id="cell33"><img src="white.png"></td>
-      <td id="cell43"><img src="white.png"></td>
-    </tr>
-    <tr>
-      <td id="cell14"><img src="white.png"></td>
-      <td id="cell24"><img src="white.png"></td>
-      <td id="cell34"><img src="white.png"></td>
-      <td id="cell44"><img src="white.png"></td>
-    </tr>
-  </table>
+	<meta name="color-scheme" content="light only">
+        <title>Layout</title>
+        <link rel="stylesheet" href="gstyles.css" />
+    </head>
+    <body>
+        <div class="logo-container">
+            <div class="logo-image">
+                <img src="logo.png" alt="Image" width="60" height="60">
+            </div>
+            <div class="logo-text">
+                <h3 align="center">CleverMind</h3>
+            </div>
+        </div>
+        <div class="spaziatura3"></div>
+        <table id="scacchiera">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <div class="spaziatura3"></div>
+        <div class="bottoni">
+		<button id="cambia">Cambia</button>
+	</div>
+        <div class="spaziatura3"></div>
+        <div id="storico" class="storico">
+            012345678901234567890123456789<br />
+        </div>
 
   <dialog id="imageDialog">
     <img src="rimuovi.png" id="image0">
@@ -58,11 +43,7 @@
     <img src="qn.png" id="image8">
     <img src="cancella.png" id="image9">
   </dialog>
-</div>
-<div class="bottom1"></div>
-<div class="bottom2">+</div>
 
-<script src="cmgame.js"></script>
-
-</body>
+        <script src="gscript.js"></script>
+    </body>
 </html>
