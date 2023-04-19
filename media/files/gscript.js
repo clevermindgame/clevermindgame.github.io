@@ -18,7 +18,8 @@ const divTop = storicoDiv.offsetTop;
 const remainingHeight = hWindow - (divTop - scrollTop)-2;
 storicoDiv.style.height = `${remainingHeight}px`;
 //
-storicoDiv.insertAdjacentHTML("beforeend","--- fine ---");
+storicoDiv.insertAdjacentHTML("beforeend","<br />--- fine ---");
+stampaUA();
 logga();
 //  =======>
 aggiungiEventi();
@@ -114,7 +115,12 @@ document.getElementById("cambia").addEventListener(
 );
 //
 function logga() {
-	primo = "Schermo: "+ window.innerWidth + ", " + window.innerHeight + ", " + n + ", " + lcella + "<br />";
-    	storicoDiv.insertAdjacentHTML("afterbegin",primo);
+	statW = "Scacchiera " + (wScacchiera/wWindow).toFixed(2) + ", " + n + ", " + lcella + "<br />";
+    	storicoDiv.insertAdjacentHTML("afterbegin",statW);
+}
+function stampaUA() {
+	storicoDiv.insertAdjacentHTML("afterbegin","<br />" + window.navigator.userAgent + "<br />");
+	statS = "Schermo: "+ window.innerWidth + ", " + window.innerHeight + "<br />";
+    	storicoDiv.insertAdjacentHTML("afterbegin",statS);
 }
 
