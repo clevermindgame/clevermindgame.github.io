@@ -1,20 +1,18 @@
 .logo-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center; /* center items vertically */
+  height: 60px; /* set height for container */
+  background-color: #01A7C1;
 }
 
 .logo-image {
-    flex-basis: 60px;
-    flex-grow: 0;
-    flex-shrink: 0;
+  width: 60px; /* set width for logo */
+  height: 60px; /* set height for logo */
 }
 
 .logo-text {
-    flex-basis: calc(100% - 60px);
-    flex-grow: 1;
-    flex-shrink: 1;
-    background-color: #01A7C1;
+  flex-basis: calc(100% - 60px);
+  text-align: center;
 }
 
 .spaziatura3{
