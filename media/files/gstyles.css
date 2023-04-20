@@ -31,7 +31,7 @@ table {
 }
 
 td {
-    position: relative;
+    position: static;
     padding: 0px;
     border: 1px solid black;
     background-color: white;

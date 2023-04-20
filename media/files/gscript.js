@@ -2,14 +2,15 @@
 hWindow = window.innerHeight;
 wWindow = window.innerWidth;
 // Adatta la scacchiera alla dimensione dello schermo
-
+scacchieraW = "75%"
 scacchiera = document.getElementById("scacchiera");
 if (window.innerHeight > 600) {
-	scacchiera.style.width = "85%"
+	scacchieraW = "85%"
 }
 if (window.innerHeight > 690) {
-        scacchiera.style.width = "90%"
+        scacchieraW = "90%"
 }
+scacchiera.style.width = scacchieraW
 //
 // Crea la scacchiera
 n = 8
@@ -120,12 +121,12 @@ document.getElementById("cambia").addEventListener(
 );
 //
 function logga() {
-	statW = "Scacchiera; " + n + ", " + lcella + "<br />";
+	statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
     	storicoDiv.insertAdjacentHTML("afterbegin",statW);
 }
 function stampaUA() {
 	storicoDiv.insertAdjacentHTML("afterbegin","<br />" + window.navigator.userAgent + "<br />");
-	statS = "Schermo: "+ window.innerWidth + ", " + window.innerHeight + "<br />";
+	statS = "Schermo: "+ wWindow + ", " + hWindow + "<br />";
     	storicoDiv.insertAdjacentHTML("afterbegin",statS);
 }
 
