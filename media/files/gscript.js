@@ -1,16 +1,15 @@
 // dimensioni dello schermo
 hWindow = window.innerHeight;
 wWindow = window.innerWidth;
+rWindow = hWindow/wWindow;
 // Adatta la scacchiera alla dimensione dello schermo
-scacchieraW = "75%"
-scacchiera = document.getElementById("scacchiera");
-if (window.innerHeight > 600) {
-	scacchieraW = "85%"
-}
-if (window.innerHeight > 690) {
-        scacchieraW = "90%"
-}
-scacchiera.style.width = scacchieraW
+// fino a un rapporto H/W di 1.4, la larghezza della scacchiera è del 75%
+// oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 98%
+// nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
+scacchieraW = Math.round(75 + (rWindow - 1.4)*23/0.4);
+if (rWindow < 1.4) {scacchieraW = 75};
+if (rWindow > 1.8) {scacchieraW = 98};
+scacchiera.style.width = scacchieraW + "%";
 //
 // Crea la scacchiera
 n = 8
