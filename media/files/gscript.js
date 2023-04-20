@@ -128,4 +128,3 @@ function stampaUA() {
 	statS = "Schermo: "+ wWindow + ", " + hWindow + "<br />";
     	storicoDiv.insertAdjacentHTML("afterbegin",statS);
 }
-
