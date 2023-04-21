@@ -44,14 +44,14 @@ function creaScacchiera(n) {
 //    }
 
 // Crea le nuove righe
-    charSize = (1-(n-6)/10).toFixed(2);
+    charSize = 10;
     for (i = 0; i < n; i++) {
         let riga = scacchiera.insertRow(i);
         for (j = 0; j < n; j++) {
           let cella = riga.insertCell(j);
           cella.id = i + "/" + j;
           cella.classList.add("cinterno");
-	  cella.style.fontSize = charSize + "em";
+	  cella.style.fontSize = charSize + "px";
 	  if ((j == 0) || (j == n-1)) {
 		cella.classList.replace("cinterno","cbordo");
 		cella.innerHTML = String.fromCharCode(j+65,i+49);
@@ -68,7 +68,7 @@ function creaScacchiera(n) {
     }
 
    var celle = document.getElementsByTagName("td");
-    lcella = (wWindow * scacchieraW/100/n).toFixed(0)
+    lcella = ((wWindow * scacchieraW/100-n-1)/n).toFixed(0)
     for (i = 0; i < celle.length; i++) {
         celle[i].style.height = lcella + "px";
         celle[i].style.width = lcella + "px";
