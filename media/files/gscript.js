@@ -44,7 +44,7 @@ function creaScacchiera(n) {
 //    }
 
 // Crea le nuove righe
-    charSize = (1-(n-6)/20).toFixed(2);
+    charSize = (1-(n-6)/8).toFixed(2);
     for (i = 0; i < n; i++) {
         let riga = scacchiera.insertRow(i);
         for (j = 0; j < n; j++) {
