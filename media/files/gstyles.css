@@ -31,6 +31,8 @@ td {
     position: static;
     padding: 0px;
     border: 1px solid black;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 td img{

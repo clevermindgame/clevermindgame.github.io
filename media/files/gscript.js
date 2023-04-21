@@ -69,7 +69,7 @@ function creaScacchiera(n) {
 
    var celle = document.getElementsByTagName("td");
 //    lcella = celle[0].offsetWidth -2;
-    lcella = (wWindow * scacchieraW/100/n).toFixed(0)
+    lcella = (wWindow * scacchieraW/100/n - 6).toFixed(0)
     for (i = 0; i < celle.length; i++) {
         celle[i].style.height = lcella + "px";
         celle[i].style.width = lcella + "px";
@@ -85,7 +85,7 @@ celle_s.forEach(cell => {
 	});
 });
     image0.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="white.png" style="height="100%">';
+      cellId.innerHTML = '<img src="white.png" style="width="100%" height="100%">';
       dialog.close();
     });
     image1.addEventListener('click', () => {
