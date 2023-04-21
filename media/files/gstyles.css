@@ -31,13 +31,30 @@ td {
     position: static;
     padding: 0px;
     border: 1px solid black;
-    background-color: white;
 }
 
 td img{
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.cbordo {
+   background-color: #01a7c1;
+   text-align: center;
+   color: white;
+}
+
+.cangolo {
+   background-color: #007fa8;
+   text-align: center;
+   color: black;
+}
+
+.cinterno {
+   background-color: white;
+   text-align: center;
+   color: black;
 }
 
 pezzi {

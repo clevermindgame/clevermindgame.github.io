@@ -44,23 +44,39 @@ function creaScacchiera(n) {
 //    }
 
 // Crea le nuove righe
+    charSize = (1-(n-6)/20).toFixed(2);
     for (i = 0; i < n; i++) {
         let riga = scacchiera.insertRow(i);
         for (j = 0; j < n; j++) {
           let cella = riga.insertCell(j);
           cella.id = i + "/" + j;
+          cella.classList.add("cinterno");
+	  cella.style.fontSize = charSize + "em";
+	  if ((j == 0) || (j == n-1)) {
+		cella.classList.replace("cinterno","cbordo");
+		cella.innerHTML = String.fromCharCode(j+65,i+49);
+	  }
+	  if ((i == 0) || (i == n-1)) {
+		cella.classList.replace("cinterno","cbordo");
+		cella.innerHTML = String.fromCharCode(j+65,i+49);
+	  }
+	  if (((i == 0) || (i == n-1)) && ((j == 0) || (j == n-1))) {
+		cella.classList.replace("cbordo","cangolo");
+		cella.innerHTML = String.fromCharCode(j+65,i+49);
+	  }
         }
     }
 
    var celle = document.getElementsByTagName("td");
-    lcella = celle[0].offsetWidth -2;
+//    lcella = celle[0].offsetWidth -2;
+    lcella = (wWindow * scacchieraW/100/n).toFixed(0)
     for (i = 0; i < celle.length; i++) {
         celle[i].style.height = lcella + "px";
         celle[i].style.width = lcella + "px";
     }
 }
 function aggiungiEventi() {
-celle_s = document.querySelectorAll('#scacchiera td');
+celle_s = document.querySelectorAll(".cinterno");
 dialog = document.getElementById('imageDialog');
 celle_s.forEach(cell => {
 	cell.addEventListener('click', () => {
@@ -69,7 +85,7 @@ celle_s.forEach(cell => {
 	});
 });
     image0.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="white.png" style="width="100%" height="100%">';
+      cellId.innerHTML = '<img src="white.png" style="height="100%">';
       dialog.close();
     });
     image1.addEventListener('click', () => {
