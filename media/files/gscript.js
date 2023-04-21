@@ -8,7 +8,7 @@ rWindow = hWindow/wWindow;
 // nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
 scacchieraW = Math.round(75 + (rWindow - 1.4)*23/0.4);
 if (rWindow < 1.4) {scacchieraW = 75};
-if (rWindow > 1.8) {scacchieraW = 98};
+if (rWindow > 1.8) {scacchieraW = 96};
 scacchiera.style.width = scacchieraW + "%";
 //
 // Crea la scacchiera
@@ -45,7 +45,7 @@ function creaScacchiera(n) {
 
 // Crea le nuove righe
     lcella = Math.trunc((wWindow * scacchieraW/100-n-1)/n)
-    charSize = 10;
+    charSize = Math.trunc(lcella/3)
     for (i = 0; i < n; i++) {
         let riga = scacchiera.insertRow(i);
         for (j = 0; j < n; j++) {
