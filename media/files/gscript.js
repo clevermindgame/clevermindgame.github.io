@@ -69,7 +69,8 @@ function creaScacchiera(n) {
 
    var celle = document.getElementsByTagName("td");
 //    lcella = celle[0].offsetWidth -2;
-    lcella = (wWindow * scacchieraW/100/n - 6).toFixed(0)
+//    lcella = (wWindow * scacchieraW/100/n - 6).toFixed(0)
+    lcella = (wWindow * scacchieraW/100/n).toFixed(0)
     for (i = 0; i < celle.length; i++) {
         celle[i].style.height = lcella + "px";
         celle[i].style.width = lcella + "px";
