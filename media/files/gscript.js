@@ -2,6 +2,10 @@
 hWindow = window.innerHeight;
 wWindow = window.innerWidth;
 rWindow = hWindow/wWindow;
+//
+// variabili per le funzioni di gioco
+cellaHTML = new Array(64);
+//
 // Adatta la scacchiera alla dimensione dello schermo
 // fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%%
 // oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 96%
@@ -33,6 +37,7 @@ aggiungiEventi();
 //
 // crea scacchiera
 function creaScacchiera(n) {
+    mostra = true
 // Cancella la scacchiera attuale
     scacchiera = document.getElementById("scacchiera");
     var primariga = scacchiera.rows[0];
@@ -50,19 +55,23 @@ function creaScacchiera(n) {
         let riga = scacchiera.insertRow(i);
         for (j = 0; j < n; j++) {
           let cella = riga.insertCell(j);
-          cella.id = i + "/" + j;
+          cella.id = n * i + j;
           cella.classList.add("cinterno");
 	  cella.style.fontSize = charSize + "px";
+          cellaHTML[n*i+j] = ""
 	  if ((j == 0) || (j == n-1)) {
 		cella.classList.replace("cinterno","cbordo");
-		cella.innerHTML = String.fromCharCode(j+65,i+49);
+		cellaHTML[n*i+j] = String.fromCharCode(j+65,i+49);
+                cella.innerHTML = cellaHTML[n*i+j]
 	  }
 	  if ((i == 0) || (i == n-1)) {
 		cella.classList.replace("cinterno","cbordo");
-		cella.innerHTML = String.fromCharCode(j+65,i+49);
+		cellaHTML[n*i+j] = String.fromCharCode(j+65,i+49);
+                cella.innerHTML = cellaHTML[n*i+j]
 	  }
 	  if (((i == 0) || (i == n-1)) && ((j == 0) || (j == n-1))) {
 		cella.classList.replace("cbordo","cangolo");
+                cellaHTML[n*i+j] = cellaHTML[n*i+j]
 		cella.innerHTML = String.fromCharCode(j+65,i+49);
 	  }
         }
@@ -79,44 +88,55 @@ celle_s = document.querySelectorAll(".cinterno");
 dialogS = document.getElementById('imageDialog');
 celle_s.forEach(cell => {
 	cell.addEventListener('click', () => {
-	cellId = cell;
+	cella = cell
+	cellaID = cell.id;
 	dialogS.showModal();
 	});
 });
     image0.addEventListener('click', () => {
-      cellId.innerHTML = '';
+      cella.innerHTML = '';
+      cellaHTML[cellaID] = "";
       dialogS.close();
     });
     image1.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="cb.png" style="width="100%" height="100%">';
+console.log(cella);
+      cellaHTML[cellaID] = '<img src="cb.png" style="width="100%" height="100%">';
+      cella.innerHTML = cellaHTML[cellaID];
       dialogS.close();
     });
     image2.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="cn.png" style="width="100%" height="100%">';
+      cellaHTML[cellaID] = '<img src="cn.png" style="width="100%" height="100%">';
+      cella.innerHTML = cellaHTML[cellaID];
       dialogS.close();
     });
     image3.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="tb.png" style="width="100%" height="100%">';
+      cellaHTML[cellaID] = '<img src="tb.png" style="width="100%" height="100%">';
+      cella.innerHTML = cellaHTML[cellaID];
       dialogS.close();
     });
     image4.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="tn.png" style="width="100%" height="100%">';
+      cellaHTML[cellaID] = '<img src="tn.png" style="width="100%" height="100%">';
+      cella.innerHTML = cellaHTML[cellaID];
       dialogS.close();
     });
     image5.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="rb.png" style="width="100%" height="100%">';
+      cellaHTML[cellaID] = '<img src="rb.png" style="width="100%" height="100%">';
+      cella.innerHTML = cellaHTML[cellaID];
       dialogS.close();
     });
     image6.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="rn.png" style="width="100%" height="100%">';
+      cellaHTML[cellaID] = '<img src="rn.png" style="width="100%" height="100%">';
+      cella.innerHTML = cellaHTML[cellaID];
       dialogS.close();
     });
     image7.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="qb.png" style="width="100%" height="100%">';
+      cellaHTML[cellaID] = '<img src="qb.png" style="width="100%" height="100%">';
+      cella.innerHTML = cellaHTML[cellaID];
       dialogS.close();
     });
     image8.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="qn.png" style="width="100%" height="100%">';
+      cellaHTML[cellaID] = '<img src="qn.png" style="width="100%" height="100%">';
+      cella.innerHTML = cellaHTML[cellaID];
       dialogS.close();
     });
     image9.addEventListener('click', () => {
@@ -150,15 +170,36 @@ celle_b.forEach(cell => {
       dialogB.close();
     });
 }
-// bottone "cambia"
-document.getElementById("cambia").addEventListener(
+// bottone "Impostazioni"
+document.getElementById("impostazioni").addEventListener(
   "click", 
   function() {
-	n = 6 + (n+1)%3;
+    n = 6 + (n+1)%3;
     creaScacchiera(n);
     aggiungiEventi();
     logga();
   }
+);
+// bottone "Mostra/Nascondi"
+document.getElementById("mostra").addEventListener(
+  "click", 
+  function() {
+    if (mostra) {
+        celle = document.getElementsByClassName("cinterno");
+	for (i = 0; i < celle.length; i++) {
+		celle[i].innerHTML = ""
+        }
+    document.getElementById("mostra").textContent = 'Mostra';
+    }
+    if (!mostra) {
+        celle = document.getElementsByClassName("cinterno");
+	for (i = 0; i < celle.length; i++) {
+		celle[i].innerHTML = cellaHTML[celle[i].id]
+        }
+    document.getElementById("mostra").textContent = 'Nascondi';
+    }
+	mostra = !mostra;
+     }
 );
 //
 function logga() {

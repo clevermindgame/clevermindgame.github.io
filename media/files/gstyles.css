@@ -64,9 +64,17 @@ pezzi {
    cursor: pointer;
 }
 
-.bottoni {
+.area-bottoni {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     height: 40px;
-    background-color: #cccccc;
+    background-color: #ffffff;
+}
+
+.bottone {
+    height: 28px;
+    border-radius: 6px;
 }
 
 .storico {
