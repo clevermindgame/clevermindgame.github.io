@@ -33,7 +33,7 @@ aggiungiEventi();
 //
 // crea scacchiera
 function creaScacchiera(n) {
-// Riduci la tabella esistente a una sola cella
+// Cancella la scacchiera attuale
     scacchiera = document.getElementById("scacchiera");
     var primariga = scacchiera.rows[0];
     for (i = scacchiera.rows.length - 1; i>=0; i--) {
@@ -44,6 +44,7 @@ function creaScacchiera(n) {
 //    }
 
 // Crea le nuove righe
+    lcella = Math.trunc((wWindow * scacchieraW/100-n-1)/n)
     charSize = 10;
     for (i = 0; i < n; i++) {
         let riga = scacchiera.insertRow(i);
@@ -67,8 +68,7 @@ function creaScacchiera(n) {
         }
     }
 
-   var celle = document.getElementsByTagName("td");
-    lcella = ((wWindow * scacchieraW/100-n-1)/n).toFixed(0)
+    celle = document.getElementsByTagName("td");
     for (i = 0; i < celle.length; i++) {
         celle[i].style.height = lcella + "px";
         celle[i].style.width = lcella + "px";
