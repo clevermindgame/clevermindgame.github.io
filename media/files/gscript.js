@@ -3,10 +3,10 @@ hWindow = window.innerHeight;
 wWindow = window.innerWidth;
 rWindow = hWindow/wWindow;
 // Adatta la scacchiera alla dimensione dello schermo
-// fino a un rapporto H/W di 1.4, la larghezza della scacchiera è del 75%
-// oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 98%
+// fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%%
+// oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 96%
 // nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
-scacchieraW = Math.round(75 + (rWindow - 1.4)*23/0.4);
+scacchieraW = Math.round(75 + (rWindow - 1.4)*16/0.4);
 if (rWindow < 1.4) {scacchieraW = 75};
 if (rWindow > 1.8) {scacchieraW = 96};
 scacchiera.style.width = scacchieraW + "%";
@@ -19,7 +19,7 @@ creaScacchiera(n);
 const storicoDiv = document.getElementById("storico");
 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 const divTop = storicoDiv.offsetTop;
-const remainingHeight = hWindow - (divTop - scrollTop)-2;
+const remainingHeight = hWindow - (divTop - scrollTop)-10;
 storicoDiv.style.height = `${remainingHeight}px`;
 //
 storicoDiv.insertAdjacentHTML("beforeend","<br />--- fine ---");
@@ -76,51 +76,78 @@ function creaScacchiera(n) {
 }
 function aggiungiEventi() {
 celle_s = document.querySelectorAll(".cinterno");
-dialog = document.getElementById('imageDialog');
+dialogS = document.getElementById('imageDialog');
 celle_s.forEach(cell => {
 	cell.addEventListener('click', () => {
 	cellId = cell;
-	dialog.showModal();
+	dialogS.showModal();
 	});
 });
     image0.addEventListener('click', () => {
-      cellId.innerHTML = '<img src="white.png" style="width="100%" height="100%">';
-      dialog.close();
+      cellId.innerHTML = '';
+      dialogS.close();
     });
     image1.addEventListener('click', () => {
       cellId.innerHTML = '<img src="cb.png" style="width="100%" height="100%">';
-      dialog.close();
+      dialogS.close();
     });
     image2.addEventListener('click', () => {
       cellId.innerHTML = '<img src="cn.png" style="width="100%" height="100%">';
-      dialog.close();
+      dialogS.close();
     });
     image3.addEventListener('click', () => {
       cellId.innerHTML = '<img src="tb.png" style="width="100%" height="100%">';
-      dialog.close();
+      dialogS.close();
     });
     image4.addEventListener('click', () => {
       cellId.innerHTML = '<img src="tn.png" style="width="100%" height="100%">';
-      dialog.close();
+      dialogS.close();
     });
     image5.addEventListener('click', () => {
       cellId.innerHTML = '<img src="rb.png" style="width="100%" height="100%">';
-      dialog.close();
+      dialogS.close();
     });
     image6.addEventListener('click', () => {
       cellId.innerHTML = '<img src="rn.png" style="width="100%" height="100%">';
-      dialog.close();
+      dialogS.close();
     });
     image7.addEventListener('click', () => {
       cellId.innerHTML = '<img src="qb.png" style="width="100%" height="100%">';
-      dialog.close();
+      dialogS.close();
     });
     image8.addEventListener('click', () => {
       cellId.innerHTML = '<img src="qn.png" style="width="100%" height="100%">';
-      dialog.close();
+      dialogS.close();
     });
     image9.addEventListener('click', () => {
-      dialog.close();
+      dialogS.close();
+    });
+celle_b = document.querySelectorAll(".cbordo");
+dialogB = document.getElementById('bordoDialog');
+celle_b.forEach(cell => {
+	cell.addEventListener('click', () => {
+	cellId = cell;
+	dialogB.showModal();
+	});
+});
+    image10.addEventListener('click', () => {
+      cellId.innerHTML = '<img src="p1b.png" style="width="100%" height="100%">';
+      dialogB.close();
+    });
+    image11.addEventListener('click', () => {
+      cellId.innerHTML = '<img src="p1n.png" style="width="100%" height="100%">';
+      dialogB.close();
+    });
+    image12.addEventListener('click', () => {
+      cellId.innerHTML = '<img src="m1b.png" style="width="100%" height="100%">';
+      dialogB.close();
+    });
+    image13.addEventListener('click', () => {
+      cellId.innerHTML = '<img src="m1n.png" style="width="100%" height="100%">';
+      dialogB.close();
+    });
+    image14.addEventListener('click', () => {
+      dialogB.close();
     });
 }
 // bottone "cambia"
