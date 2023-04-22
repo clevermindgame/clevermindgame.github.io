@@ -7,12 +7,12 @@ rWindow = hWindow/wWindow;
 cellaHTML = new Array(64);
 //
 // Adatta la scacchiera alla dimensione dello schermo
-// fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%%
-// oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 96%
+// fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%
+// oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 97%
 // nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
-scacchieraW = Math.round(75 + (rWindow - 1.4)*16/0.4);
+scacchieraW = Math.round(80 + (rWindow - 1.4)*17/0.4);
 if (rWindow < 1.4) {scacchieraW = 75};
-if (rWindow > 1.8) {scacchieraW = 96};
+if (rWindow > 1.8) {scacchieraW = 97};
 scacchiera.style.width = scacchieraW + "%";
 //
 // Crea la scacchiera
