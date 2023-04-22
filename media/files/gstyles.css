@@ -1,3 +1,5 @@
+/* v0.30 */
+
 .logo-container {
   display: flex;
   align-items: center; /* center items vertically */
@@ -72,16 +74,16 @@ pezzi {
     background-color: #ffffff;
 }
 
-.bottone {
-    height: 28px;
-    border-radius: 6px;
-    width: 25%;
+.bottoneL {
+    height: 30px;
+    border-radius: 8px;
+    width: 30%;
 }
 
-.bottoneL {
-    height: 28px;
-    border-radius: 6px;
-    width: 30%;
+.bottone {
+    height: 30px;
+    border-radius: 8px;
+    width: 25%;
 }
 
 .storico {
