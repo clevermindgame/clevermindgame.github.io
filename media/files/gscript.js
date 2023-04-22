@@ -90,7 +90,9 @@ celle_s.forEach(cell => {
 	cell.addEventListener('click', () => {
 	cella = cell
 	cellaID = cell.id;
-	dialogS.showModal();
+	if (mostra) {
+	   dialogS.showModal();
+           };
 	});
 });
     image0.addEventListener('click', () => {

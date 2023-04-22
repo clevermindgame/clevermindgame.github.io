@@ -75,6 +75,7 @@ pezzi {
 .bottone {
     height: 28px;
     border-radius: 6px;
+    width: 20%;
 }
 
 .storico {
