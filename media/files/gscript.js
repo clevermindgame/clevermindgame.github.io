@@ -3,9 +3,12 @@ hWindow = window.innerHeight;
 wWindow = window.innerWidth;
 rWindow = hWindow / wWindow;
 //
+palette = [['#FAF6E0','#000000'],['#E0FF85','#000000'],['#89FFB6','#760049'],['#89FFB6','#000000'],['#F5ECD0','#000000'],['#F2E2BA','#000000']];
+paletteID = 0;
 // variabili per le funzioni di gioco
 cellaHTML = new Array(64);
 cellaVSBL = new Array(64);
+cellaRegole = new Array(64);
 //
 // Adatta la scacchiera alla dimensione dello schermo
 // fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%
@@ -63,20 +66,23 @@ function creaScacchiera(n) {
             cella.style.fontSize = charSize + "px";
             cellaHTML[n * i + j] = "";
             cellaVSBL[n * i + j] = false;
+            cellaRegole[n * i + j] = ['','',1,0,1];
+
             if (j == 0 || j == n - 1) {
-                cella.classList.replace("cinterno", "cbordo");
+                cella.classList.replace("cinterno", "cbordoV");
                 cellaHTML[n * i + j] = String.fromCharCode(j + 65, i + 49);
                 cella.innerHTML = cellaHTML[n * i + j];
                 cellaVSBL[n * i + j] = true;
             }
             if (i == 0 || i == n - 1) {
-                cella.classList.replace("cinterno", "cbordo");
+                cella.classList.replace("cinterno", "cbordoH");
                 cellaHTML[n * i + j] = String.fromCharCode(j + 65, i + 49);
                 cella.innerHTML = cellaHTML[n * i + j];
                 cellaVSBL[n * i + j] = true;
             }
             if ((i == 0 || i == n - 1) && (j == 0 || j == n - 1)) {
-                cella.classList.replace("cbordo", "cangolo");
+                cella.classList.replace("cbordoV", "cangolo");
+                cella.classList.replace("cbordoH", "cangolo");
                 cellaHTML[n * i + j] = String.fromCharCode(j + 65, i + 49);
                 cella.innerHTML = cellaHTML[n * i + j];
                 cellaVSBL[n * i + j] = true;
@@ -134,39 +140,39 @@ function aggiungiEventiScacchiera() {
 }
 function aggiungiEventiDialoghi() {
     image0.addEventListener("click", () => {
-        cPezzo("", cella);
+        cPezzo("", '');
         dialogS.close();
     });
     image1.addEventListener("click", () => {
-        cPezzo('<img src="cb.png" style="width="100%" height="100%">');
+        cPezzo('<img src="cb.png" style="width="100%" height="100%">','CB');
         dialogS.close();
     });
     image2.addEventListener("click", () => {
-        cPezzo('<img src="cn.png" style="width="100%" height="100%">');
+        cPezzo('<img src="cn.png" style="width="100%" height="100%">','CN');
         dialogS.close();
     });
     image3.addEventListener("click", () => {
-        cPezzo('<img src="tb.png" style="width="100%" height="100%">');
+        cPezzo('<img src="tb.png" style="width="100%" height="100%">','TB');
         dialogS.close();
     });
     image4.addEventListener("click", () => {
-        cPezzo('<img src="tn.png" style="width="100%" height="100%">');
+        cPezzo('<img src="tn.png" style="width="100%" height="100%">','TN');
         dialogS.close();
     });
     image5.addEventListener("click", () => {
-        cPezzo('<img src="rb.png" style="width="100%" height="100%">');
+        cPezzo('<img src="rb.png" style="width="100%" height="100%">','RB');
         dialogS.close();
     });
     image6.addEventListener("click", () => {
-        cPezzo('<img src="rn.png" style="width="100%" height="100%">');
+        cPezzo('<img src="rn.png" style="width="100%" height="100%">','RN');
         dialogS.close();
     });
     image7.addEventListener("click", () => {
-        cPezzo('<img src="qb.png" style="width="100%" height="100%">');
+        cPezzo('<img src="qb.png" style="width="100%" height="100%">','QB');
         dialogS.close();
     });
     image8.addEventListener("click", () => {
-        cPezzo('<img src="qn.png" style="width="100%" height="100%">');
+        cPezzo('<img src="qn.png" style="width="100%" height="100%">','QN');
         dialogS.close();
     });
     image9.addEventListener("click", () => {
@@ -190,12 +196,19 @@ function aggiungiEventiDialoghi() {
     image13.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="m1n.png" style="width="100%" height="100%">';
+console.log(cella.id);
         dialogB.close();
     });
     image14.addEventListener("click", () => {
         dialogB.close();
     });
 }
+// bottone "Gioca"
+document.getElementById("run").addEventListener("click", function () {
+    paletteID = (paletteID + 1) % palette.length;
+    storicoDiv.style.backgroundColor = palette[paletteID][0];
+    storicoDiv.style.color = palette[paletteID][1];
+});
 // bottone "Impostazioni"
 document.getElementById("impostazioni").addEventListener("click", function () {
     rimuoviEventiScacchiera();
@@ -238,10 +251,40 @@ function stampaUA() {
     storicoDiv.insertAdjacentHTML("afterbegin", statW);
 }
 // inserisci o verifica il pezzo nella cella
-function cPezzo(cHTML) {
+function cPezzo(cHTML,p) {
     if (mostra) {
         cellaHTML[cellaID] = cHTML;
         cella.innerHTML = cellaHTML[cellaID];
+// regole del pezzo
+// [dirR,dirC,moltiplica_colore,aggiungi,moltiplica]
+        switch (p) {
+           case 'CB':
+               cellaRegole[cellaID] = [-1,0,-1,0,1];
+               break;
+           case 'CN':
+               cellaRegole[cellaID] = [1,0,-1,0,1];
+               break;
+           case 'TB':
+               cellaRegole[cellaID] = [-1,-1,1,0,2];
+               break;
+           case 'TN':
+               cellaRegole[cellaID] = [1,1,1,0,-2];
+               break;
+           case 'RB':
+               cellaRegole[cellaID] = [-1,1,1,0,3];
+               break;
+           case 'RN':
+               cellaRegole[cellaID] = [1,-1,1,0,-3];
+               break;
+           case 'QB':
+               cellaRegole[cellaID] = [0,-1,1,1,1];
+               break;
+           case 'QN':
+               cellaRegole[cellaID] = [0,1,1,-1,1];
+               break;
+           case '':
+               cellaRegole[cellaID] = ['','',1,0,1];
+         }
     }
     if (!mostra) {
         if (cHTML == cellaHTML[cellaID]) {

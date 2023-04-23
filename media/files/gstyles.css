@@ -42,7 +42,7 @@ td img{
     margin-right: auto;
 }
 
-.cbordo {
+.cbordoV, .cbordoH {
    background-color: #01a7c1;
    text-align: center;
    color: white;
