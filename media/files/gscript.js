@@ -107,7 +107,7 @@ function rimuoviEventiScacchiera() {
         };
         cell.removeEventListener("click", handleS);
   });
-    celle_b = document.querySelectorAll(".cbordo");
+    celle_b = document.querySelectorAll(".cbordoV, .cbordoH");
     celle_b.forEach((cell) => {
     	const handleB = () => {
             cella = cell;
@@ -118,7 +118,7 @@ function rimuoviEventiScacchiera() {
   });
 }
 function aggiungiEventiScacchiera() {
-    celle_b = document.querySelectorAll(".cbordo");
+    celle_b = document.querySelectorAll(".cbordoV, .cbordoH");
     dialogB = document.getElementById("bordoDialog");
     celle_b.forEach((cell) => {
     	const handleB = () => {
@@ -197,7 +197,6 @@ function aggiungiEventiDialoghi() {
     image13.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="m1n.png" style="width="100%" height="100%">';
-console.log(cella.id);
         dialogB.close();
     });
     image14.addEventListener("click", () => {
