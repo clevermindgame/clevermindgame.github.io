@@ -2,7 +2,19 @@
 hWindow = window.innerHeight;
 wWindow = window.innerWidth;
 rWindow = hWindow / wWindow;
-if (hWindow < wWindow) {alert('Per una migliore fruibilità del gioco ti suggeriamo di ruotare il dispositivo e ricaricare la pagina.')}
+//
+if (wWindow > hWindow) {
+    const dialog = document.querySelector('#ruotaDispositivo');
+    const closeButton = document.querySelector('#okB');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      dialog.showModal();
+    });
+
+    closeButton.addEventListener('click', () => {
+      dialog.close();
+    });
+}
 //
 palette = [['#FAF6E0','#000000'],['#E0FF85','#000000'],['#89FFB6','#760049'],['#89FFB6','#000000'],['#F5ECD0','#000000'],['#F2E2BA','#000000']];
 paletteID = 0;
