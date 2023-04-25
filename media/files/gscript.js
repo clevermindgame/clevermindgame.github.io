@@ -21,8 +21,6 @@ cellaHTML = new Array(64);
 cellaVSBL = new Array(64);
 cellaRegole = new Array(64);
 cellaRegoleTemp = new Array(64);
-idStart = 0;
-idEnd = 0;
 //
 // Adatta la scacchiera alla dimensione dello schermo
 // fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%
@@ -109,6 +107,8 @@ function creaScacchiera(n) {
         celle[i].style.height = lcella + "px";
         celle[i].style.width = lcella + "px";
     }
+    idStart = 0;
+    idEnd = 0;
 }
 function rimuoviEventiScacchiera() {
     celle_s = document.querySelectorAll(".cinterno");
@@ -368,7 +368,7 @@ function percorso(cinID,valore,colore) {
        stato = [ii,jj,valore,colore];
        regola = cellaRegoleTemp[n*i + j];
        npassi += 1;
-    } while ((i != 0) & (i != 7) & (j != 0) & (j!= 7));
+    } while ((i != 0) & (i != n-1) & (j != 0) & (j!= n-1));
     idEnd = n*i+j;
     if (colore === -1) {
        uscita = '<img src="uscita_bianca.png" style="width="100%" height="100%">';
@@ -383,7 +383,8 @@ function percorso(cinID,valore,colore) {
     storicoDiv.insertAdjacentHTML("afterbegin", cin + cout);
 }
 function ripristina() {
-	document.getElementById(idStart).innerHTML = cellaHTML[idStart];
+    if (cellaID != idStart) {
+ 	document.getElementById(idStart).innerHTML = cellaHTML[idStart];
 	document.getElementById(idEnd).innerHTML = cellaHTML[idEnd];
-console.log(idStart,idEnd);
 	}
+}

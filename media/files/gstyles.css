@@ -90,4 +90,5 @@ pezzi {
     height: 100px;
     background-color: #cccccc;
     overflow-y: auto;
+    font-size:4.5vw;
 }
