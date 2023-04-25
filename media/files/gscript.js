@@ -347,7 +347,7 @@ function percorso(cinID,valore,colore) {
     i = Math.round((cinID-j)/n);
     if (valore === 1) {valstring ="+1"} else {valstring = valore};
     if (colore === 0) {colstring = "b"} else {colstring = "n"};
-    cin = valstring + colstring + " in " + String.fromCharCode(j + 65, i + 49) + " >> ";
+    cin = valstring + colstring + " in " + String.fromCharCode(j + 65, i + 49) + " &rArr; ";
     if (colore === 0) {colore = -1};
     if (i == 0) {stato = [1,0,valore,colore]};
     if (i == n-1) {stato = [-1,0,valore,colore]};
@@ -379,7 +379,7 @@ function percorso(cinID,valore,colore) {
     if (colore === -1) {colstring = "b"} else {colstring = "n"};
     if (valore > 0) {valore = "+"+valore};
     if (nrimbalzi === 1){rimbstring = " rimbalzo"} else {rimbstring = " rimbalzi"};
-    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)+", "+npassi+" passi e "+nrimbalzi+rimbstring+"<br />"
+    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)+" | "+npassi+" passi e "+nrimbalzi+rimbstring+"<br />"
     storicoDiv.insertAdjacentHTML("afterbegin", cin + cout);
 }
 function ripristina() {
