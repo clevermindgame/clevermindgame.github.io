@@ -266,6 +266,7 @@ function stampaUA() {
     storicoDiv.insertAdjacentHTML("afterbegin", statS);
     statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
     storicoDiv.insertAdjacentHTML("afterbegin", statW);
+    storicoDiv.insertAdjacentHTML("afterbegin", "passi: &#128694; - rimbalzi: &#8634;<br />");
     storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
 }
 // inserisci o verifica il pezzo nella cella
@@ -379,7 +380,7 @@ function percorso(cinID,valore,colore) {
     if (colore === -1) {colstring = "b"} else {colstring = "n"};
     if (valore > 0) {valore = "+"+valore};
 //   if (nrimbalzi === 1){rimbstring = " rimbalzo"} else {rimbstring = " rimbalzi"};
-    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)+" | "+npassi+" &#128694; e "+nrimbalzi+" &#121198;<br />"
+    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)+" | "+npassi+" &#128694; e "+nrimbalzi+" &#8634;<br />"
     storicoDiv.insertAdjacentHTML("afterbegin", cin + cout);
 }
 function ripristina() {
