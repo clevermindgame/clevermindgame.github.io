@@ -16,6 +16,14 @@ if (wWindow > hWindow) {
 //
 palette = [['#FAF6E0','#000000'],['#E0FF85','#000000'],['#89FFB6','#760049'],['#89FFB6','#000000'],['#F5ECD0','#000000'],['#F2E2BA','#000000']];
 paletteID = 0;
+//
+diventaIcon = " &#9654; "
+diventaIcon = ' ⋙ ';
+passiIcon = '&#128694;';
+passiIcon = ' 🚶 ';
+rimbalziIcon = ' &#8634; ';
+rimbalziIcon = ' ↺ ';
+//
 // variabili per le funzioni di gioco
 cellaHTML = new Array(64);
 cellaVSBL = new Array(64);
@@ -195,25 +203,25 @@ function aggiungiEventiDialoghi() {
     image10.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="p1b.png" style="width="100%" height="100%">';
-	    percorso(cellaID,1,0);
+	    percorso(cellaID,1,1);
         dialogB.close();
     });
     image11.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="p1n.png" style="width="100%" height="100%">';
-	    percorso(cellaID,1,1);
+	    percorso(cellaID,1,-1);
         dialogB.close();
     });
     image12.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="m1b.png" style="width="100%" height="100%">';
- 	    percorso(cellaID,-1,0);
+ 	    percorso(cellaID,-1,1);
        dialogB.close();
     });
     image13.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="m1n.png" style="width="100%" height="100%">';
-	    percorso(cellaID,-1,1);
+	    percorso(cellaID,-1,-1);
         dialogB.close();
     });
     image14.addEventListener("click", () => {
@@ -266,7 +274,7 @@ function stampaUA() {
     storicoDiv.insertAdjacentHTML("afterbegin", statS);
     statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
     storicoDiv.insertAdjacentHTML("afterbegin", statW);
-    storicoDiv.insertAdjacentHTML("afterbegin", "passi: &#128694; - rimbalzi: &#8634;<br />");
+    storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
     storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
 }
 // inserisci o verifica il pezzo nella cella
@@ -347,9 +355,10 @@ function percorso(cinID,valore,colore) {
     j = cinID % n;
     i = Math.round((cinID-j)/n);
     if (valore === 1) {valstring ="+1"} else {valstring = valore};
-    if (colore === 0) {colstring = "b"} else {colstring = "n"};
-    cin = valstring + colstring + " in " + String.fromCharCode(j + 65, i + 49) + " &#9654; ";
-    if (colore === 0) {colore = -1};
+//    if (colore === 0) {colstring = "b"} else {colstring = "n"};
+    if (colore === 1) {colstring = "b"} else {colstring = "n"};
+    cin = valstring + colstring + " in " + String.fromCharCode(j + 65, i + 49) + diventaIcon;
+//    if (colore === 0) {colore = -1};
     if (i == 0) {stato = [1,0,valore,colore]};
     if (i == n-1) {stato = [-1,0,valore,colore]};
     if (j == 0) {stato = [0,1,valore,colore]};
@@ -371,16 +380,16 @@ function percorso(cinID,valore,colore) {
        npassi += 1;
     } while ((i != 0) & (i != n-1) & (j != 0) & (j!= n-1));
     idEnd = n*i+j;
-    if (colore === -1) {
+    if (colore === 1) {
        uscita = '<img src="uscita_bianca.png" style="width="100%" height="100%">';
     } else {
        uscita = '<img src="uscita_nera.png" style="width="100%" height="100%">';
 }
     document.getElementById(idEnd).innerHTML = uscita;
-    if (colore === -1) {colstring = "b"} else {colstring = "n"};
+    if (colore === 1) {colstring = "b"} else {colstring = "n"};
     if (valore > 0) {valore = "+"+valore};
 //   if (nrimbalzi === 1){rimbstring = " rimbalzo"} else {rimbstring = " rimbalzi"};
-    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)+" | "+npassi+" &#128694; e "+nrimbalzi+" &#8634;<br />"
+    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)+" | "+npassi+passiIcon+"e "+nrimbalzi+rimbalziIcon+"<br />"
     storicoDiv.insertAdjacentHTML("afterbegin", cin + cout);
 }
 function ripristina() {
