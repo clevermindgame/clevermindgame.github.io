@@ -14,6 +14,17 @@ if (wWindow > hWindow) {
     });
 }
 //
+// recupero delle impostazioni
+if (!localStorage.getItem('selectedOption1')) {localStorage.setItem('selectedOption1', 'studio')};
+if (!localStorage.getItem('selectedOption2')) {localStorage.setItem('selectedOption2', 7)};
+if (!localStorage.getItem('selectedOption3')) {localStorage.setItem('selectedOption3', 'passirimb')};
+if (!localStorage.getItem('selectedOption4')) {localStorage.setItem('selectedOption4', 0)};
+modalitaV = localStorage.getItem('selectedOption1');
+n = localStorage.getItem('selectedOption2');
+livelloV = localStorage.getItem('selectedOption3');
+temaV = localStorage.getItem('selectedOption4');
+//
+temaC = [['#007fa8','#01a7c1','#ffffff'],['#80914c','#E0FF85','#000000'],['#60b380','#89FFB6','#000000']];
 palette = [['#FAF6E0','#000000'],['#E0FF85','#000000'],['#89FFB6','#760049'],['#89FFB6','#000000'],['#F5ECD0','#000000'],['#F2E2BA','#000000']];
 paletteID = 0;
 //
@@ -44,7 +55,6 @@ if (rWindow > 1.8) {
 scacchiera.style.width = scacchieraW + "%";
 //
 // Crea la scacchiera
-n = 8;
 creaScacchiera(n);
 //
 // Dimensiona l'area dello storico
@@ -54,6 +64,7 @@ const divTop = storicoDiv.offsetTop;
 const remainingHeight = hWindow - (divTop - scrollTop) - 10;
 storicoDiv.style.height = `${remainingHeight}px`;
 //
+setTema();
 stampaUA();
 aggiungiEventiDialoghi();
 aggiungiEventiScacchiera();
@@ -230,17 +241,6 @@ function aggiungiEventiDialoghi() {
 }
 // bottone "Gioca"
 document.getElementById("run").addEventListener("click", function () {
-    paletteID = (paletteID + 1) % palette.length;
-    storicoDiv.style.backgroundColor = palette[paletteID][0];
-    storicoDiv.style.color = palette[paletteID][1];
-});
-// bottone "Impostazioni"
-document.getElementById("impostazioni").addEventListener("click", function () {
-    rimuoviEventiScacchiera();
-    n = 6 + ((n + 1) % 3);
-    creaScacchiera(n);
-    aggiungiEventiScacchiera();
-    stampaUA();
 });
 // bottone "Mostra/Nascondi"
 document.getElementById("mostra").addEventListener("click", function () {
@@ -397,4 +397,17 @@ function ripristina() {
  	document.getElementById(idStart).innerHTML = cellaHTML[idStart];
 	document.getElementById(idEnd).innerHTML = cellaHTML[idEnd];
 	}
+}
+function setTema() {
+    document.getElementsByClassName('logo-container')[0].style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][0];
+    document.getElementsByClassName('logo-text')[0].style.color = temaC[localStorage.getItem('selectedOption4')][2];
+    document.getElementById("storico").style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][1];
+    document.querySelectorAll('.cbordoV, .cbordoH').forEach(element => {
+       element.style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][1];
+       element.style.color = temaC[localStorage.getItem('selectedOption4')][2];
+});
+    document.querySelectorAll('.cangolo').forEach(element => {
+       element.style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][0];
+       element.style.color = temaC[localStorage.getItem('selectedOption4')][2];
+});
 }
