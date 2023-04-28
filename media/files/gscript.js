@@ -241,6 +241,10 @@ function aggiungiEventiDialoghi() {
 }
 // bottone "Gioca"
 document.getElementById("run").addEventListener("click", function () {
+    creaScacchiera(n);
+    aggiungiEventiScacchiera();
+    setTema();
+    stampaUA();
 });
 // bottone "Mostra/Nascondi"
 document.getElementById("mostra").addEventListener("click", function () {
@@ -400,7 +404,7 @@ function ripristina() {
 }
 function setTema() {
     document.getElementsByClassName('logo-container')[0].style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][0];
-    document.getElementsByClassName('logo-text')[0].style.color = temaC[localStorage.getItem('selectedOption4')][2];
+    document.getElementById("titolo").style.color = temaC[localStorage.getItem('selectedOption4')][2];
     document.getElementById("storico").style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][1];
     document.querySelectorAll('.cbordoV, .cbordoH').forEach(element => {
        element.style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][1];

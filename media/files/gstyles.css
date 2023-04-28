@@ -79,12 +79,14 @@ pezzi {
     border-radius: 8px;
     width: 10%;
     font-size: larger;
+    text-align: center;
 }
 
 .bottone {
     height: 30px;
     border-radius: 8px;
     width: 25%;
+    text-align: center;
 }
 
 .storico {

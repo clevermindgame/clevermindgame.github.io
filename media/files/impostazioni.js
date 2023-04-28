@@ -41,13 +41,14 @@ function aggiungiEventiImpostazioni() {
   });
 
   okButton.addEventListener('click', () => {
-    const modalita = document.getElementsByName('modalita');
-    const dimensioni = document.getElementsByName('dimensioni');
-    const livello = document.getElementsByName('livello');
-    let selectedOption1;
-    let selectedOption2;
-    let selectedOption3;
-    let selectedOption4;
+//    const modalita = document.getElementsByName('modalita');
+//    const dimensioni = document.getElementsByName('dimensioni');
+//    const livello = document.getElementsByName('livello');
+//    const tema = document.getElementsByName('tema');
+//    let selectedOption1;
+//    let selectedOption2;
+//    let selectedOption3;
+//    let selectedOption4;
     for (let i = 0; i < modalita.length; i++) {
       if (modalita[i].checked) {
         selectedOption1 = modalita[i].value;
