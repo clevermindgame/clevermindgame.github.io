@@ -78,8 +78,10 @@ pezzi {
     height: 30px;
     border-radius: 8px;
     width: 10%;
-    font-size: larger;
-    text-align: center;
+    font-size: 1.5em;
+    background-color: transparent;
+    outline: none;
+    border: none;
 }
 
 .bottone {
