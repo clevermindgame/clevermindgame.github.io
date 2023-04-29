@@ -40,43 +40,51 @@ function aggiungiEventiImpostazioni() {
     }
   });
 
-  okButton.addEventListener('click', () => {
-//    const modalita = document.getElementsByName('modalita');
-//    const dimensioni = document.getElementsByName('dimensioni');
-//    const livello = document.getElementsByName('livello');
-//    const tema = document.getElementsByName('tema');
-//    let selectedOption1;
-//    let selectedOption2;
-//    let selectedOption3;
-//    let selectedOption4;
+  okButton.addEventListener('click', (e) => {
+    varia = false;
     for (let i = 0; i < modalita.length; i++) {
       if (modalita[i].checked) {
+        oldopt = localStorage.getItem('selectedOption1');
         selectedOption1 = modalita[i].value;
+        modalitaV = selectedOption1;
         localStorage.setItem('selectedOption1', selectedOption1);
+        if (oldopt != selectedOption1) {
+            storicoDiv.insertAdjacentHTML("afterbegin","sei passato in modalità "+modalitaV+"<br>");
+        }
         break;
       }
     }
     for (let i = 0; i < dimensioni.length; i++) {
       if (dimensioni[i].checked) {
+        oldopt = localStorage.getItem('selectedOption2');
         selectedOption2 = dimensioni[i].value;
+        if (oldopt != selectedOption2) {varia = true};
         localStorage.setItem('selectedOption2', selectedOption2);
         break;
       }
     }
     for (let i = 0; i < livello.length; i++) {
       if (livello[i].checked) {
+        oldopt = localStorage.getItem('selectedOption3');
         selectedOption3 = livello[i].value;
+//        if (oldopt != selectedOption3) {varia = true};
+        livelloV = selectedOption3;
         localStorage.setItem('selectedOption3', selectedOption3);
         break;
       }
     }
     for (let i = 0; i < tema.length; i++) {
       if (tema[i].checked) {
+        oldopt = localStorage.getItem('selectedOption4');
         selectedOption4 = tema[i].value;
+//        if (oldopt != selectedOption4) {varia = true};
         localStorage.setItem('selectedOption4', selectedOption4);
+        temaV = selectedOption4;
+        setTema();
         break;
       }
     }
+    if (!varia) {e.preventDefault()};
     dialog.close();
   });
 }

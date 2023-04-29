@@ -25,8 +25,6 @@ livelloV = localStorage.getItem('selectedOption3');
 temaV = localStorage.getItem('selectedOption4');
 //
 temaC = [['#007fa8','#01a7c1','#ffffff'],['#80914c','#E0FF85','#000000'],['#60b380','#89FFB6','#000000']];
-palette = [['#FAF6E0','#000000'],['#E0FF85','#000000'],['#89FFB6','#760049'],['#89FFB6','#000000'],['#F5ECD0','#000000'],['#F2E2BA','#000000']];
-paletteID = 0;
 //
 diventaIcon = " &#9654; "
 diventaIcon = ' ⋙ ';
@@ -279,6 +277,7 @@ function stampaUA() {
     statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
     storicoDiv.insertAdjacentHTML("afterbegin", statW);
     storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
+    storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
     storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
 }
 // inserisci o verifica il pezzo nella cella
@@ -393,7 +392,21 @@ function percorso(cinID,valore,colore) {
     if (colore === 1) {colstring = "b"} else {colstring = "n"};
     if (valore > 0) {valore = "+"+valore};
 //   if (nrimbalzi === 1){rimbstring = " rimbalzo"} else {rimbstring = " rimbalzi"};
-    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)+" | "+npassi+passiIcon+"e "+nrimbalzi+rimbalziIcon+"<br />"
+    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)
+    switch (livelloV) {
+        case 'passirimb':
+            cout += " | "+npassi+passiIcon+"e "+nrimbalzi+rimbalziIcon+"<br />";
+            break;
+        case 'passi':
+            cout += " | "+npassi+passiIcon+"<br />";
+            break;
+        case 'rimb':
+            cout += " | "+nrimbalzi+rimbalziIcon+"<br />"
+            break;
+        case 'nulla':
+            cout += "<br />"
+            break;
+    }
     storicoDiv.insertAdjacentHTML("afterbegin", cin + cout);
 }
 function ripristina() {
