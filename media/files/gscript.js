@@ -1,3 +1,7 @@
+const queryString = window.location.search;
+console.log(queryString);
+
+
 // dimensioni dello schermo
 hWindow = window.innerHeight;
 wWindow = window.innerWidth;
@@ -38,6 +42,8 @@ cellaHTML = new Array(64);
 cellaVSBL = new Array(64);
 cellaRegole = new Array(64);
 cellaRegoleTemp = new Array(64);
+cellaPezzo = new Array(64);
+listaPezzi = ['CB','CN','TB','TN','RB','RN','QB','QN',''];
 //
 // Adatta la scacchiera alla dimensione dello schermo
 // fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%
@@ -96,6 +102,7 @@ function creaScacchiera(n) {
             cellaHTML[n * i + j] = "";
             cellaVSBL[n * i + j] = false;
             cellaRegole[n * i + j] = ['','',1,0,1];
+            cellaPezzo[n * i + j] = 8;
 
             if (j == 0 || j == n - 1) {
                 cella.classList.replace("cinterno", "cbordoV");
@@ -171,39 +178,39 @@ function aggiungiEventiScacchiera() {
 }
 function aggiungiEventiDialoghi() {
     image0.addEventListener("click", () => {
-        cPezzo("", '');
+        cPezzo("",8);
         dialogS.close();
     });
     image1.addEventListener("click", () => {
-        cPezzo('<img src="cb.png" style="width="100%" height="100%">','CB');
+        cPezzo('<img src="cb.png" style="width="100%" height="100%">',0);
         dialogS.close();
     });
     image2.addEventListener("click", () => {
-        cPezzo('<img src="cn.png" style="width="100%" height="100%">','CN');
+        cPezzo('<img src="cn.png" style="width="100%" height="100%">',1);
         dialogS.close();
     });
     image3.addEventListener("click", () => {
-        cPezzo('<img src="tb.png" style="width="100%" height="100%">','TB');
+        cPezzo('<img src="tb.png" style="width="100%" height="100%">',2);
         dialogS.close();
     });
     image4.addEventListener("click", () => {
-        cPezzo('<img src="tn.png" style="width="100%" height="100%">','TN');
+        cPezzo('<img src="tn.png" style="width="100%" height="100%">',3);
         dialogS.close();
     });
     image5.addEventListener("click", () => {
-        cPezzo('<img src="rb.png" style="width="100%" height="100%">','RB');
+        cPezzo('<img src="rb.png" style="width="100%" height="100%">',4);
         dialogS.close();
     });
     image6.addEventListener("click", () => {
-        cPezzo('<img src="rn.png" style="width="100%" height="100%">','RN');
+        cPezzo('<img src="rn.png" style="width="100%" height="100%">',5);
         dialogS.close();
     });
     image7.addEventListener("click", () => {
-        cPezzo('<img src="qb.png" style="width="100%" height="100%">','QB');
+        cPezzo('<img src="qb.png" style="width="100%" height="100%">',6);
         dialogS.close();
     });
     image8.addEventListener("click", () => {
-        cPezzo('<img src="qn.png" style="width="100%" height="100%">','QN');
+        cPezzo('<img src="qn.png" style="width="100%" height="100%">',7);
         dialogS.close();
     });
     image9.addEventListener("click", () => {
@@ -259,7 +266,21 @@ document.getElementById("god").addEventListener("click", function () {
     storicoDiv.insertAdjacentHTML("afterbegin", "Gioco di oggi! Devi indovinare "+daIndovinare+" pezzi<br />");
 });
 // bottone "copia"
-document.getElementById("run").addEventListener("click", function () {
+document.getElementById("copia").addEventListener("click", function () {
+    dumpStr = '';
+    for (i = 0; i < n*n; i++) {
+        dumpStr += cellaPezzo[i];
+    }
+    testoCopiato = 'https://clevermindgame.github.io/media/files/cmgame.html?s='+dumpStr;
+    console.log(testoCopiato);
+    navigator.clipboard.writeText(testoCopiato).then(
+      () => {
+        /* clipboard successfully set */
+      },
+      () => {
+        /* clipboard write failed */
+      }
+    );
 });
 // bottone "Mostra/Nascondi"
 document.getElementById("mostra").addEventListener("click", function () {
@@ -306,31 +327,31 @@ function cPezzo(cHTML,p) {
 // regole del pezzo
 // [dirR,dirC,moltiplica_colore,aggiungi,moltiplica]
         switch (p) {
-           case 'CB':
+           case 0:
                cellaRegole[cellaID] = [-1,0,-1,0,1];
                break;
-           case 'CN':
+           case 1:
                cellaRegole[cellaID] = [1,0,-1,0,1];
                break;
-           case 'TB':
+           case 2:
                cellaRegole[cellaID] = [-1,-1,1,0,2];
                break;
-           case 'TN':
+           case 3:
                cellaRegole[cellaID] = [1,1,1,0,-2];
                break;
-           case 'RB':
+           case 4:
                cellaRegole[cellaID] = [-1,1,1,0,3];
                break;
-           case 'RN':
+           case 5:
                cellaRegole[cellaID] = [1,-1,1,0,-3];
                break;
-           case 'QB':
+           case 6:
                cellaRegole[cellaID] = [0,-1,1,1,1];
                break;
-           case 'QN':
+           case 7:
                cellaRegole[cellaID] = [0,1,1,-1,1];
                break;
-           case '':
+           case 8:
                cellaRegole[cellaID] = ['','',1,0,1];
          }
     }

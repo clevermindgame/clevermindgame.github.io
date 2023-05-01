@@ -93,6 +93,7 @@ for (i = 0; i < 8; i++) {
                 cellaRegole[cellaID] = [0,1,1,-1,1];
                 break;
         }
+        cellaPezzo[cellaID] = pezzo;
         cellaHTML[cellaID] = pezzoH;
         document.getElementById(cellaID).innerHTML = pezzoH;
     }
