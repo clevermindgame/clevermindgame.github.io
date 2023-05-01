@@ -244,6 +244,17 @@ document.getElementById("run").addEventListener("click", function () {
     setTema();
     stampaUA();
 });
+// bottone "god"
+document.getElementById("god").addEventListener("click", function () {
+    creaScacchiera(n);
+    aggiungiEventiScacchiera();
+    setTema();
+    stampaUA();
+    storicoDiv.insertAdjacentHTML("afterbegin", "Gioco di oggi!<br />");
+});
+// bottone "copia"
+document.getElementById("run").addEventListener("click", function () {
+});
 // bottone "Mostra/Nascondi"
 document.getElementById("mostra").addEventListener("click", function () {
     if (mostra) {

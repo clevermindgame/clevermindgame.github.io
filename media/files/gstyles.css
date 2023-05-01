@@ -18,7 +18,7 @@
 }
 
 .spaziatura3{
-    margin-bottom:3px;
+    margin-bottom:1px;
     background-color:#ffffff;
 }
 
@@ -74,7 +74,7 @@ pezzi {
     background-color: #ffffff;
 }
 
-.bottoneL {
+.rotella, .clip, .game {
     height: 30px;
     border-radius: 8px;
     width: 10%;
@@ -87,7 +87,7 @@ pezzi {
 .bottone {
     height: 30px;
     border-radius: 8px;
-    width: 25%;
+    width: 20%;
     text-align: center;
 }
 
