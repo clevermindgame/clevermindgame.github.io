@@ -242,15 +242,21 @@ document.getElementById("run").addEventListener("click", function () {
     creaScacchiera(n);
     aggiungiEventiScacchiera();
     setTema();
+    seme = Math.floor(Math.random() * m);
+    creagioco(seme);
     stampaUA();
+    storicoDiv.insertAdjacentHTML("afterbegin", "Ecco una nuova sfida! Devi indovinare "+daIndovinare+" pezzi<br />");
 });
 // bottone "god"
 document.getElementById("god").addEventListener("click", function () {
     creaScacchiera(n);
     aggiungiEventiScacchiera();
     setTema();
+    today = new Date();
+    seme = '' + today.getDate() + today.getDay() + today.getMonth() + today.getFullYear() % 100;
+    creagioco(seme);
     stampaUA();
-    storicoDiv.insertAdjacentHTML("afterbegin", "Gioco di oggi!<br />");
+    storicoDiv.insertAdjacentHTML("afterbegin", "Gioco di oggi! Devi indovinare "+daIndovinare+" pezzi<br />");
 });
 // bottone "copia"
 document.getElementById("run").addEventListener("click", function () {
@@ -332,14 +338,22 @@ function cPezzo(cHTML,p) {
         if (cHTML == cellaHTML[cellaID]) {
             cellaVSBL[cellaID] = true;
             cella.innerHTML = cellaHTML[cellaID];
+            daIndovinare -= 1;
+            if (daIndovinare === 0) {
             storicoDiv.insertAdjacentHTML(
                 "afterbegin",
-                "indovinato <br />"
+                "Bravo! Hai trovato tutti i pezzi. <br />"
             );
+            } else {
+            storicoDiv.insertAdjacentHTML(
+                "afterbegin",
+                "Indovinato! rimangono ancora "+daIndovinare+" pezzi<br />"
+            );
+            }
         } else {
              storicoDiv.insertAdjacentHTML(
                 "afterbegin",
-                "sbagliato <br />"
+                "Sbagliato! Riprova.<br />"
             );
         }
     }
