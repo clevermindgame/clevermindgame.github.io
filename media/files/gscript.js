@@ -1,7 +1,9 @@
+// verifico se nella url c'è una disposizione da cui partire
 const queryString = window.location.search;
-console.log(queryString);
-
-
+const urlParams = new URLSearchParams(queryString);
+s = urlParams.get('s');
+console.log(s);
+//
 // dimensioni dello schermo
 hWindow = window.innerHeight;
 wWindow = window.innerWidth;
