@@ -2,7 +2,7 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 s = urlParams.get('s');
-console.log(s);
+m = urlParams.get('m');
 //
 // dimensioni dello schermo
 hWindow = window.innerHeight;
@@ -61,7 +61,72 @@ if (rWindow > 1.8) {
 scacchiera.style.width = scacchieraW + "%";
 //
 // Crea la scacchiera
-creaScacchiera(n);
+if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
+// gestisci import scacchiera
+    switch (s.length) {
+        case 36:
+            n = 6;
+            break;
+        case 49:
+            n = 7;
+            break;
+        case 64:
+            n = 8;
+            break;
+    }
+    localStorage.setItem('selectedOption2', n+2);
+    creaScacchiera(n);   
+    for (cellaID = 0; cellaID < s.length; cellaID++) {
+        pezzo = s.charAt(cellaID)*1;
+        switch (pezzo) {
+            case 0:
+                pezzoH = '<img src="cb.png" style="width="100%" height="100%">';
+                cellaRegole[cellaID] = [-1,0,-1,0,1];
+                break;
+            case 1:
+                pezzoH = '<img src="cn.png" style="width="100%" height="100%">';
+              cellaRegole[cellaID] = [1,0,-1,0,1];
+                break;
+            case 2:
+                pezzoH = '<img src="tb.png" style="width="100%" height="100%">';
+                cellaRegole[cellaID] = [-1,-1,1,0,2];
+                break;
+            case 3:
+                pezzoH = '<img src="tn.png" style="width="100%" height="100%">';
+               cellaRegole[cellaID] = [1,1,1,0,-2];
+                break;
+            case 4:
+                pezzoH = '<img src="rb.png" style="width="100%" height="100%">';
+                cellaRegole[cellaID] = [-1,1,1,0,3];
+                break;
+            case 5:
+                pezzoH = '<img src="rn.png" style="width="100%" height="100%">';
+                cellaRegole[cellaID] = [1,-1,1,0,-3];
+                break;
+            case 6:
+                pezzoH = '<img src="qb.png" style="width="100%" height="100%">';
+                cellaRegole[cellaID] = [0,-1,1,1,1];
+                break;
+            case 7:
+                pezzoH = '<img src="qn.png" style="width="100%" height="100%">';
+                cellaRegole[cellaID] = [0,1,1,-1,1];
+                break;
+            default:
+                pezzoH = '';
+        }
+        if (pezzoH != '') {
+            cellaPezzo[cellaID] = pezzo;
+            cellaHTML[cellaID] = pezzoH;
+            document.getElementById(cellaID).innerHTML = pezzoH;
+        }
+    }
+    mostra = m;
+    mostranasc();
+}
+else {
+    s = 0;
+    creaScacchiera(n);
+}
 //
 // Dimensiona l'area dello storico
 const storicoDiv = document.getElementById("storico");
@@ -74,6 +139,9 @@ setTema();
 stampaUA();
 aggiungiEventiDialoghi();
 aggiungiEventiScacchiera();
+if (s !=  null) {
+// scrivi messaggio di import
+}
 //
 // Funzioni
 //
@@ -273,7 +341,7 @@ document.getElementById("copia").addEventListener("click", function () {
     for (i = 0; i < n*n; i++) {
         dumpStr += cellaPezzo[i];
     }
-    testoCopiato = 'https://clevermindgame.github.io/media/files/cmgame.html?s='+dumpStr;
+    testoCopiato = 'https://clevermindgame.github.io/media/files/cmgame.html?s='+dumpStr+"&m="+mostra;
     console.log(testoCopiato);
     navigator.clipboard.writeText(testoCopiato).then(
       () => {
@@ -284,8 +352,7 @@ document.getElementById("copia").addEventListener("click", function () {
       }
     );
 });
-// bottone "Mostra/Nascondi"
-document.getElementById("mostra").addEventListener("click", function () {
+function mostranasc() {
     if (mostra) {
         celle = document.getElementsByClassName("cinterno");
         for (i = 0; i < celle.length; i++) {
@@ -303,6 +370,10 @@ document.getElementById("mostra").addEventListener("click", function () {
         document.getElementById("mostra").textContent = "Nascondi";
     }
     mostra = !mostra;
+}
+// bottone "Mostra/Nascondi"
+document.getElementById("mostra").addEventListener("click", function () {
+    mostranasc();
 });
 //
 function stampaUA() {
@@ -317,7 +388,11 @@ function stampaUA() {
     statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
     storicoDiv.insertAdjacentHTML("afterbegin", statW);
     storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
-    storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
+    if (s === 0) {
+        storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
+    } else {
+        storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
+    }
     storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
 }
 // inserisci o verifica il pezzo nella cella
