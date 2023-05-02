@@ -21,9 +21,12 @@ if (!regex.test(s)) {
 // dimensioni dello schermo
 hWindow = window.innerHeight;
 wWindow = window.innerWidth;
-rWindow = hWindow / wWindow;
 //
 if (wWindow > hWindow) {
+var divGioco = document.querySelector('.gioco-container');
+      wWindow = Math.round(hWindow * 4 / 7);
+      divGioco.style.width = wWindow + 'px';
+/*
     const dialog = document.querySelector('#ruotaDispositivo');
     const closeButton = document.querySelector('#okB');
     document.addEventListener('DOMContentLoaded', () => {
@@ -32,7 +35,9 @@ if (wWindow > hWindow) {
     closeButton.addEventListener('click', () => {
       dialog.close();
     });
+*/
 }
+rWindow = hWindow / wWindow;
 //
 // recupero delle impostazioni
 if (!localStorage.getItem('selectedOption1')) {localStorage.setItem('selectedOption1', 'studio')};
@@ -134,7 +139,7 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
             document.getElementById(cellaID).innerHTML = pezzoH;
         }
     }
-    mostra = m;
+    if (m == 'true') {mostra = false;} else {mostra = true;}
     mostranasc();
 }
 else {
@@ -460,6 +465,9 @@ function cPezzo(cHTML,p) {
                 "Bravo! Hai trovato tutti i pezzi. <br />"
             );
             } else {
+            if (daIndovinare === 1) {
+                quantiP = ' pezzo';
+            } else {quantiP = ' pezzi';}
             storicoDiv.insertAdjacentHTML(
                 "afterbegin",
                 "Indovinato! rimangono ancora "+daIndovinare+" pezzi<br />"
