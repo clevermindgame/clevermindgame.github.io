@@ -467,11 +467,15 @@ function cPezzo(cHTML,p) {
             );
             } else {
             if (daIndovinare === 1) {
+                quantiR = 'Indovinato! rimane ancora '
                 quantiP = ' pezzo';
-            } else {quantiP = ' pezzi';}
+            } else {
+                quantiR = 'Indovinato! rimangono ancora '
+                quantiP = ' pezzi';
+            }
             storicoDiv.insertAdjacentHTML(
                 'afterbegin',
-                'Indovinato! rimangono ancora ' + daIndovinare + quantiP + '<br />'
+                quantiR + daIndovinare + quantiP + '<br />'
             );
             }
         } else {
