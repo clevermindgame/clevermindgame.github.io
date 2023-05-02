@@ -453,6 +453,7 @@ function cPezzo(cHTML,p) {
            case 8:
                cellaRegole[cellaID] = ['','',1,0,1];
          }
+         cellaPezzo[cellaID] = p;
     }
     if (!mostra) {
         if (cHTML == cellaHTML[cellaID]) {
