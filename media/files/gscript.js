@@ -470,8 +470,8 @@ function cPezzo(cHTML,p) {
                 quantiP = ' pezzo';
             } else {quantiP = ' pezzi';}
             storicoDiv.insertAdjacentHTML(
-                "afterbegin",
-                "Indovinato! rimangono ancora "+daIndovinare+" pezzi<br />"
+                'afterbegin',
+                'Indovinato! rimangono ancora ' + daIndovinare + quantiP + '<br />'
             );
             }
         } else {
