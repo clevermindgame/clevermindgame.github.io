@@ -3,7 +3,21 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 s = urlParams.get('s');
 m = urlParams.get('m');
-//
+// for (i=0; i < s.length; i += 2) {
+//    dumpRicostr += String.fromCharCode((s.charCodeAt(i+1)-20)).repeat(s.charAt(i));
+//}
+const regex = new RegExp('^([0-9][l-t])+$', 'g');
+if (!regex.test(s)) {
+    s = null;
+} else {
+    const digits = s.match(/\d/g);
+    const letters = s.match(/[A-Za-z]/g);
+    dumpRicostr = '';
+    for (let i = 0; i < digits.length; i++) {
+        dumpRicostr += String.fromCharCode(letters[i].charCodeAt(0)-60).repeat(parseInt(digits[i]));
+    }
+    s = dumpRicostr;
+}
 // dimensioni dello schermo
 hWindow = window.innerHeight;
 wWindow = window.innerWidth;
@@ -74,7 +88,7 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
             n = 8;
             break;
     }
-    localStorage.setItem('selectedOption2', n+2);
+    localStorage.setItem('selectedOption2', n);
     creaScacchiera(n);   
     for (cellaID = 0; cellaID < s.length; cellaID++) {
         pezzo = s.charAt(cellaID)*1;
@@ -337,12 +351,14 @@ document.getElementById("god").addEventListener("click", function () {
 });
 // bottone "copia"
 document.getElementById("copia").addEventListener("click", function () {
-    dumpStr = '';
+    dumpCelle = '';
     for (i = 0; i < n*n; i++) {
-        dumpStr += cellaPezzo[i];
+        dumpCelle += cellaPezzo[i];
     }
+    dumpStr = dumpCelle.replace(/(\d)\1{0,8}/g, function(match) {
+    return match.length + String.fromCharCode((Number(match.charAt(0))+108));
+    });
     testoCopiato = 'https://clevermindgame.github.io/media/files/cmgame.html?s='+dumpStr+"&m="+mostra;
-    console.log(testoCopiato);
     navigator.clipboard.writeText(testoCopiato).then(
       () => {
         /* clipboard successfully set */
@@ -351,6 +367,7 @@ document.getElementById("copia").addEventListener("click", function () {
         /* clipboard write failed */
       }
     );
+    storicoDiv.insertAdjacentHTML("afterbegin", "Hai copiato il gioco da condividere!<br />");
 });
 function mostranasc() {
     if (mostra) {
