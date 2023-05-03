@@ -80,10 +80,10 @@ closeButton.addEventListener('click', () => {
 // nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
 scacchieraW = Math.round(80 + ((rWindow - 1.4) * 17) / 0.4);
 if (rWindow < 1.4) {
-    scacchieraW = 80;
+    scacchieraW = 77;
 }
 if (rWindow > 1.8) {
-    scacchieraW = 97;
+    scacchieraW = 95;
 }
 scacchiera.style.width = scacchieraW + "%";
 //
@@ -417,13 +417,16 @@ document.getElementById("mostra").addEventListener("click", function () {
 //
 function stampa() {
     storicoDiv.innerHTML = "";
+    statS = "Schermo: " + wWindow + ", " + hWindow + "<br />";
+    storicoDiv.insertAdjacentHTML("afterbegin", statS);
+    statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
+    storicoDiv.insertAdjacentHTML("afterbegin", statW);
     storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
     if (s === 0) {
         storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
     } else {
         storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
     }
-    storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
 }
 
 function stampaUA() {
