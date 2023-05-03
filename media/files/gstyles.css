@@ -95,4 +95,13 @@ pezzi {
     height: 100px;
     background-color: #cccccc;
     overflow-y: auto;
+    border-radius: 4px;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.modo {
+    height: 1.1em;
+    background-color: #ffffff;
+    text-align: center;
 }

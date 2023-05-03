@@ -166,7 +166,8 @@ const remainingHeight = hWindow - (divTop - scrollTop) - 10;
 storicoDiv.style.height = `${remainingHeight}px`;
 //
 setTema();
-stampaUA();
+// stampaUA();
+stampa();
 aggiungiEventiDialoghi();
 aggiungiEventiScacchiera();
 if (s !=  null) {
@@ -352,7 +353,7 @@ document.getElementById("run").addEventListener("click", function () {
     setTema();
     seme = Math.floor(Math.random() * m);
     creagioco(seme);
-    stampaUA();
+    stampa();
     storicoDiv.insertAdjacentHTML("afterbegin", "Ecco una nuova sfida! Devi indovinare "+daIndovinare+" pezzi<br />");
 });
 // bottone "god"
@@ -363,7 +364,7 @@ document.getElementById("god").addEventListener("click", function () {
     today = new Date();
     seme = '' + today.getDate() + today.getDay() + today.getMonth() + today.getFullYear() % 100;
     creagioco(seme);
-    stampaUA();
+    stampa();
     storicoDiv.insertAdjacentHTML("afterbegin", "Gioco di oggi! Devi indovinare "+daIndovinare+" pezzi<br />");
 });
 // bottone "copia"
@@ -414,6 +415,17 @@ document.getElementById("mostra").addEventListener("click", function () {
     mostranasc();
 });
 //
+function stampa() {
+    storicoDiv.innerHTML = "";
+    storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
+    if (s === 0) {
+        storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
+    } else {
+        storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
+    }
+    storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
+}
+
 function stampaUA() {
     storicoDiv.innerHTML = "";
     storicoDiv.insertAdjacentHTML("beforeend", "<br />--- fine ---");
