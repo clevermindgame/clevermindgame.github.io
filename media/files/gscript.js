@@ -80,7 +80,7 @@ closeButton.addEventListener('click', () => {
 // nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
 scacchieraW = Math.round(80 + ((rWindow - 1.4) * 17) / 0.4);
 if (rWindow < 1.4) {
-    scacchieraW = 77;
+    scacchieraW = 75;
 }
 if (rWindow > 1.8) {
     scacchieraW = 95;
@@ -162,7 +162,7 @@ else {
 const storicoDiv = document.getElementById("storico");
 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 const divTop = storicoDiv.offsetTop;
-const remainingHeight = hWindow - (divTop - scrollTop) - 10;
+const remainingHeight = hWindow - (divTop - scrollTop) - 5;
 storicoDiv.style.height = `${remainingHeight}px`;
 //
 setTema();
