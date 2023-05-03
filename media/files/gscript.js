@@ -528,7 +528,7 @@ function percorso(cinID,valore,colore) {
 //    if (colore === 0) {colstring = "b"} else {colstring = "n"};
     if (colore === 1) {colstring = "b"} else {colstring = "n"};
     nmosse += 1;
-    cin = '<em>'+nmosse+' <em>';
+    cin = '<em>'+nmosse+' </em>';
     cin += valstring + colstring + " in " + String.fromCharCode(j + 65, i + 49) + diventaIcon;
 //    if (colore === 0) {colore = -1};
     if (i == 0) {stato = [1,0,valore,colore]};
