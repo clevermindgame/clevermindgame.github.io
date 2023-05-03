@@ -66,6 +66,14 @@ cellaRegoleTemp = new Array(64);
 cellaPezzo = new Array(64);
 listaPezzi = ['CB','CN','TB','TN','RB','RN','QB','QN',''];
 //
+// finestra di dialogo per le informazioni
+const infoG = document.querySelector('#infoGioco');
+const closeButton = document.querySelector('#okB');
+const infoT = document.querySelector("#infoTesto");
+closeButton.addEventListener('click', () => {
+    infoG.close();
+});
+//
 // Adatta la scacchiera alla dimensione dello schermo
 // fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%
 // oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 97%
@@ -222,6 +230,7 @@ function creaScacchiera(n) {
     }
     idStart = 0;
     idEnd = 0;
+    nmosse = 0;
 }
 function rimuoviEventiScacchiera() {
     celle_s = document.querySelectorAll(".cinterno");
@@ -372,7 +381,11 @@ document.getElementById("copia").addEventListener("click", function () {
         /* clipboard write failed */
       }
     );
-    storicoDiv.insertAdjacentHTML("afterbegin", "Hai copiato il gioco da condividere!<br />");
+//
+    infoT.innerHTML = '<b>Hai copiato il gioco da condividere!</b>';
+    infoG.showModal();
+//
+//    storicoDiv.insertAdjacentHTML("afterbegin", "Hai copiato il gioco da condividere!<br />");
 });
 function mostranasc() {
     if (mostra) {
@@ -456,6 +469,7 @@ function cPezzo(cHTML,p) {
          cellaPezzo[cellaID] = p;
     }
     if (!mostra) {
+        nmosse += 1;
         if (cHTML == cellaHTML[cellaID]) {
             cellaVSBL[cellaID] = true;
             cella.innerHTML = cellaHTML[cellaID];
@@ -463,7 +477,7 @@ function cPezzo(cHTML,p) {
             if (daIndovinare === 0) {
             storicoDiv.insertAdjacentHTML(
                 "afterbegin",
-                "Bravo! Hai trovato tutti i pezzi. <br />"
+                '<em>'+nmosse+' </em>Bravo! Hai trovato tutti i pezzi. <br />'
             );
             } else {
             if (daIndovinare === 1) {
@@ -475,13 +489,13 @@ function cPezzo(cHTML,p) {
             }
             storicoDiv.insertAdjacentHTML(
                 'afterbegin',
-                quantiR + daIndovinare + quantiP + '<br />'
+                '<em>' + nmosse + ' </em>' + quantiR + daIndovinare + quantiP + '<br />'
             );
             }
         } else {
              storicoDiv.insertAdjacentHTML(
                 "afterbegin",
-                "Sbagliato! Riprova.<br />"
+                '<em>'+nmosse+' </em>Sbagliato! Riprova.<br />'
             );
         }
     }
@@ -513,7 +527,9 @@ function percorso(cinID,valore,colore) {
     if (valore === 1) {valstring ="+1"} else {valstring = valore};
 //    if (colore === 0) {colstring = "b"} else {colstring = "n"};
     if (colore === 1) {colstring = "b"} else {colstring = "n"};
-    cin = valstring + colstring + " in " + String.fromCharCode(j + 65, i + 49) + diventaIcon;
+    nmosse += 1;
+    cin = '<em>'+nmosse+' <em>';
+    cin += valstring + colstring + " in " + String.fromCharCode(j + 65, i + 49) + diventaIcon;
 //    if (colore === 0) {colore = -1};
     if (i == 0) {stato = [1,0,valore,colore]};
     if (i == n-1) {stato = [-1,0,valore,colore]};
