@@ -104,6 +104,9 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
     localStorage.setItem('selectedOption2', n);
     creaScacchiera(n);   
     for (cellaID = 0; cellaID < s.length; cellaID++) {
+        if ((cellaID % n == 0) || (cellaID % n == n-1)) {continue};
+        if (cellaID < n) {continue};
+        if (cellaID >= n*(n-1)) {continue};
         pezzo = s.charAt(cellaID)*1;
         switch (pezzo) {
             case 0:

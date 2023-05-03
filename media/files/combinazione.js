@@ -3,9 +3,12 @@ maxLinea = 2;
 maxPezziBoard = new Array(3);
 maxPezziBoard = [7,9,11];
 //
-a = 8121;
-c = 28411;
-m = 134456;
+// a = 8121;
+// c = 28411;
+// m = 134456;
+a = 16807;
+c = 0;
+m = Math.pow(2, 31) - 1;
 //
 vertP = new Array(8);
 orizzP = new Array(8);
@@ -38,7 +41,7 @@ for (i = 0; i < 8; i++) {
     while (npezzi < maxPezzi && nloop < maxLoop) {
         nloop += 1;
         seed = (a * seed + c) % m;
-        mossa = Math.floor(seed / 8) % maxMossa;
+        mossa = Math.floor(seed / 128) % maxMossa;
         pezzo = mossa % 8;
         cella = (mossa - pezzo) / 8;
         colonna = cella % lato;
