@@ -26,18 +26,31 @@ if (wWindow > hWindow) {
 var divGioco = document.querySelector('.gioco-container');
       wWindow = Math.round(hWindow * 4 / 7);
       divGioco.style.width = wWindow + 'px';
-/*
-    const dialog = document.querySelector('#ruotaDispositivo');
-    const closeButton = document.querySelector('#okB');
-    document.addEventListener('DOMContentLoaded', () => {
-      dialog.showModal();
-    });
-    closeButton.addEventListener('click', () => {
-      dialog.close();
-    });
-*/
 }
 rWindow = hWindow / wWindow;
+// Adatta la scacchiera e il banner top alla dimensione dello schermo
+// fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%
+// oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 97%
+// nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
+// se lo schermo è alto meno di 700px, l'altezza del banner top varia in proporzione tra 40 e 60px
+scacchieraW = Math.round(80 + ((rWindow - 1.4) * 17) / 0.4);
+logoH = Math.round(40 + ((rWindow - 1.4) * 17) / 0.4);
+if (rWindow < 1.4) {
+    scacchieraW = 80;
+    logoH = 40;
+}
+if (rWindow > 1.8) {
+    scacchieraW = 97;
+    logoH = 60;
+}
+scacchiera.style.width = scacchieraW + "%";
+if (hWindow < 700) {
+    document.getElementsByClassName('logo-container')[0].style.height = logoH+'px';
+    document.getElementsByClassName('logo-image')[0].style.width = logoH+'px';
+    document.getElementsByClassName('logo-image')[0].style.height = logoH+'px';
+    logoI.style.width = logoH+'px';
+    logoI.style.height = logoH+'px';
+}
 //
 // recupero delle impostazioni
 if (!localStorage.getItem('selectedOption1')) {localStorage.setItem('selectedOption1', 'studio')};
@@ -73,27 +86,6 @@ const infoT = document.querySelector("#infoTesto");
 closeButton.addEventListener('click', () => {
     infoG.close();
 });
-//
-// Adatta la scacchiera e il banner top alla dimensione dello schermo
-// fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%
-// oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 97%
-// nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
-scacchieraW = Math.round(80 + ((rWindow - 1.4) * 17) / 0.4);
-logoH = Math.round(40 + ((rWindow - 1.4) * 17) / 0.4);
-if (rWindow < 1.4) {
-    scacchieraW = 80;
-    logoH = 40;
-}
-if (rWindow > 1.8) {
-    scacchieraW = 97;
-    logoH = 60;
-}
-scacchiera.style.width = scacchieraW + "%";
-document.getElementsByClassName('logo-container')[0].style.height = logoH+'px';
-document.getElementsByClassName('logo-image')[0].style.width = logoH+'px';
-document.getElementsByClassName('logo-image')[0].style.height = logoH+'px';
-logoI.style.width = logoH+'px';
-logoI.style.height = logoH+'px';
 //
 // Crea la scacchiera
 if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
