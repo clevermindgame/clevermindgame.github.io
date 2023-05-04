@@ -93,11 +93,12 @@ pezzi {
 
 .storico {
     height: 100px;
-    background-color: #cccccc;
+    background-color: #FCEDC5;
     overflow-y: auto;
     border-radius: 4px;
     padding-right: 4px;
     padding-left: 4px;
+    font-family:"Calibri", sans-serif;
 }
 
 .modo {

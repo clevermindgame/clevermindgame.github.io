@@ -62,10 +62,11 @@ n = localStorage.getItem('selectedOption2');
 livelloV = localStorage.getItem('selectedOption3');
 temaV = localStorage.getItem('selectedOption4');
 //
-temaC = [['#007fa8','#01a7c1','#ffffff'],['#80914c','#E0FF85','#000000'],['#60b380','#89FFB6','#000000']];
+temaC = [['#007fa8','#01a7c1','#ffffff','#fcedd5'],['#80914c','#E0FF85','#000000','#fcedd5'],['#60b380','#89FFB6','#000000','#fcedd5']];
 //
 diventaIcon = " &#9654; "
 diventaIcon = ' ⋙ ';
+diventaIcon = '➜';
 passiIcon = '&#128694;';
 passiIcon = ' 🚶 ';
 rimbalziIcon = ' &#8634; ';
@@ -237,6 +238,7 @@ function creaScacchiera(n) {
     idEnd = 0;
     nmosse = 0;
 }
+
 function rimuoviEventiScacchiera() {
     celle_s = document.querySelectorAll(".cinterno");
     celle_s.forEach((cell) => {
@@ -347,7 +349,7 @@ function aggiungiEventiDialoghi() {
         dialogB.close();
     });
 }
-// bottone "Gioca"
+// bottone "Nuovo"
 document.getElementById("run").addEventListener("click", function () {
     creaScacchiera(n);
     aggiungiEventiScacchiera();
@@ -355,7 +357,9 @@ document.getElementById("run").addEventListener("click", function () {
     seme = Math.floor(Math.random() * m);
     creagioco(seme);
     stampa();
-    storicoDiv.insertAdjacentHTML("afterbegin", "Ecco una nuova sfida! Devi indovinare "+daIndovinare+" pezzi<br />");
+    infoT.innerHTML = "Ecco una nuova sfida!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
+    infoG.showModal();
+//    storicoDiv.insertAdjacentHTML("afterbegin", "Ecco una nuova sfida! Devi indovinare "+daIndovinare+" pezzi<br />");
 });
 // bottone "god"
 document.getElementById("god").addEventListener("click", function () {
@@ -388,12 +392,22 @@ document.getElementById("copia").addEventListener("click", function () {
         /* clipboard write failed */
       }
     );
-//
     infoT.innerHTML = '<b>Hai copiato il gioco da condividere!</b>';
     infoG.showModal();
-//
-//    storicoDiv.insertAdjacentHTML("afterbegin", "Hai copiato il gioco da condividere!<br />");
 });
+function riprbordi() {
+        cellaID = 65;
+        ripristina();
+        celle = document.querySelectorAll(".cbordoV, .cbordoH, .cangolo");
+        for (k = 0; k < celle.length; k++) {
+            j = celle[k].id % n;
+            i = (celle[k].id-j) / n
+            cellaHTML[celle[k].id] = String.fromCharCode(j + 65, i + 49);
+            celle[k].innerHTML = cellaHTML[celle[k].id];
+            celle[k].style.fontSize = charSize + 'px';
+        }
+}
+
 function mostranasc() {
     if (mostra) {
         celle = document.getElementsByClassName("cinterno");
@@ -496,8 +510,10 @@ function cPezzo(cHTML,p) {
             cella.innerHTML = cellaHTML[cellaID];
             daIndovinare -= 1;
             if (daIndovinare === 0) {
-            storicoDiv.insertAdjacentHTML(
-                "afterbegin",
+               infoT.innerHTML = 'Bravo! Hai risolto la sfida in ' + nmosse + ' mosse<br>';
+               infoG.showModal();
+               storicoDiv.insertAdjacentHTML(
+                'afterbegin',
                 '<em>'+nmosse+' </em>Bravo! Hai trovato tutti i pezzi. <br />'
             );
             } else {
@@ -538,6 +554,8 @@ function deepCopyArray(arr) {
 function percorso(cinID,valore,colore) {
     ripristina();
     idStart = cinID;
+    cellaHTML[cinID] = '<em>' + cellaHTML[cinID] + '</em>';
+    document.getElementById(cinID).style.fontSize = Math.trunc(charSize*8/9) + 'px';
 // stato = [dir_r,dir_c,valore,colore]
 // regola = [new_dir_r,new_dir_c,moltiplica_colore,somma,moltiplica]
     npassi = 0;
@@ -549,8 +567,7 @@ function percorso(cinID,valore,colore) {
 //    if (colore === 0) {colstring = "b"} else {colstring = "n"};
     if (colore === 1) {colstring = "b"} else {colstring = "n"};
     nmosse += 1;
-    cin = '<em>'+nmosse+' </em>';
-    cin += valstring + colstring + " in " + String.fromCharCode(j + 65, i + 49) + diventaIcon;
+    cin = nmosse+' | <b>' + String.fromCharCode(j + 65, i + 49) + '</b> [' + valstring + colstring + "] "  + diventaIcon;
 //    if (colore === 0) {colore = -1};
     if (i == 0) {stato = [1,0,valore,colore]};
     if (i == n-1) {stato = [-1,0,valore,colore]};
@@ -582,7 +599,7 @@ function percorso(cinID,valore,colore) {
     if (colore === 1) {colstring = "b"} else {colstring = "n"};
     if (valore > 0) {valore = "+"+valore};
 //   if (nrimbalzi === 1){rimbstring = " rimbalzo"} else {rimbstring = " rimbalzi"};
-    cout = valore+colstring+" in "+String.fromCharCode(j+65,i+49)
+    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+valore+colstring+']';
     switch (livelloV) {
         case 'passirimb':
             cout += " | "+npassi+passiIcon+"e "+nrimbalzi+rimbalziIcon+"<br />";
@@ -602,13 +619,15 @@ function percorso(cinID,valore,colore) {
 function ripristina() {
     if (cellaID != idStart) {
  	document.getElementById(idStart).innerHTML = cellaHTML[idStart];
+    }
+    if (cellaID != idEnd) {
 	document.getElementById(idEnd).innerHTML = cellaHTML[idEnd];
-	}
+    }
 }
 function setTema() {
     document.getElementsByClassName('logo-container')[0].style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][0];
     document.getElementById("titolo").style.color = temaC[localStorage.getItem('selectedOption4')][2];
-    document.getElementById("storico").style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][1];
+    document.getElementById("storico").style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][3];
     document.querySelectorAll('.cbordoV, .cbordoH').forEach(element => {
        element.style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][1];
        element.style.color = temaC[localStorage.getItem('selectedOption4')][2];

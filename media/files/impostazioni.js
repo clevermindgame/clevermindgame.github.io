@@ -50,6 +50,7 @@ function aggiungiEventiImpostazioni() {
         localStorage.setItem('selectedOption1', selectedOption1);
         if (oldopt != selectedOption1) {
             storicoDiv.insertAdjacentHTML("afterbegin","sei passato in modalità "+modalitaV+"<br>");
+            if (modalitaV == 'studio') {riprbordi()};
         }
         break;
       }
