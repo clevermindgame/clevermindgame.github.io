@@ -74,18 +74,26 @@ closeButton.addEventListener('click', () => {
     infoG.close();
 });
 //
-// Adatta la scacchiera alla dimensione dello schermo
+// Adatta la scacchiera e il banner top alla dimensione dello schermo
 // fino a un rapporto H/W di 1.4, la larghezza della scacchiera è dell'80%
 // oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 97%
 // nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
 scacchieraW = Math.round(80 + ((rWindow - 1.4) * 17) / 0.4);
+logoH = Math.round(40 + ((rWindow - 1.4) * 17) / 0.4);
 if (rWindow < 1.4) {
-    scacchieraW = 70;
+    scacchieraW = 80;
+    logoH = 40;
 }
 if (rWindow > 1.8) {
-    scacchieraW = 95;
+    scacchieraW = 97;
+    logoH = 60;
 }
 scacchiera.style.width = scacchieraW + "%";
+document.getElementsByClassName('logo-container')[0].style.height = logoH+'px';
+document.getElementsByClassName('logo-image')[0].style.width = logoH+'px';
+document.getElementsByClassName('logo-image')[0].style.height = logoH+'px';
+logoI.style.width = logoH+'px';
+logoI.style.height = logoH+'px';
 //
 // Crea la scacchiera
 if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
@@ -162,7 +170,7 @@ else {
 const storicoDiv = document.getElementById("storico");
 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 const divTop = storicoDiv.offsetTop;
-const remainingHeight = hWindow - (divTop - scrollTop);
+const remainingHeight = hWindow - (divTop - scrollTop) - 2;
 // const remainingHeight = hWindow - (divTop - scrollTop) - 5;
 storicoDiv.style.height = `${remainingHeight}px`;
 //
