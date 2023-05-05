@@ -110,24 +110,24 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
             n = 8;
             break;
     }
-    
     localStorage.setItem('selectedOption2', n);
     creaScacchiera(n);
     daIndovinare = 0;
     for (cellaID = 0; cellaID < s.length; cellaID++) {
+        pBordo = false;
+        pezzo = s.charAt(cellaID)*1;
         if ((cellaID % n == 0) || (cellaID % n == n-1)) {
-            sErr = true;
+            if (pezzo != 8) {sErr = true}
             continue;
         };
         if (cellaID < n) {
-            sErr = true;
+            if (pezzo != 8) {sErr = true}
             continue;
         };
         if (cellaID >= n*(n-1)) {
-            sErr = true;
+            if (pezzo != 8) {sErr = true}
             continue;
         };
-        pezzo = s.charAt(cellaID)*1;
         switch (pezzo) {
             case 0:
                 pezzoH = '<img src="cb.png" style="width="100%" height="100%">';
