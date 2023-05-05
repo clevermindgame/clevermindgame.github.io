@@ -49,7 +49,8 @@ function aggiungiEventiImpostazioni() {
         modalitaV = selectedOption1;
         localStorage.setItem('selectedOption1', selectedOption1);
         if (oldopt != selectedOption1) {
-            storicoDiv.insertAdjacentHTML("afterbegin","sei passato in modalità "+modalitaV+"<br>");
+            setModo(modalitàV);
+//            storicoDiv.insertAdjacentHTML("afterbegin","sei passato in modalità "+modalitaV+"<br>");
             if (modalitaV == 'studio') {riprbordi()};
         }
         break;

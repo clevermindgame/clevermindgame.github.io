@@ -59,6 +59,7 @@ if (!localStorage.getItem('selectedOption2')) {localStorage.setItem('selectedOpt
 if (!localStorage.getItem('selectedOption3')) {localStorage.setItem('selectedOption3', 'passirimb')};
 if (!localStorage.getItem('selectedOption4')) {localStorage.setItem('selectedOption4', 0)};
 modalitaV = localStorage.getItem('selectedOption1');
+setModo(modalitaV);
 n = localStorage.getItem('selectedOption2');
 livelloV = localStorage.getItem('selectedOption3');
 temaV = localStorage.getItem('selectedOption4');
@@ -199,7 +200,7 @@ const divTop = storicoDiv.offsetTop;
 const remainingHeight = hWindow - (divTop - scrollTop) - 2;
 // const remainingHeight = hWindow - (divTop - scrollTop) - 5;
 storicoDiv.style.height = `${remainingHeight}px`;
-storicoDiv.style.fontSize = Math.round(n * lcella * 30 / 13 /44)+'px';
+storicoDiv.style.fontSize = Math.round(n * lcella * 30 / 13 /50)+'px';
 //
 setTema();
 // stampaUA();
@@ -388,12 +389,16 @@ document.getElementById("run").addEventListener("click", function () {
     creaScacchiera(n);
     aggiungiEventiScacchiera();
     setTema();
-    seme = Math.floor(Math.random() * m);
-    creagioco(seme);
-    stampa();
-    infoT.innerHTML = "Ecco una nuova sfida!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
-    infoG.showModal();
-//    storicoDiv.insertAdjacentHTML("afterbegin", "Ecco una nuova sfida! Devi indovinare "+daIndovinare+" pezzi<br />");
+    if (modalitaV == 'studio') {
+        stampa();
+    }
+    if (modalitaV == 'gioco') {
+        seme = Math.floor(Math.random() * m);
+        creagioco(seme);
+        stampa();
+        infoT.innerHTML = "Ecco una nuova sfida!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
+        infoG.showModal();
+    }
 });
 // bottone "god"
 document.getElementById("god").addEventListener("click", function () {
@@ -406,7 +411,7 @@ document.getElementById("god").addEventListener("click", function () {
     stampa();
     infoT.innerHTML = "Gioco di oggi!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
     infoG.showModal();
-//    storicoDiv.insertAdjacentHTML("afterbegin", "Gioco di oggi! Devi indovinare "+daIndovinare+" pezzi<br />");
+    setModo('gioco');
 });
 // bottone "copia"
 document.getElementById("copia").addEventListener("click", function () {
@@ -429,6 +434,14 @@ document.getElementById("copia").addEventListener("click", function () {
     infoT.innerHTML = '<b>Hai copiato il gioco da condividere!</b>';
     infoG.showModal();
 });
+
+function setModo(x) {
+        modalitaV = x;
+        localStorage.setItem('selectedOption1', x)
+        document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b></em>';
+}
+
+
 function riprbordi() {
         cellaID = 65;
         ripristina();
@@ -549,7 +562,8 @@ function cPezzo(cHTML,p) {
                storicoDiv.insertAdjacentHTML(
                 'afterbegin',
                 '<em>'+nmosse+' </em>Bravo! Hai trovato tutti i pezzi. <br />'
-            );
+               );
+               setModo('studio');
             } else {
             if (daIndovinare === 1) {
                 quantiR = 'Indovinato! rimane ancora '
