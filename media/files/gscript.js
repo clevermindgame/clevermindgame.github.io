@@ -130,35 +130,35 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
         };
         switch (pezzo) {
             case 0:
-                pezzoH = '<img src="cb.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/cb.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [-1,0,-1,0,1];
                 break;
             case 1:
-                pezzoH = '<img src="cn.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/cn.png" style="width="100%" height="100%">';
               cellaRegole[cellaID] = [1,0,-1,0,1];
                 break;
             case 2:
-                pezzoH = '<img src="tb.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/tb.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [-1,-1,1,0,2];
                 break;
             case 3:
-                pezzoH = '<img src="tn.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/tn.png" style="width="100%" height="100%">';
                cellaRegole[cellaID] = [1,1,1,0,-2];
                 break;
             case 4:
-                pezzoH = '<img src="rb.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/rb.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [-1,1,1,0,3];
                 break;
             case 5:
-                pezzoH = '<img src="rn.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/rn.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [1,-1,1,0,-3];
                 break;
             case 6:
-                pezzoH = '<img src="qb.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/qb.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [0,-1,1,1,1];
                 break;
             case 7:
-                pezzoH = '<img src="qn.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/qn.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [0,1,1,-1,1];
                 break;
             default:
@@ -315,35 +315,35 @@ function aggiungiEventiDialoghi() {
         dialogS.close();
     });
     image1.addEventListener("click", () => {
-        cPezzo('<img src="cb.png" style="width="100%" height="100%">',0);
+        cPezzo('<img src="media/files/cb.png" style="width="100%" height="100%">',0);
         dialogS.close();
     });
     image2.addEventListener("click", () => {
-        cPezzo('<img src="cn.png" style="width="100%" height="100%">',1);
+        cPezzo('<img src="media/files/cn.png" style="width="100%" height="100%">',1);
         dialogS.close();
     });
     image3.addEventListener("click", () => {
-        cPezzo('<img src="tb.png" style="width="100%" height="100%">',2);
+        cPezzo('<img src="media/files/tb.png" style="width="100%" height="100%">',2);
         dialogS.close();
     });
     image4.addEventListener("click", () => {
-        cPezzo('<img src="tn.png" style="width="100%" height="100%">',3);
+        cPezzo('<img src="media/files/tn.png" style="width="100%" height="100%">',3);
         dialogS.close();
     });
     image5.addEventListener("click", () => {
-        cPezzo('<img src="rb.png" style="width="100%" height="100%">',4);
+        cPezzo('<img src="media/files/rb.png" style="width="100%" height="100%">',4);
         dialogS.close();
     });
     image6.addEventListener("click", () => {
-        cPezzo('<img src="rn.png" style="width="100%" height="100%">',5);
+        cPezzo('<img src="media/files/rn.png" style="width="100%" height="100%">',5);
         dialogS.close();
     });
     image7.addEventListener("click", () => {
-        cPezzo('<img src="qb.png" style="width="100%" height="100%">',6);
+        cPezzo('<img src="media/files/qb.png" style="width="100%" height="100%">',6);
         dialogS.close();
     });
     image8.addEventListener("click", () => {
-        cPezzo('<img src="qn.png" style="width="100%" height="100%">',7);
+        cPezzo('<img src="media/files/qn.png" style="width="100%" height="100%">',7);
         dialogS.close();
     });
     image9.addEventListener("click", () => {
@@ -351,25 +351,25 @@ function aggiungiEventiDialoghi() {
     });
     image10.addEventListener("click", () => {
         cella.innerHTML =
-            '<img src="p1b.png" style="width="100%" height="100%">';
+            '<img src="media/files/p1b.png" style="width="100%" height="100%">';
 	    percorso(cellaID,1,1);
         dialogB.close();
     });
     image11.addEventListener("click", () => {
         cella.innerHTML =
-            '<img src="p1n.png" style="width="100%" height="100%">';
+            '<img src="media/files/p1n.png" style="width="100%" height="100%">';
 	    percorso(cellaID,1,-1);
         dialogB.close();
     });
     image12.addEventListener("click", () => {
         cella.innerHTML =
-            '<img src="m1b.png" style="width="100%" height="100%">';
+            '<img src="media/files/m1b.png" style="width="100%" height="100%">';
  	    percorso(cellaID,-1,1);
        dialogB.close();
     });
     image13.addEventListener("click", () => {
         cella.innerHTML =
-            '<img src="m1n.png" style="width="100%" height="100%">';
+            '<img src="media/files/m1n.png" style="width="100%" height="100%">';
 	    percorso(cellaID,-1,-1);
         dialogB.close();
     });
@@ -411,7 +411,7 @@ document.getElementById("copia").addEventListener("click", function () {
     dumpStr = dumpCelle.replace(/(\d)\1{0,8}/g, function(match) {
     return match.length + String.fromCharCode((Number(match.charAt(0))+108));
     });
-    testoCopiato = 'https://clevermindgame.github.io/media/files/cmgame.html?s='+dumpStr+"&m="+mostra;
+    testoCopiato = 'https://clevermindgame.github.io/gioca.html?s='+dumpStr+"&m="+mostra;
     navigator.clipboard.writeText(testoCopiato).then(
       () => {
         /* clipboard successfully set */
@@ -619,9 +619,9 @@ function percorso(cinID,valore,colore) {
     } while ((i != 0) & (i != n-1) & (j != 0) & (j!= n-1));
     idEnd = n*i+j;
     if (colore === 1) {
-       uscita = '<img src="uscita_bianca.png" style="width="100%" height="100%">';
+       uscita = '<img src="media/files/uscita_bianca.png" style="width="100%" height="100%">';
     } else {
-       uscita = '<img src="uscita_nera.png" style="width="100%" height="100%">';
+       uscita = '<img src="media/files/uscita_nera.png" style="width="100%" height="100%">';
 }
     document.getElementById(idEnd).innerHTML = uscita;
     if (colore === 1) {colstring = "b"} else {colstring = "n"};
