@@ -174,7 +174,12 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
     if (m == 'true') {mostra = false;} else {mostra = true;}
     mostranasc();
 
-    infoM = 'Hai importato una sfida!<br>Devi indovinare ' + daIndovinare + ' pezzi<br><br>';
+    if (daIndovinare === 1) {
+        quantiP = ' pezzo';
+    } else {
+        quantiP = ' pezzi';
+    }
+    infoM = 'Hai importato una sfida!<br>Devi indovinare ' + daIndovinare + quantiP + '<br><br>';
     infoM += '<em>(passi:' + passiIcon + '- rimbalzi:' + rimbalziIcon + ')</em>';
     if (sErr) {
         infoM += '<br><br><em>La disposizione conteneva degli errori</em><br>';
@@ -554,13 +559,13 @@ function cPezzo(cHTML,p) {
             }
             storicoDiv.insertAdjacentHTML(
                 'afterbegin',
-                '<em>' + nmosse + ' </em>' + quantiR + daIndovinare + quantiP + '<br />'
+                nmosse + ' | ' + quantiR + daIndovinare + quantiP + '<br />'
             );
             }
         } else {
              storicoDiv.insertAdjacentHTML(
                 "afterbegin",
-                '<em>'+nmosse+' </em>Sbagliato! Riprova.<br />'
+                nmosse+' | Sbagliato! Riprova.<br />'
             );
         }
     }

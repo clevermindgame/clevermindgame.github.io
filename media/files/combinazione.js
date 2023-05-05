@@ -64,35 +64,35 @@ for (i = 0; i < 8; i++) {
         //
         switch (pezzo) {
             case 0:
-                pezzoH = '<img src="cb.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/cb.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [-1,0,-1,0,1];
                 break;
             case 1:
-                pezzoH = '<img src="cn.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/cn.png" style="width="100%" height="100%">';
               cellaRegole[cellaID] = [1,0,-1,0,1];
                 break;
             case 2:
-                pezzoH = '<img src="tb.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/tb.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [-1,-1,1,0,2];
                 break;
             case 3:
-                pezzoH = '<img src="tn.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/tn.png" style="width="100%" height="100%">';
                cellaRegole[cellaID] = [1,1,1,0,-2];
                 break;
             case 4:
-                pezzoH = '<img src="rb.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/rb.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [-1,1,1,0,3];
                 break;
             case 5:
-                pezzoH = '<img src="rn.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/rn.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [1,-1,1,0,-3];
                 break;
             case 6:
-                pezzoH = '<img src="qb.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/qb.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [0,-1,1,1,1];
                 break;
             case 7:
-                pezzoH = '<img src="qn.png" style="width="100%" height="100%">';
+                pezzoH = '<img src="media/files/qn.png" style="width="100%" height="100%">';
                 cellaRegole[cellaID] = [0,1,1,-1,1];
                 break;
         }

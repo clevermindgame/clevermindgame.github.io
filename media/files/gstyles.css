@@ -1,10 +1,5 @@
 /* v0.30 */
 
-* {
-    font-size: 100%;
-    font-family:"Calibri", sans-serif;
-}
-
 .spaziatura3{
     margin-bottom:2px;
     background-color:#ffffff;
@@ -25,6 +20,7 @@
 .logo-text {
   flex-basis: calc(100% - 60px);
   text-align: center;
+  font-family:"Calibri", sans-serif;
 }
 
 table {
@@ -33,6 +29,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     table-layout:fixed;
+    font-family:"Calibri", sans-serif;
 }
 
 td {
@@ -94,6 +91,7 @@ pezzi {
     border-radius: 8px;
     width: 18%;
     text-align: center;
+    font-family:"Calibri", sans-serif;
 }
 
 .bottone2 {
@@ -101,6 +99,7 @@ pezzi {
     border-radius: 8px;
     width: 27%;
     text-align: center;
+    font-family:"Calibri", sans-serif;
 }
 
 .storico {
