@@ -199,6 +199,7 @@ const divTop = storicoDiv.offsetTop;
 const remainingHeight = hWindow - (divTop - scrollTop) - 2;
 // const remainingHeight = hWindow - (divTop - scrollTop) - 5;
 storicoDiv.style.height = `${remainingHeight}px`;
+storicoDiv.style.fontSize = Math.round(n * lcella * 30 / 13 /44)+'px';
 //
 setTema();
 // stampaUA();
