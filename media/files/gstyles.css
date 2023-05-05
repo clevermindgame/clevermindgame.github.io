@@ -1,5 +1,10 @@
 /* v0.30 */
 
+* {
+    font-size: 100%;
+    font-family:"Calibri", sans-serif;
+}
+
 .spaziatura3{
     margin-bottom:2px;
     background-color:#ffffff;
@@ -84,10 +89,17 @@ pezzi {
     border: none;
 }
 
-.bottone {
+.bottone1 {
     height: 30px;
     border-radius: 8px;
-    width: 20%;
+    width: 18%;
+    text-align: center;
+}
+
+.bottone2 {
+    height: 30px;
+    border-radius: 8px;
+    width: 27%;
     text-align: center;
 }
 

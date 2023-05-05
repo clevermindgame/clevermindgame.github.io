@@ -3,20 +3,21 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 s = urlParams.get('s');
 m = urlParams.get('m');
-// for (i=0; i < s.length; i += 2) {
-//    dumpRicostr += String.fromCharCode((s.charCodeAt(i+1)-20)).repeat(s.charAt(i));
-//}
 const regex = new RegExp('^([0-9][l-t])+$', 'g');
-if (!regex.test(s)) {
-    s = null;
-} else {
-    const digits = s.match(/\d/g);
-    const letters = s.match(/[A-Za-z]/g);
-    dumpRicostr = '';
-    for (let i = 0; i < digits.length; i++) {
+sErr = false;
+if (s != null) {
+    if (!regex.test(s)) {
+        s = null;
+        sErr = true;
+    } else {
+        const digits = s.match(/\d/g);
+        const letters = s.match(/[A-Za-z]/g);
+        dumpRicostr = '';
+        for (let i = 0; i < digits.length; i++) {
         dumpRicostr += String.fromCharCode(letters[i].charCodeAt(0)-60).repeat(parseInt(digits[i]));
+        }
+        s = dumpRicostr;
     }
-    s = dumpRicostr;
 }
 // dimensioni dello schermo
 hWindow = window.innerHeight;
@@ -89,6 +90,13 @@ closeButton.addEventListener('click', () => {
 });
 //
 // Crea la scacchiera
+if ((s != null) && ((s.length != 36) && (s.length != 49) && (s.length != 64))) {
+    sErr = true;
+}
+if (sErr) {
+    infoT.innerHTML = 'La disposizione che vuoi caricare contiene degli errori';
+    infoG.showModal();
+}
 if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
 // gestisci import scacchiera
     switch (s.length) {
@@ -102,12 +110,23 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
             n = 8;
             break;
     }
+    
     localStorage.setItem('selectedOption2', n);
-    creaScacchiera(n);   
+    creaScacchiera(n);
+    daIndovinare = 0;
     for (cellaID = 0; cellaID < s.length; cellaID++) {
-        if ((cellaID % n == 0) || (cellaID % n == n-1)) {continue};
-        if (cellaID < n) {continue};
-        if (cellaID >= n*(n-1)) {continue};
+        if ((cellaID % n == 0) || (cellaID % n == n-1)) {
+            sErr = true;
+            continue;
+        };
+        if (cellaID < n) {
+            sErr = true;
+            continue;
+        };
+        if (cellaID >= n*(n-1)) {
+            sErr = true;
+            continue;
+        };
         pezzo = s.charAt(cellaID)*1;
         switch (pezzo) {
             case 0:
@@ -146,6 +165,7 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
                 pezzoH = '';
         }
         if (pezzoH != '') {
+            daIndovinare += 1;
             cellaPezzo[cellaID] = pezzo;
             cellaHTML[cellaID] = pezzoH;
             document.getElementById(cellaID).innerHTML = pezzoH;
@@ -153,6 +173,14 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
     }
     if (m == 'true') {mostra = false;} else {mostra = true;}
     mostranasc();
+
+    infoM = 'Hai importato una sfida!<br>Devi indovinare ' + daIndovinare + ' pezzi<br><br>';
+    infoM += '<em>(passi:' + passiIcon + '- rimbalzi:' + rimbalziIcon + ')</em>';
+    if (sErr) {
+        infoM += '<br><br><em>La disposizione conteneva degli errori</em><br>';
+        }
+    infoT.innerHTML = infoM;
+    infoG.showModal();
 }
 else {
     s = 0;
