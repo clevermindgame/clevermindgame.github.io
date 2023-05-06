@@ -207,8 +207,19 @@ setTema();
 stampa();
 aggiungiEventiDialoghi();
 aggiungiEventiScacchiera();
-if (s !=  null) {
-// scrivi messaggio di import
+if (modalitaV == 'studio') {
+    infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Studio</b>.<br>\
+        Qui puoi creare una tua sfida, scegliendo i pezzi da inserire.<br>\
+        Per passare in modalità <b>Gioco</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
+        Buon divertimento!';
+    infoG.showModal();
+}
+if (modalitaV == 'gioco') {
+    infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Gioco</b>.<br>\
+        Tocca <b>Nuovo</b> per accettare una nuova sfida, o l\'icona del calendario per la sfida del giorno.<br>\
+        Per passare in modalità <b>Studio</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
+        Buon divertimento!';
+    infoG.showModal();
 }
 //
 // Funzioni
