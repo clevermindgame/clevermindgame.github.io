@@ -1,3 +1,21 @@
+//
+temaC = [['#007fa8','#01a7c1','#ffffff','#fcedd5'],['#80914c','#E0FF85','#000000','#fcedd5'],['#60b380','#89FFB6','#000000','#fcedd5']];
+diventaIcon = " &#9654; "
+diventaIcon = ' ⋙ ';
+diventaIcon = '➜';
+passiIcon = '&#128694;';
+passiIcon = ' 🚶 ';
+rimbalziIcon = ' &#8634; ';
+rimbalziIcon = ' ↺ ';
+//
+// variabili per le funzioni di gioco
+cellaHTML = new Array(64);
+cellaVSBL = new Array(64);
+cellaRegole = new Array(64);
+cellaRegoleTemp = new Array(64);
+cellaPezzo = new Array(64);
+// listaPezzi = ['CB','CN','TB','TN','RB','RN','QB','QN',''];
+//
 // verifico se nella url c'è una disposizione da cui partire
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -25,7 +43,7 @@ wWindow = window.innerWidth;
 //
 if (wWindow > hWindow) {
 var divGioco = document.querySelector('.gioco-container');
-      wWindow = Math.round(hWindow * 4 / 7);
+      wWindow = Math.round(hWindow * 3.8 / 7);
       divGioco.style.width = wWindow + 'px';
 }
 rWindow = hWindow / wWindow;
@@ -34,10 +52,10 @@ rWindow = hWindow / wWindow;
 // oltre un rapporto H/W di 1.8, la larghezza della scacchiera è del 97%
 // nell'intervallo tra 1.4 e 1.8, la larghezza varia in proporzione
 // se lo schermo è alto meno di 700px, l'altezza del banner top varia in proporzione tra 40 e 60px
-scacchieraW = Math.round(80 + ((rWindow - 1.4) * 17) / 0.4);
-logoH = Math.round(40 + ((rWindow - 1.4) * 17) / 0.4);
+scacchieraW = Math.round(75 + ((rWindow - 1.4) * 22) / 0.4);
+logoH = Math.round(40 + ((rWindow - 1.4) * 22) / 0.4);
 if (rWindow < 1.4) {
-    scacchieraW = 80;
+    scacchieraW = 75;
     logoH = 40;
 }
 if (rWindow > 1.8) {
@@ -59,28 +77,10 @@ if (!localStorage.getItem('selectedOption2')) {localStorage.setItem('selectedOpt
 if (!localStorage.getItem('selectedOption3')) {localStorage.setItem('selectedOption3', 'passirimb')};
 if (!localStorage.getItem('selectedOption4')) {localStorage.setItem('selectedOption4', 0)};
 modalitaV = localStorage.getItem('selectedOption1');
-setModo(modalitaV);
 n = localStorage.getItem('selectedOption2');
 livelloV = localStorage.getItem('selectedOption3');
 temaV = localStorage.getItem('selectedOption4');
-//
-temaC = [['#007fa8','#01a7c1','#ffffff','#fcedd5'],['#80914c','#E0FF85','#000000','#fcedd5'],['#60b380','#89FFB6','#000000','#fcedd5']];
-//
-diventaIcon = " &#9654; "
-diventaIcon = ' ⋙ ';
-diventaIcon = '➜';
-passiIcon = '&#128694;';
-passiIcon = ' 🚶 ';
-rimbalziIcon = ' &#8634; ';
-rimbalziIcon = ' ↺ ';
-//
-// variabili per le funzioni di gioco
-cellaHTML = new Array(64);
-cellaVSBL = new Array(64);
-cellaRegole = new Array(64);
-cellaRegoleTemp = new Array(64);
-cellaPezzo = new Array(64);
-listaPezzi = ['CB','CN','TB','TN','RB','RN','QB','QN',''];
+setModo(modalitaV);
 //
 // finestra di dialogo per le informazioni
 const infoG = document.querySelector('#infoGioco');
@@ -113,7 +113,7 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
     }
     localStorage.setItem('selectedOption2', n);
     creaScacchiera(n);
-    daIndovinare = 0;
+//    daIndovinare = 0;
     for (cellaID = 0; cellaID < s.length; cellaID++) {
         pBordo = false;
         pezzo = s.charAt(cellaID)*1;
@@ -272,6 +272,7 @@ function creaScacchiera(n) {
     idStart = 0;
     idEnd = 0;
     nmosse = 0;
+    daIndovinare = 0;
 }
 
 function rimuoviEventiScacchiera() {
@@ -301,7 +302,9 @@ function aggiungiEventiScacchiera() {
     	const handleB = () => {
             cella = cell;
             cellaID = cell.id;
-            dialogB.showModal();
+            if ((modalitaV == 'studio') || (mostra == false)) {
+                dialogB.showModal();
+            }
        };
        cell.addEventListener("click", handleB);
     });
@@ -311,14 +314,16 @@ function aggiungiEventiScacchiera() {
     	const handleS = () => {
             cella = cell;
             cellaID = cell.id;
-            dialogS.showModal();
+            if (modalitaV == 'studio' || (mostra == false && daIndovinare > 0)) {
+                dialogS.showModal();
+            }
         };
         cell.addEventListener("click", handleS);
     });
 }
 function aggiungiEventiDialoghi() {
     image0.addEventListener("click", () => {
-        cPezzo("",8);
+        if (modalitaV == 'studio') {cPezzo("",8)}
         dialogS.close();
     });
     image1.addEventListener("click", () => {
@@ -411,7 +416,7 @@ document.getElementById("god").addEventListener("click", function () {
     stampa();
     infoT.innerHTML = "Gioco di oggi!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
     infoG.showModal();
-    setModo('gioco');
+    setModo2('gioco');
 });
 // bottone "copia"
 document.getElementById("copia").addEventListener("click", function () {
@@ -439,8 +444,15 @@ function setModo(x) {
         modalitaV = x;
         localStorage.setItem('selectedOption1', x)
         document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b></em>';
+        if (modalitaV == 'studio') {riprbordi()};
+        if (modalitaV == 'gioco') {creaScacchiera(n)};
 }
 
+function setModo2(x) {
+        modalitaV = x;
+        localStorage.setItem('selectedOption1', x)
+        document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b></em>';
+}
 
 function riprbordi() {
         cellaID = 65;
@@ -563,13 +575,13 @@ function cPezzo(cHTML,p) {
                 'afterbegin',
                 '<em>'+nmosse+' </em>Bravo! Hai trovato tutti i pezzi. <br />'
                );
-               setModo('studio');
+//               setModo('studio');
             } else {
             if (daIndovinare === 1) {
-                quantiR = 'Indovinato! rimane ancora '
+                quantiR = 'Indovinato! rimane '
                 quantiP = ' pezzo';
             } else {
-                quantiR = 'Indovinato! rimangono ancora '
+                quantiR = 'Indovinato! rimangono '
                 quantiP = ' pezzi';
             }
             storicoDiv.insertAdjacentHTML(
@@ -665,11 +677,15 @@ function percorso(cinID,valore,colore) {
     storicoDiv.insertAdjacentHTML("afterbegin", cin + cout);
 }
 function ripristina() {
-    if (cellaID != idStart) {
- 	document.getElementById(idStart).innerHTML = cellaHTML[idStart];
+    if (typeof idStart !== 'undefined') {
+        if (cellaID != idStart) {
+ 	    document.getElementById(idStart).innerHTML = cellaHTML[idStart];
+        }
     }
-    if (cellaID != idEnd) {
-	document.getElementById(idEnd).innerHTML = cellaHTML[idEnd];
+    if (typeof idEnd !== 'undefined') {
+        if (cellaID != idEnd) {
+            document.getElementById(idEnd).innerHTML = cellaHTML[idEnd];
+        }
     }
 }
 function setTema() {
