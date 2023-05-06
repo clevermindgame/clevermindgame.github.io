@@ -61,6 +61,7 @@ function aggiungiEventiImpostazioni() {
         selectedOption2 = dimensioni[i].value;
         if (oldopt != selectedOption2) {varia = true};
         localStorage.setItem('selectedOption2', selectedOption2);
+        localStorage.setItem('benv', 0);
         break;
       }
     }

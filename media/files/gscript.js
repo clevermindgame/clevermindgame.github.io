@@ -72,10 +72,11 @@ if (hWindow < 700) {
 }
 //
 // recupero delle impostazioni
-if (!localStorage.getItem('selectedOption1')) {localStorage.setItem('selectedOption1', 'studio')};
+if (!localStorage.getItem('selectedOption1')) {localStorage.setItem('selectedOption1', 'gioco')};
 if (!localStorage.getItem('selectedOption2')) {localStorage.setItem('selectedOption2', 7)};
 if (!localStorage.getItem('selectedOption3')) {localStorage.setItem('selectedOption3', 'passirimb')};
 if (!localStorage.getItem('selectedOption4')) {localStorage.setItem('selectedOption4', 0)};
+if (!localStorage.getItem('benv')) {localStorage.setItem('benv', 1)};
 modalitaV = localStorage.getItem('selectedOption1');
 n = localStorage.getItem('selectedOption2');
 livelloV = localStorage.getItem('selectedOption3');
@@ -176,6 +177,7 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
     if (m == 'true') {mostra = false;} else {mostra = true;}
     mostranasc();
 
+    localStorage.setItem('benv', 0);
     if (daIndovinare === 1) {
         quantiP = ' pezzo';
     } else {
@@ -192,20 +194,21 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
 else {
     s = 0;
     creaScacchiera(n);
-    if (modalitaV == 'studio') {
+    if (modalitaV == 'studio' && localStorage.getItem('benv') == 1) {
         infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Studio</b>.<br>\
             Qui puoi creare una tua sfida, scegliendo i pezzi da inserire.<br>\
             Per passare in modalità <b>Gioco</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
             Buon divertimento!';
         infoG.showModal();
     }
-    if (modalitaV == 'gioco') {
+    if (modalitaV == 'gioco' && localStorage.getItem('benv') == 1) {
         infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Gioco</b>.<br>\
             Tocca <b>Nuovo</b> per accettare una nuova sfida, o l\'icona del calendario per la sfida del giorno.<br>\
             Per passare in modalità <b>Studio</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
             Buon divertimento!';
         infoG.showModal();
     }
+    localStorage.setItem('benv', 1);
 }
 //
 // Dimensiona l'area dello storico
