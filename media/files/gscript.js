@@ -114,6 +114,7 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
     localStorage.setItem('selectedOption2', n);
     creaScacchiera(n);
 //    daIndovinare = 0;
+    setModo('gioco');
     for (cellaID = 0; cellaID < s.length; cellaID++) {
         pBordo = false;
         pezzo = s.charAt(cellaID)*1;
@@ -191,6 +192,20 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
 else {
     s = 0;
     creaScacchiera(n);
+    if (modalitaV == 'studio') {
+        infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Studio</b>.<br>\
+            Qui puoi creare una tua sfida, scegliendo i pezzi da inserire.<br>\
+            Per passare in modalità <b>Gioco</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
+            Buon divertimento!';
+        infoG.showModal();
+    }
+    if (modalitaV == 'gioco') {
+        infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Gioco</b>.<br>\
+            Tocca <b>Nuovo</b> per accettare una nuova sfida, o l\'icona del calendario per la sfida del giorno.<br>\
+            Per passare in modalità <b>Studio</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
+            Buon divertimento!';
+        infoG.showModal();
+    }
 }
 //
 // Dimensiona l'area dello storico
@@ -207,20 +222,6 @@ setTema();
 stampa();
 aggiungiEventiDialoghi();
 aggiungiEventiScacchiera();
-if (modalitaV == 'studio') {
-    infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Studio</b>.<br>\
-        Qui puoi creare una tua sfida, scegliendo i pezzi da inserire.<br>\
-        Per passare in modalità <b>Gioco</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
-        Buon divertimento!';
-    infoG.showModal();
-}
-if (modalitaV == 'gioco') {
-    infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Gioco</b>.<br>\
-        Tocca <b>Nuovo</b> per accettare una nuova sfida, o l\'icona del calendario per la sfida del giorno.<br>\
-        Per passare in modalità <b>Studio</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
-        Buon divertimento!';
-    infoG.showModal();
-}
 //
 // Funzioni
 //
