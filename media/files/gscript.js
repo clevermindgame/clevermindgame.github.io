@@ -459,16 +459,27 @@ function setModo(x) {
         modalitaV = x;
         localStorage.setItem('selectedOption1', x)
         document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b></em>';
-        if (modalitaV == 'studio') {riprbordi()};
-        if (modalitaV == 'gioco') {creaScacchiera(n)};
+        if (modalitaV == 'studio') {
+            riprbordi();
+            document.getElementById('image0').style.visibility = 'visible';
+        }
+        if (modalitaV == 'gioco') {
+            creaScacchiera(n);
+            document.getElementById('image0').style.visibility = 'hidden';
+        };
 }
 
 function setModo2(x) {
         modalitaV = x;
         localStorage.setItem('selectedOption1', x)
         document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b></em>';
+        if (modalitaV == 'studio') {
+            document.getElementById('image0').style.visibility = 'visible';
+        }
+        if (modalitaV == 'gioco') {
+            document.getElementById('image0').style.visibility = 'hidden';
+        };
 }
-
 function riprbordi() {
         cellaID = 65;
         ripristina();
