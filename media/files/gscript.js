@@ -1,3 +1,5 @@
+// temporaneo per indice di complessità
+indiceMsg = '';
 //
 temaC = [['#007fa8','#01a7c1','#ffffff','#fcedd5'],['#80914c','#E0FF85','#000000','#fcedd5'],['#60b380','#89FFB6','#000000','#fcedd5']];
 diventaIcon = " &#9654; "
@@ -190,6 +192,9 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
         }
     infoT.innerHTML = infoM;
     infoG.showModal();
+// temporaneo: stampa indice di complessità della disposizione
+    indice = idxgen();
+    indiceMsg = 'Complessità: pezzi ' + daIndovinare + ' - passi '+ indice[0]+ ' - rimbalzi '+ indice[1] + '<br>';
 }
 else {
     s = 0;
@@ -531,6 +536,8 @@ function stampa() {
     } else {
         storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
     }
+// temporaneo per indice di complessità
+    storicoDiv.insertAdjacentHTML("afterbegin", indiceMsg);
 }
 
 function stampaUA() {
@@ -728,4 +735,43 @@ function setTema() {
        element.style.backgroundColor = temaC[localStorage.getItem('selectedOption4')][0];
        element.style.color = temaC[localStorage.getItem('selectedOption4')][2];
 });
+}
+// indice di complessità della disposizione
+function idxPercorso(cinID) {
+    idStart = cinID;
+    idxPassi = 0;
+    idxRimbalzi = 0;
+    cellaRegoleTemp = deepCopyArray(cellaRegole);
+    j = cinID % n;
+    i = Math.round((cinID-j)/n);
+    if (i == 0) {stato = [1,0,1,1]};
+    if (i == n-1) {stato = [-1,0,1,1]};
+    if (j == 0) {stato = [0,1,1,1]};
+    if (j == n-1) {stato = [0,-1,0,1]};
+    regola = cellaRegoleTemp[cinID];
+   do{
+       rimb = false;
+       if (regola[0] === '') {ii = stato[0]} else {rimb=true; ii = regola[0]};
+       if (regola[1] === '') {jj = stato[1]} else {rimb=true; jj = regola[1]};
+       if (rimb) {idxRimbalzi += 1};
+       cellaRegoleTemp[n*i+j] = ['','',1,0,1];
+       i += ii;
+       j += jj;
+       stato = [ii,jj,1,1];
+       regola = cellaRegoleTemp[n*i + j];
+       idxPassi += 1;
+    } while ((i != 0) & (i != n-1) & (j != 0) & (j!= n-1));
+    return [idxPassi, idxRimbalzi];
+}
+function idxgen() {
+    totPassi = 0;
+    totRimb = 0;
+    listaCelle = document.querySelectorAll(".cbordoV, .cbordoH");
+    listaCelle.forEach((cellaBordo) => {
+        cellaID = cellaBordo.id;
+        valPercorso = idxPercorso(cellaID);
+        totPassi += valPercorso[0];
+        totRimb += valPercorso[1];
+    });
+    return [totPassi,totRimb];
 }
