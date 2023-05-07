@@ -406,6 +406,8 @@ function aggiungiEventiDialoghi() {
 }
 // bottone "Nuovo"
 document.getElementById("run").addEventListener("click", function () {
+// se si arriva da una sfida condivisa, occorre rileggere la dimensione di scacchera impostata
+    n = localStorage.getItem('selectedOption2');
     creaScacchiera(n);
     aggiungiEventiScacchiera();
     setTema();
