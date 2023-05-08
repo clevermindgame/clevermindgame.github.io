@@ -195,7 +195,7 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
 // temporaneo: stampa indice di complessità della disposizione
 // [listaCelle.length,totPassi,maxPassi,totRimb,maxRimbalzi,pochiPassi,pochiRimb]
     indice = idxgen();
-    indiceMsg += '<em>' + daIndovinare + ',' + indice + ' (Excel)</em><br>';
+    indiceMsg += '<em>' + daIndovinare + ',' + indice + ', (Excel)</em><br>';
     indiceMsg += 'Pezzi: ' + daIndovinare + '<br>';
     indiceMsg += 'numero di percorsi: ' + indice[0] + '<br>';
     indiceMsg += 'Totale passi: '+ indice[1]+ ', max: ' + indice[2] + '<br>';
@@ -423,6 +423,7 @@ document.getElementById("run").addEventListener("click", function () {
     creaScacchiera(n);
     aggiungiEventiScacchiera();
     setTema();
+    indiceMsg = '';
     stampa();
 //    if (modalitaV == 'studio') {
 //        stampa();
@@ -442,6 +443,7 @@ document.getElementById("god").addEventListener("click", function () {
     today = new Date();
     seme = '' + today.getDate() + today.getDay() + today.getMonth() + today.getFullYear() % 100;
     creagioco(seme);
+    indiceMsg = '';
     stampa();
     infoT.innerHTML = "Gioco di oggi!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
     infoG.showModal();
@@ -787,7 +789,7 @@ function idxgen() {
         if (valPercorso[0] > maxPassi) {maxPassi = valPercorso[0]}
         if (valPercorso[1] > maxRimbalzi) {maxRimbalzi = valPercorso[1]}
         if (valPercorso[0] < 5) {pochiPassi += 1}
-        if (valPercorso[1] <2) {pochiRimb += 1}
+        if (valPercorso[1] < 2) {pochiRimb += 1}
     });
     return [listaCelle.length,totPassi,maxPassi,totRimb,maxRimbalzi,pochiPassi,pochiRimb];
 }
