@@ -193,12 +193,15 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
     infoT.innerHTML = infoM;
     infoG.showModal();
 // temporaneo: stampa indice di complessità della disposizione
-// [numero di percorsi,totale passi,max passi,totale rimbalzi, max rimbalzi]
+// [listaCelle.length,totPassi,maxPassi,totRimb,maxRimbalzi,pochiPassi,pochiRimb]
     indice = idxgen();
-    indiceMsg = 'numero di percorsi: ' + indice[0] + '<br>';
+    indiceMsg += '<em>' + daIndovinare + ',' + indice + ' (Excel)</em><br>';
     indiceMsg += 'Pezzi: ' + daIndovinare + '<br>';
+    indiceMsg += 'numero di percorsi: ' + indice[0] + '<br>';
     indiceMsg += 'Totale passi: '+ indice[1]+ ', max: ' + indice[2] + '<br>';
     indiceMsg += 'Totale rimbalzi: : '+ indice[3] + ', max: ' + indice[4] + '<br>';
+    indiceMsg += 'Percorsi con 2, 3 o 4 passi: ' + indice[5] + '<br>';
+    indiceMsg += 'Percorsi con 0 o 1 rimbalzo: ' + indice[6] + '<br>';
 }
 else {
     s = 0;
@@ -420,13 +423,13 @@ document.getElementById("run").addEventListener("click", function () {
     creaScacchiera(n);
     aggiungiEventiScacchiera();
     setTema();
-    if (modalitaV == 'studio') {
-        stampa();
-    }
+    stampa();
+//    if (modalitaV == 'studio') {
+//        stampa();
+//    }
     if (modalitaV == 'gioco') {
         seme = Math.floor(Math.random() * m);
         creagioco(seme);
-        stampa();
         infoT.innerHTML = "Ecco una nuova sfida!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
         infoG.showModal();
     }
@@ -771,8 +774,10 @@ function idxPercorso(cinID) {
 function idxgen() {
     totPassi = 0;
     totRimb = 0;
-    maxPassi = -1;
-    maxRimbalzi = -1;
+    maxPassi = 0;
+    maxRimbalzi = 0;
+    pochiPassi = 0;
+    pochiRimb = 0;
     listaCelle = document.querySelectorAll(".cbordoV, .cbordoH");
     listaCelle.forEach((cellaBordo) => {
         cellaID = cellaBordo.id;
@@ -781,6 +786,8 @@ function idxgen() {
         totRimb += valPercorso[1];
         if (valPercorso[0] > maxPassi) {maxPassi = valPercorso[0]}
         if (valPercorso[1] > maxRimbalzi) {maxRimbalzi = valPercorso[1]}
+        if (valPercorso[0] < 5) {pochiPassi += 1}
+        if (valPercorso[1] <2) {pochiRimb += 1}
     });
-    return [listaCelle.length,totPassi,maxPassi,totRimb,maxRimbalzi];
+    return [listaCelle.length,totPassi,maxPassi,totRimb,maxRimbalzi,pochiPassi,pochiRimb];
 }
