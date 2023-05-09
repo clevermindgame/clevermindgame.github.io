@@ -542,13 +542,11 @@ function stampa() {
     statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
     storicoDiv.insertAdjacentHTML("afterbegin", statW);
 //    storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
-/*
     if (s === 0) {
         storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
     } else {
         storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
     }
-*/
 // temporaneo per indice di complessità
 //    storicoDiv.insertAdjacentHTML("afterbegin", indiceMsg);
 }
@@ -565,14 +563,12 @@ function stampaUA() {
     statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
     storicoDiv.insertAdjacentHTML("afterbegin", statW);
     storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
-/*
     if (s === 0) {
         storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
     } else {
         storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
     }
     storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
-*/
 }
 // inserisci o verifica il pezzo nella cella
 function cPezzo(cHTML,p) {
