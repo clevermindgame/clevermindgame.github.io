@@ -16,7 +16,7 @@ cellaVSBL = new Array(64);
 cellaRegole = new Array(64);
 cellaRegoleTemp = new Array(64);
 cellaPezzo = new Array(64);
-// listaPezzi = ['CB','CN','TB','TN','RB','RN','QB','QN',''];
+verbose = true;
 //
 // verifico se nella url c'è una disposizione da cui partire
 const queryString = window.location.search;
@@ -537,22 +537,16 @@ document.getElementById("mostra").addEventListener("click", function () {
 //
 function stampa() {
     storicoDiv.innerHTML = "";
-    statS = "Schermo: " + wWindow + ", " + hWindow + "<br />";
-    storicoDiv.insertAdjacentHTML("afterbegin", statS);
-    statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
-    storicoDiv.insertAdjacentHTML("afterbegin", statW);
-//    storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
-/*
-    if (s === 0) {
-        storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
-    } else {
-        storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
+    if (verbose) {
+        storicoDiv.insertAdjacentHTML("afterbegin","<br />" + window.navigator.userAgent + "<br />");
+        statS = "Schermo: " + wWindow + ", " + hWindow + "<br />";
+        storicoDiv.insertAdjacentHTML("afterbegin", statS);
+        statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
+        storicoDiv.insertAdjacentHTML("afterbegin", statW);
+        storicoDiv.insertAdjacentHTML("afterbegin", indiceMsg);
     }
-*/
-// temporaneo per indice di complessità
-    storicoDiv.insertAdjacentHTML("afterbegin", indiceMsg);
 }
-
+/*
 function stampaUA() {
     storicoDiv.innerHTML = "";
     storicoDiv.insertAdjacentHTML("beforeend", "<br />--- fine ---");
@@ -565,15 +559,14 @@ function stampaUA() {
     statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
     storicoDiv.insertAdjacentHTML("afterbegin", statW);
     storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
-/*
     if (s === 0) {
         storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
     } else {
         storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
     }
     storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
-*/
 }
+*/
 // inserisci o verifica il pezzo nella cella
 function cPezzo(cHTML,p) {
     if (mostra) {
