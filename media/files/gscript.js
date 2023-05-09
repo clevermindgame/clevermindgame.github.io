@@ -550,7 +550,7 @@ function stampa() {
     }
 */
 // temporaneo per indice di complessità
-//    storicoDiv.insertAdjacentHTML("afterbegin", indiceMsg);
+    storicoDiv.insertAdjacentHTML("afterbegin", indiceMsg);
 }
 
 function stampaUA() {
