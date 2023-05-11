@@ -16,7 +16,7 @@ cellaVSBL = new Array(64);
 cellaRegole = new Array(64);
 cellaRegoleTemp = new Array(64);
 cellaPezzo = new Array(64);
-verbose = true;
+verbose = false;
 //
 // verifico se nella url c'è una disposizione da cui partire
 const queryString = window.location.search;
@@ -207,16 +207,16 @@ else {
     s = 0;
     creaScacchiera(n);
     if (modalitaV == 'studio' && localStorage.getItem('benv') == 1) {
-        infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Studio</b>.<br>\
+        infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Studio</b>.<br><br>\
             Qui puoi creare una tua sfida, scegliendo i pezzi da inserire.<br>\
-            Per passare in modalità <b>Gioco</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
+            Entra nelle Impostazioni per passare in modalità <b>Gioco</b>, cambiare la dimensione della scacchiera o il tema grafico.<br>\
             Buon divertimento!';
         infoG.showModal();
     }
     if (modalitaV == 'gioco' && localStorage.getItem('benv') == 1) {
-        infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Gioco</b>.<br>\
+        infoT.innerHTML = 'Benvenuto! Sei in modalità <b>Gioco</b>.<br><br>\
             Tocca <b>Nuovo</b> per accettare una nuova sfida, o l\'icona del calendario per la sfida del giorno.<br>\
-            Per passare in modalità <b>Studio</b>, cambiare la dimensione della scacchiera o il tema grafico, vai nelle impostazioni.<br>\
+            Entra nelle Impostazioni per passare in modalità <b>Studio</b>, cambiare la dimensione della scacchiera o il tema grafico.<br>\
             Buon divertimento!';
         infoG.showModal();
     }
@@ -476,12 +476,14 @@ function setModo(x) {
         localStorage.setItem('selectedOption1', x)
 //        document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b></em>';
         if (modalitaV == 'studio') {
-            document.getElementById('modo').innerHTML = '<em>modalità: <b>studio</b>, tocca <b>Nuovo</b> per pulire la scacchiera</em>';
+            document.getElementById('modo').innerHTML = '<em>modalità: <b>studio</b> — \
+                <a href="https://clevermindgame.github.io/help.html#studio" target="_blank">Help</a>';
             riprbordi();
             document.getElementById('image0').style.visibility = 'visible';
         }
         if (modalitaV == 'gioco') {
-            document.getElementById('modo').innerHTML = '<em>modalità: <b>gioco</b> — <a href="https://clevermindgame.github.io/help.html#gioco" target="_blank">Help</a>';
+            document.getElementById('modo').innerHTML = '<em>modalità: <b>gioco</b> — \
+                <a href="https://clevermindgame.github.io/help.html#gioco" target="_blank">Help</a>';
             creaScacchiera(n);
             document.getElementById('image0').style.visibility = 'hidden';
         };
