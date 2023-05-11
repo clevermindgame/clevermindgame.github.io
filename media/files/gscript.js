@@ -481,7 +481,7 @@ function setModo(x) {
             document.getElementById('image0').style.visibility = 'visible';
         }
         if (modalitaV == 'gioco') {
-            document.getElementById('modo').innerHTML = '<em>modalità: <b>gioco</b>, tocca <b>Nuovo</b> per una nuova sfida</em>';
+            document.getElementById('modo').innerHTML = '<em>modalità: <b>gioco</b> — <a href="https://clevermindgame.github.io/help.html#gioco" target="_blank">Help</a>';
             creaScacchiera(n);
             document.getElementById('image0').style.visibility = 'hidden';
         };
@@ -744,8 +744,13 @@ function setTema() {
        element.style.color = temaC[localStorage.getItem('selectedOption4')][2];
 });
 }
-// indice di complessità della disposizione
-// [numero di percorsi,totale passi,max passi,totale rimbalzi, max rimbalzi]
+
+/* -----------------------------------------------
+    §idxPercorso()
+        in: cinID: Casella di ingresso dello stimolo
+       out: [passi, rimbalzi]
+       usa: ---
+*/
 function idxPercorso(cinID) {
     idStart = cinID;
     idxPassi = 0;
@@ -772,6 +777,12 @@ function idxPercorso(cinID) {
     } while ((i != 0) & (i != n-1) & (j != 0) & (j!= n-1));
     return [idxPassi, idxRimbalzi];
 }
+/* -----------------------------------------------
+    §idxgen(): indice di complessità della disposizione
+        in: la disposizione presente sulla scacchiera
+       out: [numero di percorsi,totale passi,max passi,totale rimbalzi,max rimbalzi]
+       usa: idxPercorso()
+*/
 function idxgen() {
     totPassi = 0;
     totRimb = 0;
