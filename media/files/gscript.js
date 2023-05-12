@@ -503,7 +503,7 @@ function setModo2(x) {
         modalitaV = x;
         localStorage.setItem('selectedOption1', x)
         document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b> — \
-                <a href="https://clevermindgame.github.io/help.html#'+modalitaV+'gioco" target="_blank">Help</a></em>';
+                <a href="https://clevermindgame.github.io/help.html#' + modalitaV + ' target="_blank">Help</a></em>';
         if (modalitaV == 'studio') {
             document.getElementById('image0').style.visibility = 'visible';
         }
