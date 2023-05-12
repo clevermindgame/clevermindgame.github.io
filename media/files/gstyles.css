@@ -1,4 +1,4 @@
-/* v0.30 */
+/* v0.60 */
 
 .spaziatura3{
     margin-bottom:2px;
@@ -116,4 +116,9 @@ pezzi {
     height: 1.1em;
     background-color: #ffffff;
     text-align: center;
+}
+
+h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
