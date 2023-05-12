@@ -185,23 +185,16 @@ if ((s != null) && ((s.length == 36) || (s.length == 49) || (s.length == 64))) {
     } else {
         quantiP = ' pezzi';
     }
-    infoM = 'Hai importato una sfida!<br>Devi indovinare ' + daIndovinare + quantiP + '<br><br>';
-    infoM += '<em>(passi:' + passiIcon + '- rimbalzi:' + rimbalziIcon + ')</em>';
+    infoM = 'Hai importato una sfida!<br><br>Pezzi da indovinare: ' + daIndovinare + '<br>';
+    infoM += 'Difficoltà: ' + idxgen()+'<br><br>';
+    infoM += '<em>(passi:' + passiIcon + '- rimbalzi:' + rimbalziIcon + ')</em><br>';
+// stampa diagnostica, da eliminare
+    infoM += idxVal+'<br>';
     if (sErr) {
         infoM += '<br><br><em>La disposizione conteneva degli errori</em><br>';
         }
     infoT.innerHTML = infoM;
     infoG.showModal();
-// temporaneo: stampa indice di complessità della disposizione
-// [listaCelle.length,totPassi,maxPassi,totRimb,maxRimbalzi,pochiPassi,pochiRimb]
-    indice = idxgen();
-    indiceMsg += '<em>' + daIndovinare + ',' + indice + ', (Excel)</em><br>';
-    indiceMsg += 'Pezzi: ' + daIndovinare + '<br>';
-    indiceMsg += 'numero di percorsi: ' + indice[0] + '<br>';
-    indiceMsg += 'Totale passi: '+ indice[1]+ ', max: ' + indice[2] + '<br>';
-    indiceMsg += 'Totale rimbalzi: : '+ indice[3] + ', max: ' + indice[4] + '<br>';
-    indiceMsg += 'Percorsi con 2, 3 o 4 passi: ' + indice[5] + '<br>';
-    indiceMsg += 'Percorsi con 0 o 1 rimbalzo: ' + indice[6] + '<br>';
 }
 else {
     s = 0;
@@ -431,7 +424,12 @@ document.getElementById("run").addEventListener("click", function () {
     if (modalitaV == 'gioco') {
         seme = Math.floor(Math.random() * m);
         creagioco(seme);
-        infoT.innerHTML = "Ecco una nuova sfida!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
+        infoM = 'È pronta una nuova sfida!<br><br>Pezzi da indovinare '+daIndovinare+'<br>';
+        infoM += 'Difficoltà: ' + idxgen()+'<br><br>';
+        infoM += '<em>(passi:'+passiIcon+'- rimbalzi:'+rimbalziIcon+')</em><br>';
+// stampa diagnostica, da eliminare
+        infoM += idxVal+'<br>';
+        infoT.innerHTML = infoM;
         infoG.showModal();
     }
 });
@@ -445,7 +443,12 @@ document.getElementById("god").addEventListener("click", function () {
     creagioco(seme);
     indiceMsg = '';
     stampa();
-    infoT.innerHTML = "Gioco di oggi!<br>Devi indovinare "+daIndovinare+" pezzi<br><br><em>(passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+")</em><br>";
+    infoM = 'Gioco di oggi!<br><br>Pezzi da indovinare: '+daIndovinare+'<br>';
+    infoM += 'Difficoltà: ' + idxgen()+'<br><br>';
+    infoM += '<em>(passi:'+passiIcon+'- rimbalzi:'+rimbalziIcon+')</em><br>';
+// stampa diagnostica, da eliminare
+        infoM += idxVal+'<br>';
+    infoT.innerHTML = infoM;
     infoG.showModal();
     setModo2('gioco');
 });
@@ -474,16 +477,15 @@ document.getElementById("copia").addEventListener("click", function () {
 function setModo(x) {
         modalitaV = x;
         localStorage.setItem('selectedOption1', x)
-//        document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b></em>';
         if (modalitaV == 'studio') {
             document.getElementById('modo').innerHTML = '<em>modalità: <b>studio</b> — \
-                <a href="https://clevermindgame.github.io/help.html#studio" target="_blank">Help</a>';
+                <a href="https://clevermindgame.github.io/help.html#studio" target="_blank">Help</a></em>';
             riprbordi();
             document.getElementById('image0').style.visibility = 'visible';
         }
         if (modalitaV == 'gioco') {
             document.getElementById('modo').innerHTML = '<em>modalità: <b>gioco</b> — \
-                <a href="https://clevermindgame.github.io/help.html#gioco" target="_blank">Help</a>';
+                <a href="https://clevermindgame.github.io/help.html#gioco" target="_blank">Help</a></em>';
             creaScacchiera(n);
             document.getElementById('image0').style.visibility = 'hidden';
         };
@@ -492,7 +494,8 @@ function setModo(x) {
 function setModo2(x) {
         modalitaV = x;
         localStorage.setItem('selectedOption1', x)
-        document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b></em>';
+        document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b> — \
+                <a href="https://clevermindgame.github.io/help.html#'+modalitaV+'gioco" target="_blank">Help</a></em>';
         if (modalitaV == 'studio') {
             document.getElementById('image0').style.visibility = 'visible';
         }
@@ -781,15 +784,17 @@ function idxPercorso(cinID) {
 }
 /* -----------------------------------------------
     §idxgen(): indice di complessità della disposizione
-        in: la disposizione presente sulla scacchiera
-       out: [numero di percorsi,totale passi,max passi,totale rimbalzi,max rimbalzi]
+        in: la disposizione presente sulla scacchiera, daIndovinare
+   formula: idxVal = 2*(totPassi+5*Maxpassi)+10*(totRimb+5*maxRimb)-10*(pochiPassi+2*pochiRimb)+5*daIndovinare
+    soglie: 350, 600
+       out: facile / media / difficile
        usa: idxPercorso()
 */
 function idxgen() {
     totPassi = 0;
     totRimb = 0;
     maxPassi = 0;
-    maxRimbalzi = 0;
+    maxRimb = 0;
     pochiPassi = 0;
     pochiRimb = 0;
     listaCelle = document.querySelectorAll(".cbordoV, .cbordoH");
@@ -799,9 +804,12 @@ function idxgen() {
         totPassi += valPercorso[0];
         totRimb += valPercorso[1];
         if (valPercorso[0] > maxPassi) {maxPassi = valPercorso[0]}
-        if (valPercorso[1] > maxRimbalzi) {maxRimbalzi = valPercorso[1]}
+        if (valPercorso[1] > maxRimb) {maxRimb = valPercorso[1]}
         if (valPercorso[0] < 5) {pochiPassi += 1}
         if (valPercorso[1] < 2) {pochiRimb += 1}
     });
-    return [listaCelle.length,totPassi,maxPassi,totRimb,maxRimbalzi,pochiPassi,pochiRimb];
+    idxVal = 2*(totPassi+5*maxPassi)+10*(totRimb+5*maxRimb)-10*(pochiPassi+2*pochiRimb)+5*daIndovinare;
+    if (idxVal < 350) {return "facile";}
+    if (idxVal > 350 && idxVal <= 600) {return "media";}
+    if (idxVal > 600) {return "difficile";}
 }
