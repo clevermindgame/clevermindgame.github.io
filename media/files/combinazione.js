@@ -55,6 +55,18 @@ for (i = 0; i < 8; i++) {
         ) {
             continue;
         }
+// respingimento
+        seed = (a * seed + c) % m;
+        if ((seed % 3) > 0 && espertoV == 1) {
+            if (riga == 1 && pezzo < 6) {pezzo = pezzo | 1;}
+            if (riga == lato && pezzo < 6) {pezzo = pezzo & 6;}
+            if (colonna == 1 && pezzo > 1) {
+                if (pezzo == 4 || pezzo == 5) {pezzo = pezzo & 6;} else {pezzo = pezzo | 1;}
+            }
+            if (colonna == lato && pezzo > 1) {
+                if (pezzo == 4 || pezzo == 5) {pezzo = pezzo | 1;} else {pezzo = pezzo & 6;}
+            }
+        }
         cellaID = riga * n + colonna;
         npezzi += 1;
         ninserim[pezzo] -= 1;
