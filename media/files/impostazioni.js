@@ -22,6 +22,14 @@ function aggiungiEventiImpostazioni() {
         }
       }
     }
+    if (localStorage.getItem('selectedOption5')) {
+      for (let i = 0; i < esperto.length; i++) {
+        if (esperto[i].value === localStorage.getItem('selectedOption5')) {
+          esperto[i].checked = true;
+          break;
+        }
+      }
+    }
     if (localStorage.getItem('selectedOption3')) {
       for (let i = 0; i < livello.length; i++) {
         if (livello[i].value === localStorage.getItem('selectedOption3')) {
@@ -50,7 +58,6 @@ function aggiungiEventiImpostazioni() {
         localStorage.setItem('selectedOption1', selectedOption1);
         if (oldopt != selectedOption1) {
             setModo(modalitaV);
-//            storicoDiv.insertAdjacentHTML("afterbegin","sei passato in modalità "+modalitaV+"<br>");
         }
         break;
       }
@@ -65,11 +72,21 @@ function aggiungiEventiImpostazioni() {
         break;
       }
     }
+    for (let i = 0; i < esperto.length; i++) {
+      if (esperto[i].checked) {
+        oldopt = localStorage.getItem('selectedOption5');
+        selectedOption5 = esperto[i].value;
+        espertoV = selectedOption5;
+        espertoMsg = '';
+        if (espertoV == 1) {espertoMsg = ' (livello esperto)';}
+        localStorage.setItem('selectedOption5', selectedOption5);
+        break;
+      }
+    }
     for (let i = 0; i < livello.length; i++) {
       if (livello[i].checked) {
         oldopt = localStorage.getItem('selectedOption3');
         selectedOption3 = livello[i].value;
-//        if (oldopt != selectedOption3) {varia = true};
         livelloV = selectedOption3;
         localStorage.setItem('selectedOption3', selectedOption3);
         break;
@@ -79,7 +96,6 @@ function aggiungiEventiImpostazioni() {
       if (tema[i].checked) {
         oldopt = localStorage.getItem('selectedOption4');
         selectedOption4 = tema[i].value;
-//        if (oldopt != selectedOption4) {varia = true};
         localStorage.setItem('selectedOption4', selectedOption4);
         temaV = selectedOption4;
         setTema();
@@ -97,6 +113,7 @@ const cancelButton = document.getElementById('cancelButton');
 const okButton = document.getElementById('okButton');
 modalita = document.getElementsByName('modalita');
 dimensioni = document.getElementsByName('dimensioni');
+esperto = document.getElementsByName('esperto');
 livello = document.getElementsByName('livello');
 tema = document.getElementsByName('tema');
 

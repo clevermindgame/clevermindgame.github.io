@@ -78,12 +78,16 @@ if (!localStorage.getItem('selectedOption1')) {localStorage.setItem('selectedOpt
 if (!localStorage.getItem('selectedOption2')) {localStorage.setItem('selectedOption2', 7)};
 if (!localStorage.getItem('selectedOption3')) {localStorage.setItem('selectedOption3', 'passirimb')};
 if (!localStorage.getItem('selectedOption4')) {localStorage.setItem('selectedOption4', 0)};
+if (!localStorage.getItem('selectedOption5')) {localStorage.setItem('selectedOption5', 0)};
 if (!localStorage.getItem('benv')) {localStorage.setItem('benv', 1)};
 modalitaV = localStorage.getItem('selectedOption1');
 n = localStorage.getItem('selectedOption2');
 livelloV = localStorage.getItem('selectedOption3');
 temaV = localStorage.getItem('selectedOption4');
 setModo(modalitaV);
+espertoV = localStorage.getItem('selectedOption5');
+espertoMsg = '';
+if (espertoV == 1) {espertoMsg = ' (livello esperto)';}
 //
 // finestra di dialogo per le informazioni
 const infoG = document.querySelector('#infoGioco');
@@ -387,24 +391,28 @@ function aggiungiEventiDialoghi() {
 	    percorso(cellaID,1,1);
         dialogB.close();
     });
+/*
     image11.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="media/files/p1n.png" style="width="100%" height="100%">';
 	    percorso(cellaID,1,-1);
         dialogB.close();
     });
+*/
     image12.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="media/files/m1b.png" style="width="100%" height="100%">';
  	    percorso(cellaID,-1,1);
        dialogB.close();
     });
+/*
     image13.addEventListener("click", () => {
         cella.innerHTML =
             '<img src="media/files/m1n.png" style="width="100%" height="100%">';
 	    percorso(cellaID,-1,-1);
         dialogB.close();
     });
+*/
     image14.addEventListener("click", () => {
         dialogB.close();
     });
@@ -425,7 +433,7 @@ document.getElementById("run").addEventListener("click", function () {
         seme = Math.floor(Math.random() * m);
         creagioco(seme);
         infoM = 'È pronta una nuova sfida!<br><br>Pezzi da indovinare '+daIndovinare+'<br>';
-        infoM += 'Difficoltà: ' + idxgen()+'<br><br>';
+        infoM += 'Difficoltà: ' + idxgen()+espertoMsg+'<br><br>';
         infoM += '<em>(passi:'+passiIcon+'- rimbalzi:'+rimbalziIcon+')</em><br>';
 // stampa diagnostica, da eliminare
         infoM += idxVal+'<br>';
@@ -439,12 +447,12 @@ document.getElementById("god").addEventListener("click", function () {
     aggiungiEventiScacchiera();
     setTema();
     today = new Date();
-    seme = '' + today.getDate() + today.getDay() + today.getMonth() + today.getFullYear() % 100;
+    seme = espertoV + today.getDate() + today.getDay() + today.getMonth() + today.getFullYear() % 100;
     creagioco(seme);
     indiceMsg = '';
     stampa();
     infoM = 'Gioco di oggi!<br><br>Pezzi da indovinare: '+daIndovinare+'<br>';
-    infoM += 'Difficoltà: ' + idxgen()+'<br><br>';
+    infoM += 'Difficoltà: ' + idxgen()+espertoMsg+'<br><br>';
     infoM += '<em>(passi:'+passiIcon+'- rimbalzi:'+rimbalziIcon+')</em><br>';
 // stampa diagnostica, da eliminare
         infoM += idxVal+'<br>';
@@ -675,7 +683,8 @@ function percorso(cinID,valore,colore) {
 //    if (colore === 0) {colstring = "b"} else {colstring = "n"};
     if (colore === 1) {colstring = "b"} else {colstring = "n"};
     nmosse += 1;
-    cin = nmosse+' | <b>' + String.fromCharCode(j + 65, i + 49) + '</b> [' + valstring + colstring + "] "  + diventaIcon;
+//   cin = nmosse+' | <b>' + String.fromCharCode(j + 65, i + 49) + '</b> [' + valstring + colstring + "] "  + diventaIcon;
+    cin = nmosse+' | <b>' + String.fromCharCode(j + 65, i + 49) + '</b> [' + valstring + "] "  + diventaIcon;
 //    if (colore === 0) {colore = -1};
     if (i == 0) {stato = [1,0,valore,colore]};
     if (i == n-1) {stato = [-1,0,valore,colore]};
@@ -704,10 +713,12 @@ function percorso(cinID,valore,colore) {
        uscita = '<img src="media/files/uscita_nera.png" style="width="100%" height="100%">';
 }
     document.getElementById(idEnd).innerHTML = uscita;
-    if (colore === 1) {colstring = "b"} else {colstring = "n"};
+//   if (colore === 1) {colstring = "b"} else {colstring = "n"};
+    if (colore === 1) {colstring = ' bianco'} else {colstring = ' nero'};
     if (valore > 0) {valore = "+"+valore};
 //   if (nrimbalzi === 1){rimbstring = " rimbalzo"} else {rimbstring = " rimbalzi"};
-    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+valore+colstring+']';
+//    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+valore+colstring+']';
+    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+ valore + colstring +']';
     switch (livelloV) {
         case 'passirimb':
             cout += " | "+npassi+passiIcon+"e "+nrimbalzi+rimbalziIcon+"<br />";

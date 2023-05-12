@@ -1,7 +1,7 @@
 np = 8;
 maxLinea = 2;
 maxPezziBoard = new Array(3);
-maxPezziBoard = [7,9,11];
+maxPezziBoard = [6,8,10];
 //
 // a = 8121;
 // c = 28411;
@@ -19,7 +19,7 @@ function creagioco(seed) {
 localStorage.setItem('selectedOption1', 'gioco');
 lato = n-2;
 maxMossa = lato * lato * np;
-maxPezzi = maxPezziBoard[n-6];
+maxPezzi = maxPezziBoard[n-6] + Number(espertoV);
 maxLoop = 8 * n;
 for (i = 0; i < 8; i++) {
     vertP[i] = maxLinea;
@@ -38,7 +38,7 @@ for (i = 0; i < 8; i++) {
     maxPezzi -= seed % 3;
     npezzi = 0;
     nloop = 0;
-    while (npezzi < maxPezzi && nloop < maxLoop) {
+    while ((npezzi < maxPezzi) && nloop < maxLoop) {
         nloop += 1;
         seed = (a * seed + c) % m;
         mossa = Math.floor(seed / 128) % maxMossa;
