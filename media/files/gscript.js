@@ -680,9 +680,9 @@ function percorso(cinID,valore,colore) {
     j = cinID % n;
     i = Math.round((cinID-j)/n);
     if (colore === 1) {
-        valstring = '<span class="intero bianco"> +1 </span>&nbsp;in ';
+        valstring = '<span class="intero bianco">&nbsp;+1&nbsp;</span>&nbsp;in ';
     } else {
-        valstring = '<span class="intero nero"> -1 </span>&nbsp;in ';
+        valstring = '<span class="intero nero">&nbsp;-1&nbsp;</span>&nbsp;in ';
     }
     nmosse += 1;
     cin = '<span style="line-height: 140%; margin: 0;">' + nmosse + ') ' + valstring + '<b>' + String.fromCharCode(j + 65, i + 49) + '</b>' + diventaIcon;
@@ -713,12 +713,12 @@ function percorso(cinID,valore,colore) {
        uscita = '<img src="media/files/uscita_nera.png" style="width="100%" height="100%">';
 }
     document.getElementById(idEnd).innerHTML = uscita;
-    if (colore === 1) {colstring = ' bianco'} else {colstring = ' nero'};
+//    if (colore === 1) {colstring = ' bianco'} else {colstring = ' nero'};
     if (valore > 0) {valore = "+"+valore};
     if (colore === 1) {
-        valstring = '<span class="intero bianco">' + valore + '</span>&nbsp;in ';
+        valstring = '<span class="intero bianco">&nbsp;' + valore + '&nbsp;</span>&nbsp;in ';
     } else {
-        valstring = '<span class="intero nero">' + valore + '</span>&nbsp;in ';
+        valstring = '<span class="intero nero">&nbsp;' + valore + '&nbsp;</span>&nbsp;in ';
     }
     cout = valstring + '<b>' + String.fromCharCode(j+65,i+49) + '</b>';
 //    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+ valore + colstring +']';
