@@ -4,7 +4,7 @@ indiceMsg = '';
 temaC = [['#007fa8','#01a7c1','#ffffff','#fcedd5'],['#80914c','#E0FF85','#000000','#fcedd5'],['#60b380','#89FFB6','#000000','#fcedd5']];
 diventaIcon = " &#9654; "
 diventaIcon = ' ⋙ ';
-diventaIcon = '➜';
+diventaIcon = ' ➜ ';
 passiIcon = '&#128694;';
 passiIcon = ' 🚶 ';
 rimbalziIcon = ' &#8634; ';
@@ -679,13 +679,13 @@ function percorso(cinID,valore,colore) {
     cellaRegoleTemp = deepCopyArray(cellaRegole);
     j = cinID % n;
     i = Math.round((cinID-j)/n);
-    if (valore === 1) {valstring ="+1"} else {valstring = valore};
-//    if (colore === 0) {colstring = "b"} else {colstring = "n"};
-    if (colore === 1) {colstring = "b"} else {colstring = "n"};
+    if (colore === 1) {
+        valstring = '<span class="intero bianco"> +1 </span>&nbsp;in ';
+    } else {
+        valstring = '<span class="intero nero"> -1 </span>&nbsp;in ';
+    }
     nmosse += 1;
-//   cin = nmosse+' | <b>' + String.fromCharCode(j + 65, i + 49) + '</b> [' + valstring + colstring + "] "  + diventaIcon;
-    cin = nmosse+' | <b>' + String.fromCharCode(j + 65, i + 49) + '</b> [' + valstring + "] "  + diventaIcon;
-//    if (colore === 0) {colore = -1};
+    cin = '<span style="line-height: 140%; margin: 0;">' + nmosse + ') ' + valstring + '<b>' + String.fromCharCode(j + 65, i + 49) + '</b>' + diventaIcon;
     if (i == 0) {stato = [1,0,valore,colore]};
     if (i == n-1) {stato = [-1,0,valore,colore]};
     if (j == 0) {stato = [0,1,valore,colore]};
@@ -713,12 +713,15 @@ function percorso(cinID,valore,colore) {
        uscita = '<img src="media/files/uscita_nera.png" style="width="100%" height="100%">';
 }
     document.getElementById(idEnd).innerHTML = uscita;
-//   if (colore === 1) {colstring = "b"} else {colstring = "n"};
     if (colore === 1) {colstring = ' bianco'} else {colstring = ' nero'};
     if (valore > 0) {valore = "+"+valore};
-//   if (nrimbalzi === 1){rimbstring = " rimbalzo"} else {rimbstring = " rimbalzi"};
-//    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+valore+colstring+']';
-    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+ valore + colstring +']';
+    if (colore === 1) {
+        valstring = '<span class="intero bianco">' + valore + '</span>&nbsp;in ';
+    } else {
+        valstring = '<span class="intero nero">' + valore + '</span>&nbsp;in ';
+    }
+    cout = valstring + '<b>' + String.fromCharCode(j+65,i+49) + '</b>';
+//    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+ valore + colstring +']';
     switch (livelloV) {
         case 'passirimb':
             cout += " | "+npassi+passiIcon+"e "+nrimbalzi+rimbalziIcon+"<br />";
@@ -733,7 +736,7 @@ function percorso(cinID,valore,colore) {
             cout += "<br />"
             break;
     }
-    storicoDiv.insertAdjacentHTML("afterbegin", cin + cout);
+    storicoDiv.insertAdjacentHTML("afterbegin", cin + cout + '</span>');
 }
 function ripristina() {
     if (typeof idStart !== 'undefined') {
