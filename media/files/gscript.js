@@ -679,11 +679,8 @@ function percorso(cinID,valore,colore) {
     cellaRegoleTemp = deepCopyArray(cellaRegole);
     j = cinID % n;
     i = Math.round((cinID-j)/n);
-    if (colore === 1) {
-        valstring = '<span class="intero bianco">&nbsp;+1&nbsp;</span>&nbsp;in ';
-    } else {
-        valstring = '<span class="intero nero">&nbsp;-1&nbsp;</span>&nbsp;in ';
-    }
+    if (valore == 1) {segno = '+';} else {segno = '';}
+    valstring = '<span class="intero bianco">&nbsp;' + segno + valore + '&nbsp;</span>&nbsp;in ';
     nmosse += 1;
     cin = '<span style="line-height: 140%; margin: 0;">' + nmosse + ') ' + valstring + '<b>' + String.fromCharCode(j + 65, i + 49) + '</b>' + diventaIcon;
     if (i == 0) {stato = [1,0,valore,colore]};
