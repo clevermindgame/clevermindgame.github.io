@@ -559,27 +559,6 @@ function stampa() {
         storicoDiv.insertAdjacentHTML("afterbegin", indiceMsg);
     }
 }
-/*
-function stampaUA() {
-    storicoDiv.innerHTML = "";
-    storicoDiv.insertAdjacentHTML("beforeend", "<br />--- fine ---");
-    storicoDiv.insertAdjacentHTML(
-        "afterbegin",
-        "<br />" + window.navigator.userAgent + "<br />"
-    );
-    statS = "Schermo: " + wWindow + ", " + hWindow + "<br />";
-    storicoDiv.insertAdjacentHTML("afterbegin", statS);
-    statW = "Scacchiera; " + scacchieraW + ", " + n + ", " + lcella + "<br />";
-    storicoDiv.insertAdjacentHTML("afterbegin", statW);
-    storicoDiv.insertAdjacentHTML("afterbegin", "passi:"+passiIcon+"- rimbalzi:"+rimbalziIcon+"<br />");
-    if (s === 0) {
-        storicoDiv.insertAdjacentHTML("afterbegin", "sei in modalità "+modalitaV+"<br>");
-    } else {
-        storicoDiv.insertAdjacentHTML("afterbegin", "hai importato un gioco!<br>");
-    }
-    storicoDiv.insertAdjacentHTML("afterbegin", "<br />");
-}
-*/
 // inserisci o verifica il pezzo nella cella
 function cPezzo(cHTML,p) {
     if (mostra) {
@@ -682,7 +661,7 @@ function percorso(cinID,valore,colore) {
     if (valore == 1) {segno = '+';} else {segno = '';}
     valstring = '<span class="intero bianco">&nbsp;' + segno + valore + '&nbsp;</span>&nbsp;in ';
     nmosse += 1;
-    cin = '<span style="line-height: 140%; margin: 0;">' + nmosse + ') ' + valstring + '<b>' + String.fromCharCode(j + 65, i + 49) + '</b>' + diventaIcon;
+    cin = '<span style="line-height: 160%; margin: 0;">' + nmosse + ') ' + valstring + '<b>' + String.fromCharCode(j + 65, i + 49) + '</b>' + diventaIcon;
     if (i == 0) {stato = [1,0,valore,colore]};
     if (i == n-1) {stato = [-1,0,valore,colore]};
     if (j == 0) {stato = [0,1,valore,colore]};
