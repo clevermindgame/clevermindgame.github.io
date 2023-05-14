@@ -662,7 +662,7 @@ function percorso(cinID,valore,colore) {
     if (valore > 0) {segno = '+';} else if (valore < 0) {segno = '‒';}
     valstring = '<span class="intero bianco">&nbsp;' + segno + Math.abs(valore) + '&nbsp;</span>&nbsp;in ';
     nmosse += 1;
-    cin = '<span style="line-height: 160%; margin: 0;">' + nmosse + ') ' + valstring + '<b>' + String.fromCharCode(j + 65, i + 49) + '</b>' + diventaIcon;
+    cin = '<span style="line-height: 160%; margin: 0;">' + nmosse + ' | ' + valstring + '<b>' + String.fromCharCode(j + 65, i + 49) + '</b>' + diventaIcon;
     if (i == 0) {stato = [1,0,valore,colore]};
     if (i == n-1) {stato = [-1,0,valore,colore]};
     if (j == 0) {stato = [0,1,valore,colore]};
