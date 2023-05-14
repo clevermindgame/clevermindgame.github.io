@@ -658,8 +658,9 @@ function percorso(cinID,valore,colore) {
     cellaRegoleTemp = deepCopyArray(cellaRegole);
     j = cinID % n;
     i = Math.round((cinID-j)/n);
-    if (valore == 1) {segno = '+';} else {segno = '';}
-    valstring = '<span class="intero bianco">&nbsp;' + segno + valore + '&nbsp;</span>&nbsp;in ';
+    segno = '';
+    if (valore > 0) {segno = '+';} else if (valore < 0) {segno = '‒';}
+    valstring = '<span class="intero bianco">&nbsp;' + segno + Math.abs(valore) + '&nbsp;</span>&nbsp;in ';
     nmosse += 1;
     cin = '<span style="line-height: 160%; margin: 0;">' + nmosse + ') ' + valstring + '<b>' + String.fromCharCode(j + 65, i + 49) + '</b>' + diventaIcon;
     if (i == 0) {stato = [1,0,valore,colore]};
@@ -689,8 +690,8 @@ function percorso(cinID,valore,colore) {
        uscita = '<img src="media/files/uscita_nera.png" style="width="100%" height="100%">';
 }
     document.getElementById(idEnd).innerHTML = uscita;
-//    if (colore === 1) {colstring = ' bianco'} else {colstring = ' nero'};
-    if (valore > 0) {valore = "+"+valore};
+//    if (colore === 1) {colstrin g = ' bianco'} else {colstring = ' nero'};
+    if (valore > 0) {valore = '+' +valore} else if (valore < 0) {valore = '‒' + (-valore)};
     if (colore === 1) {
         valstring = '<span class="intero bianco">&nbsp;' + valore + '&nbsp;</span>&nbsp;in ';
     } else {
