@@ -472,12 +472,14 @@ function setModo(x) {
                 <a href="https://clevermindgame.github.io/help.html#studio" target="_blank">Help</a></em>';
             riprbordi();
             document.getElementById('image0').style.visibility = 'visible';
+            document.getElementById('mostra').disabled = false;
         }
         if (modalitaV == 'gioco') {
             document.getElementById('modo').innerHTML = '<em>modalità: <b>gioco</b> — \
                 <a href="https://clevermindgame.github.io/help.html#gioco" target="_blank">Help</a></em>';
             creaScacchiera(n);
             document.getElementById('image0').style.visibility = 'hidden';
+            document.getElementById('mostra').disabled = true;
         };
 }
 
@@ -488,9 +490,11 @@ function setModo2(x) {
                 <a href="https://clevermindgame.github.io/help.html#' + modalitaV + ' target="_blank">Help</a></em>';
         if (modalitaV == 'studio') {
             document.getElementById('image0').style.visibility = 'visible';
+            document.getElementById('mostra').disabled = false;
         }
         if (modalitaV == 'gioco') {
             document.getElementById('image0').style.visibility = 'hidden';
+            document.getElementById('mostra').disabled = true;
         };
 }
 function riprbordi() {
