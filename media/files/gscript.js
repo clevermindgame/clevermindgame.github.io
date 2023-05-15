@@ -425,6 +425,7 @@ document.getElementById("run").addEventListener("click", function () {
 });
 // bottone "god"
 document.getElementById("god").addEventListener("click", function () {
+    setModo('gioco');
     creaScacchiera(n);
     aggiungiEventiScacchiera();
     setTema();
@@ -440,7 +441,7 @@ document.getElementById("god").addEventListener("click", function () {
         infoM += idxVal+'<br>';
     infoT.innerHTML = infoM;
     infoG.showModal();
-    setModo2('gioco');
+//    setModo2('gioco');
 });
 // bottone "copia"
 document.getElementById("copia").addEventListener("click", function () {
@@ -596,7 +597,6 @@ function cPezzo(cHTML,p) {
                 'afterbegin',
                 '<em>'+nmosse+' </em>Bravo! Hai trovato tutti i pezzi. <br />'
                );
-//               setModo('studio');
             } else {
             if (daIndovinare === 1) {
                 quantiR = 'Indovinato! rimane '
@@ -618,6 +618,11 @@ function cPezzo(cHTML,p) {
         }
     }
 }
+/* -----------------------------------------------
+    §deepCopyArray(): deep copy di un array
+        in: arr
+       out: array deep copy di arr
+*/
 function deepCopyArray(arr) {
   const copy = [];
   for (let i = 0; i < arr.length; i++) {
@@ -632,6 +637,11 @@ function deepCopyArray(arr) {
   }
   return copy;
 }
+/* -----------------------------------------------
+    §percorso(): elabora il percorso a partire da uno stimolo valore/colore in cinID
+        in: cinID, valore, colore
+       out: marcatura degli estremi del percorso, stampa nello storio della traccia del percorso
+*/
 function percorso(cinID,valore,colore) {
     ripristina();
     idStart = cinID;
@@ -676,7 +686,6 @@ function percorso(cinID,valore,colore) {
        uscita = '<img src="media/files/uscita_nera.png" style="width="100%" height="100%">';
 }
     document.getElementById(idEnd).innerHTML = uscita;
-//    if (colore === 1) {colstrin g = ' bianco'} else {colstring = ' nero'};
     if (valore > 0) {valore = '+' +valore} else if (valore < 0) {valore = '‒' + (-valore)};
     if (colore === 1) {
         valstring = '<span class="intero bianco">&nbsp;' + valore + '&nbsp;</span>&nbsp;in ';
@@ -684,7 +693,6 @@ function percorso(cinID,valore,colore) {
         valstring = '<span class="intero nero">&nbsp;' + valore + '&nbsp;</span>&nbsp;in ';
     }
     cout = valstring + '<b>' + String.fromCharCode(j+65,i+49) + '</b>';
-//    cout = '<b>'+String.fromCharCode(j+65,i+49)+'</b> ['+ valore + colstring +']';
     switch (livelloV) {
         case 'passirimb':
             cout += " | "+npassi+passiIcon+"e "+nrimbalzi+rimbalziIcon+"<br />";
@@ -701,6 +709,10 @@ function percorso(cinID,valore,colore) {
     }
     storicoDiv.insertAdjacentHTML("afterbegin", cin + cout + '</span>');
 }
+/* -----------------------------------------------
+    §ripristina(): ripristina gli estremi del percorso precedente
+        in: idStart, idEnd
+*/
 function ripristina() {
     if (typeof idStart !== 'undefined') {
         if (cellaID != idStart) {
@@ -713,6 +725,10 @@ function ripristina() {
         }
     }
 }
+/* -----------------------------------------------
+    §setTema(): assegna i colori alla pagina, in funzione di 'selectedOption4'
+        in: 'selectedOption4'
+*/
 function setTema() {
     temaV = localStorage.getItem('selectedOption4');
     document.getElementsByClassName('logo-container')[0].style.backgroundColor = temaC[temaV][0];
