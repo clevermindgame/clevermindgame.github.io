@@ -1,7 +1,8 @@
 // temporaneo per indice di complessità
 indiceMsg = '';
 //
-temaC = [['#1977a7','#3fb5cc','#ffffff','#fcf9ed'],['#d62628','#ef7f13','#ffffff','#fcf9ed'],['#3daf1e','#cef948','#000000','#fcf9ed']];
+// temaC = [['#1977a7','#3fb5cc','#ffffff','#fcf9ed'],['#d62628','#ef7f13','#ffffff','#fcf9ed'],['#3daf1e','#cef948','#ffffff','#fcf9ed']];
+temaC = [['#1977a7','#3fb5cc','#ffffff','#fcf9ed'],['#d62628','#ef7f13','#ffffff','#fcf9ed'],['#3daf1e','#9dc31a','#ffffff','#fcf9ed']];
 iconePezzi = [
     ['cb0','cn0','tb0','tn0','rb0','rn0','qb0','qn0'],
     ['cb1','cn1','tb1','tn1','rb1','rn1','qb1','qn1'],
@@ -469,15 +470,15 @@ function setModo(x) {
         modalitaV = x;
         localStorage.setItem('selectedOption1', x)
         if (modalitaV == 'studio') {
-            document.getElementById('modo').innerHTML = '<em>modalità: <b>studio</b> — \
-                <a href="https://clevermindgame.github.io/help.html#studio" target="_blank">Help</a></em>';
+            document.getElementById('modo').innerHTML = 'modalità: <b>studio</b> — \
+                <a href="https://clevermindgame.github.io/help.html#studio" target="_blank">Help</a>';
             riprbordi();
             document.getElementById('image0').style.visibility = 'visible';
             document.getElementById('mostra').disabled = false;
         }
         if (modalitaV == 'gioco') {
-            document.getElementById('modo').innerHTML = '<em>modalità: <b>gioco</b> — \
-                <a href="https://clevermindgame.github.io/help.html#gioco" target="_blank">Help</a></em>';
+            document.getElementById('modo').innerHTML = 'modalità: <b>gioco</b> — \
+                <a href="https://clevermindgame.github.io/help.html#gioco" target="_blank">Help</a>';
             creaScacchiera(n);
             document.getElementById('image0').style.visibility = 'hidden';
             document.getElementById('mostra').disabled = true;
@@ -487,8 +488,8 @@ function setModo(x) {
 function setModo2(x) {
         modalitaV = x;
         localStorage.setItem('selectedOption1', x)
-        document.getElementById('modo').innerHTML = '<em>modalità: <b>' + modalitaV + '</b> — \
-                <a href="https://clevermindgame.github.io/help.html#' + modalitaV + ' target="_blank">Help</a></em>';
+        document.getElementById('modo').innerHTML = 'modalità: <b>' + modalitaV + '</b> — \
+                <a href="https://clevermindgame.github.io/help.html#' + modalitaV + ' target="_blank">Help</a>';
         if (modalitaV == 'studio') {
             document.getElementById('image0').style.visibility = 'visible';
             document.getElementById('mostra').disabled = false;
