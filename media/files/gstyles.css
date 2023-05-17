@@ -1,4 +1,6 @@
-/* v0.70 */
+* {
+    font-family:"Calibri", sans-serif;
+}
 
 .spaziatura3{
     margin-bottom:2px;
@@ -20,7 +22,6 @@
 .logo-text {
   flex-basis: calc(100% - 60px);
   text-align: center;
-  font-family:"Calibri", sans-serif;
 }
 
 table {
@@ -29,7 +30,6 @@ table {
     margin-left: auto;
     margin-right: auto;
     table-layout:fixed;
-    font-family:"Calibri", sans-serif;
 }
 
 td {
@@ -85,7 +85,6 @@ td img{
     border-radius: 8px;
     width: 18%;
     text-align: center;
-    font-family:"Calibri", sans-serif;
 }
 
 .bottone2 {
@@ -93,7 +92,6 @@ td img{
     border-radius: 8px;
     width: 27%;
     text-align: center;
-    font-family:"Calibri", sans-serif;
 }
 
 .storico {
@@ -103,7 +101,6 @@ td img{
     border-radius: 4px;
     padding-right: 4px;
     padding-left: 4px;
-    font-family:"Calibri", sans-serif;
 }
 
 .modo {
