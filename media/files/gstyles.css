@@ -50,6 +50,11 @@ td img{
    color: white;
 }
 
+.pezzi {
+   width: 19%;
+   max-width: 68px;
+}
+
 .cangolo {
    background-color: #007fa8;
    text-align: center;
