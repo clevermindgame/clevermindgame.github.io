@@ -6,7 +6,7 @@
     "feed_url": "https://clevermindgame.github.io/feed.json",
     "user_comment": "",
     "author": {
-        "name": "MS &amp; 2P"
+        "name": "2P &amp; MS"
     },
     "items": [
         {
@@ -16,7 +16,7 @@
             "summary": "A presto!",
             "content_html": "<p>A presto!</p>",
             "author": {
-                "name": "MS &amp; 2P"
+                "name": "2P &amp; MS"
             },
             "tags": [
             ],
