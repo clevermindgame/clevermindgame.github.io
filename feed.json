@@ -2,16 +2,16 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "C M G",
     "description": "",
-    "home_page_url": "https://clevermindgame.github.io",
-    "feed_url": "https://clevermindgame.github.io/feed.json",
+    "home_page_url": "https://clevermindgame.it",
+    "feed_url": "https://clevermindgame.it/feed.json",
     "user_comment": "",
     "author": {
         "name": "2P &amp; MS"
     },
     "items": [
         {
-            "id": "https://clevermindgame.github.io/sito-in-costruzione.html",
-            "url": "https://clevermindgame.github.io/sito-in-costruzione.html",
+            "id": "https://clevermindgame.it/sito-in-costruzione.html",
+            "url": "https://clevermindgame.it/sito-in-costruzione.html",
             "title": "Manca poco ...",
             "summary": "A presto!",
             "content_html": "<p>A presto!</p>",
