@@ -9,19 +9,5 @@
         "name": "2P &amp; MS"
     },
     "items": [
-        {
-            "id": "https://clevermindgame.it/sito-in-costruzione.html",
-            "url": "https://clevermindgame.it/sito-in-costruzione.html",
-            "title": "Manca poco ...",
-            "summary": "A presto!",
-            "content_html": "<p>A presto!</p>",
-            "author": {
-                "name": "2P &amp; MS"
-            },
-            "tags": [
-            ],
-            "date_published": "2023-04-13T16:28:27+02:00",
-            "date_modified": "2023-05-21T09:33:52+02:00"
-        }
     ]
 }

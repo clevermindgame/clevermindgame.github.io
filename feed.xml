@@ -3,30 +3,10 @@
     <title>C M G</title>
     <link href="https://clevermindgame.it/feed.xml" rel="self" />
     <link href="https://clevermindgame.it" />
-    <updated>2023-05-21T09:33:52+02:00</updated>
+    <updated>1970-01-01T01:00:00+01:00</updated>
     <author>
         <name>2P &amp; MS</name>
     </author>
     <id>https://clevermindgame.it</id>
 
-    <entry>
-        <title>Manca poco ...</title>
-        <author>
-            <name>2P &amp; MS</name>
-        </author>
-        <link href="https://clevermindgame.it/sito-in-costruzione.html"/>
-        <id>https://clevermindgame.it/sito-in-costruzione.html</id>
-
-        <updated>2023-05-21T09:33:52+02:00</updated>
-            <summary>
-                <![CDATA[
-                    A presto!
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>A presto!</p>
-            ]]>
-        </content>
-    </entry>
 </feed>
